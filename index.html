@@ -9,16 +9,11 @@
 <style>
 :root{
   --red:#8f1d18;--red2:#b72c24;--cream:#fff8ed;--paper:#fffdf8;--ink:#231b16;
-  --muted:#786b61;--gold:#d89c2f;--line:#eadfce;--green:#1f7a4c;--shadow:0 14px 40px rgba(80,35,18,.12)
+  --muted:#786b61;--gold:#d89c2f;--line:#eadfce;--green:#1f7a4c
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:linear-gradient(180deg,#fff8ed 0,#fffdf8 36%,#f8f1e7 100%);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:86px}
-body.lock{overflow:hidden}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-.wrap{width:min(1120px,94%);margin:auto}
+body.lock{overflow:hidden}button,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,94%);margin:auto}
 .topbar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(143,29,24,.12)}
 .nav{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900}.mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,var(--red2),var(--red));color:white;display:grid;place-items:center;box-shadow:0 8px 22px rgba(143,29,24,.25)}
@@ -80,7 +75,6 @@ footer{padding:25px 0 10px;text-align:center;color:var(--muted);font-size:12px}
 </main>
 
 <footer><div class="wrap"><span id="footerText">الحديقة التركية — فرع سمائل • الطلب والاستفسار 95474488</span><br>تصميم wail elzain</div></footer>
-
 <button class="bottom-cart" id="bottomCart" hidden><span><span id="bottomCartText">عرض السلة</span><small id="bottomItems">0 صنف</small></span><span id="bottomTotal">0.000 ر.ع</span></button>
 <div class="overlay" id="overlay"></div>
 <aside class="sheet" id="sheet" aria-hidden="true">
@@ -101,13 +95,27 @@ footer{padding:25px 0 10px;text-align:center;color:var(--muted);font-size:12px}
 <script>
 const WHATSAPP='96895474488';
 const BANK='96205536';
-const DATA_FILES=['index_v5.html?v=20260730','https://walzainn-creator.github.io/turkish-garden-samail/index_v5.html?v=20260730'];
+const DATA_FILES=[
+  'index_v5.html?v=20260730-drinks',
+  'https://walzainn-creator.github.io/turkish-garden-samail/index_v5.html?v=20260730-drinks'
+];
 const PRICE_OVERRIDES=new Set(['صاروخ شاورما دجاج','صاروخ تكة دجاج','صاروخ كباب لحم','صاروخ كباب دجاج']);
+const EXTRA_DRINKS=[
+ {cat:'العصائر والمشروبات',name:'كينزا ليمون',price:.3,en:'Kinza Lemon'},
+ {cat:'العصائر والمشروبات',name:'كينزا كولا',price:.3,en:'Kinza Cola'},
+ {cat:'العصائر والمشروبات',name:'كينزا توت',price:.3,en:'Kinza Berry'},
+ {cat:'العصائر والمشروبات',name:'كينزا برتقال',price:.3,en:'Kinza Orange'},
+ {cat:'العصائر والمشروبات',name:'كينزا حمضيات',price:.3,en:'Kinza Citrus'},
+ {cat:'العصائر والمشروبات',name:'كينزا كولا دايت',price:.3,en:'Kinza Cola Diet'},
+ {cat:'العصائر والمشروبات',name:'كينزا ليمون دايت',price:.3,en:'Kinza Lemon Diet'},
+ {cat:'العصائر والمشروبات',name:'سنتوب',price:.2,en:'Suntop'}
+];
 const FALLBACK=[
  {cat:'الشاورما',name:'صاروخ شاورما دجاج',price:.8,en:'Chicken Shawarma Rocket Wrap'},
  {cat:'الصواريخ',name:'صاروخ تكة دجاج',price:.8,en:'Chicken Tikka Rocket Wrap'},
  {cat:'الصواريخ',name:'صاروخ كباب لحم',price:.8,en:'Meat Kebab Rocket Wrap'},
- {cat:'الصواريخ',name:'صاروخ كباب دجاج',price:.8,en:'Chicken Kebab Rocket Wrap'}
+ {cat:'الصواريخ',name:'صاروخ كباب دجاج',price:.8,en:'Chicken Kebab Rocket Wrap'},
+ ...EXTRA_DRINKS
 ];
 const CAT_EN={'الشاورما':'Shawarma','بوكسات الشاورما':'Shawarma Boxes','صحون الشاورما':'Shawarma Plates','المقبلات والسلطات':'Appetizers & Salads','الفطائر':'Pastries','البرجر':'Burgers','الفرايز':'Loaded Fries','المشاوي':'Charcoal Grills','البيتزا':'Pizza','الكريسبي':'Crispy Chicken','الصواريخ':'Rocket Wraps','العصائر والمشروبات':'Juices & Drinks','المشروبات والروب':'Drinks & Yogurt','العروض':'Offers'};
 const T={
@@ -119,6 +127,7 @@ let menu=[];let activeCat='';let orderType='';let payment='';let locationMode=''
 let cart=JSON.parse(localStorage.getItem('tg_compact_cart')||'{}');
 const $=id=>document.getElementById(id);
 const text=()=>T[lang];
+
 function safe(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function format(v){return `${Number(v).toFixed(3)} ${text().currency}`}
 function itemName(i){return lang==='en'?(i.en||i.name):i.name}
@@ -126,31 +135,153 @@ function itemDetail(i){return lang==='en'?(i.detailEn||i.detail||''):(i.detail||
 function catName(cat){return lang==='en'?(CAT_EN[cat]||cat):cat}
 function saveCart(){localStorage.setItem('tg_compact_cart',JSON.stringify(cart))}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').classList.remove('show'),1800)}
+
+function mergeRequestedDrinks(items){
+  const requestedNames=new Set(EXTRA_DRINKS.map(i=>i.name));
+  const aliases=new Set([
+    'كينزا كولا عادي','كينزا ليمون عادي',
+    ...requestedNames
+  ]);
+  const cleaned=items.filter(i=>!aliases.has(i.name) && i.name!=='سنتوب');
+  return [...cleaned,...EXTRA_DRINKS];
+}
+
 async function loadMenu(){
  let error;
- for(const url of DATA_FILES){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error(r.status);const html=await r.text();const m=html.match(/const\s+MENU\s*=\s*(\[[\s\S]*?\]);\s*const\s+CATS/);if(!m)throw new Error('MENU not found');menu=JSON.parse(m[1]);break}catch(e){error=e}}
- if(!menu.length){menu=FALLBACK.slice();$('loadStatus').textContent=text().loadError;$('loadStatus').classList.add('error')}else{$('loadStatus').remove()}
- menu=menu.map(i=>({...i,price:PRICE_OVERRIDES.has(i.name)?.8:Number(i.price)}));
- const cats=[...new Set(menu.map(i=>i.cat))];activeCat=cats.includes('الشاورما')?'الشاورما':cats[0];renderCategories();renderMenu();renderCart();
+ for(const url of DATA_FILES){
+   try{
+     const r=await fetch(url,{cache:'no-store'});
+     if(!r.ok)throw new Error(r.status);
+     const html=await r.text();
+     const m=html.match(/const\s+MENU\s*=\s*(\[[\s\S]*?\]);\s*const\s+CATS/);
+     if(!m)throw new Error('MENU not found');
+     menu=JSON.parse(m[1]);
+     break;
+   }catch(e){error=e}
+ }
+ if(!menu.length){
+   menu=FALLBACK.slice();
+   $('loadStatus').textContent=text().loadError;
+   $('loadStatus').classList.add('error');
+ }else{
+   $('loadStatus').remove();
+ }
+ menu=mergeRequestedDrinks(menu).map(i=>({...i,price:PRICE_OVERRIDES.has(i.name)?.8:Number(i.price)}));
+ const cats=[...new Set(menu.map(i=>i.cat))];
+ activeCat=cats.includes('الشاورما')?'الشاورما':cats[0];
+ renderCategories();renderMenu();renderCart();
 }
-function renderCategories(){const cats=[...new Set(menu.map(i=>i.cat))];$('categories').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" data-cat="${safe(c)}">${safe(catName(c))}</button>`).join('');document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{activeCat=b.dataset.cat;$('search').value='';renderCategories();renderMenu();document.getElementById('menuView').scrollIntoView({behavior:'smooth',block:'start'})})}
-function renderMenu(){const q=$('search').value.trim().toLowerCase();let list=q?menu.filter(i=>`${i.name} ${i.en||''} ${i.cat} ${CAT_EN[i.cat]||''}`.toLowerCase().includes(q)):menu.filter(i=>i.cat===activeCat);const title=q?text().results:catName(activeCat);$('menuView').innerHTML=`<div class="category-title"><h3>${safe(title)}</h3><span>${text().items(list.length)}</span></div>${list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty">${lang==='ar'?'لا توجد نتائج مطابقة.':'No matching items.'}</div>`}`;bindMenuButtons()}
-function cardHTML(i){const key=i.name;const c=cart[key];const detail=itemDetail(i);return `<article class="item ${c?'in-cart':''}"><h4>${safe(itemName(i))}</h4>${detail?`<div class="detail">${safe(detail)}</div>`:''}<div class="item-bottom"><span class="price">${format(i.price)}</span>${c?`<div class="qty-inline"><button data-minus="${safe(key)}">−</button><b>${c.qty}</b><button data-plus="${safe(key)}">+</button></div>`:`<button class="add" data-add="${safe(key)}">${text().add}</button>`}</div></article>`}
-function bindMenuButtons(){document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>changeQty(b.dataset.add,1));document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.plus,1));document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.minus,-1))}
-function changeQty(name,delta){const i=menu.find(x=>x.name===name);if(!i)return;const current=cart[name]?.qty||0;const qty=current+delta;if(qty<=0)delete cart[name];else cart[name]={qty,price:i.price,note:cart[name]?.note||''};saveCart();renderMenu();renderCart()}
-function cartStats(){let count=0,total=0;Object.entries(cart).forEach(([name,c])=>{count+=c.qty;total+=c.qty*c.price});return{count,total}}
-function renderCart(){const {count,total}=cartStats();$('headCount').textContent=count;$('bottomItems').textContent=text().items(count);$('bottomTotal').textContent=format(total);$('sheetTotal').textContent=format(total);$('bottomCart').hidden=!count;const entries=Object.entries(cart);$('cartItems').innerHTML=entries.length?entries.map(([name,c])=>{const i=menu.find(x=>x.name===name)||{name,en:name};return `<div class="cart-item"><div class="cart-row"><div><div class="cart-name">${safe(itemName(i))}</div><div class="cart-price">${format(c.price*c.qty)}</div></div><div class="cart-controls"><button data-cminus="${safe(name)}">−</button><b>${c.qty}</b><button data-cplus="${safe(name)}">+</button><button class="remove" data-remove="${safe(name)}">×</button></div></div><textarea class="item-note" data-note="${safe(name)}" placeholder="${safe(text().itemNote)}">${safe(c.note||'')}</textarea></div>`}).join(''):`<div class="empty">${text().empty}</div>`;document.querySelectorAll('[data-cminus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.cminus,-1));document.querySelectorAll('[data-cplus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.cplus,1));document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];saveCart();renderMenu();renderCart()});document.querySelectorAll('[data-note]').forEach(n=>n.oninput=()=>{cart[n.dataset.note].note=n.value;saveCart()});$('checkout').style.display=entries.length?'block':'none'}
+
+function renderCategories(){
+ const cats=[...new Set(menu.map(i=>i.cat))];
+ $('categories').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" data-cat="${safe(c)}">${safe(catName(c))}</button>`).join('');
+ document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+   activeCat=b.dataset.cat;$('search').value='';
+   renderCategories();renderMenu();
+   $('menuView').scrollIntoView({behavior:'smooth',block:'start'});
+ });
+}
+function renderMenu(){
+ const q=$('search').value.trim().toLowerCase();
+ const list=q
+   ?menu.filter(i=>`${i.name} ${i.en||''} ${i.cat} ${CAT_EN[i.cat]||''}`.toLowerCase().includes(q))
+   :menu.filter(i=>i.cat===activeCat);
+ const title=q?text().results:catName(activeCat);
+ $('menuView').innerHTML=`<div class="category-title"><h3>${safe(title)}</h3><span>${text().items(list.length)}</span></div>${list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty">${lang==='ar'?'لا توجد نتائج مطابقة.':'No matching items.'}</div>`}`;
+ bindMenuButtons();
+}
+function cardHTML(i){
+ const key=i.name,c=cart[key],detail=itemDetail(i);
+ return `<article class="item ${c?'in-cart':''}"><h4>${safe(itemName(i))}</h4>${detail?`<div class="detail">${safe(detail)}</div>`:''}<div class="item-bottom"><span class="price">${format(i.price)}</span>${c?`<div class="qty-inline"><button data-minus="${safe(key)}">−</button><b>${c.qty}</b><button data-plus="${safe(key)}">+</button></div>`:`<button class="add" data-add="${safe(key)}">${text().add}</button>`}</div></article>`;
+}
+function bindMenuButtons(){
+ document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>changeQty(b.dataset.add,1));
+ document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.plus,1));
+ document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.minus,-1));
+}
+function changeQty(name,delta){
+ const i=menu.find(x=>x.name===name);if(!i)return;
+ const current=cart[name]?.qty||0,qty=current+delta;
+ if(qty<=0)delete cart[name];else cart[name]={qty,price:i.price,note:cart[name]?.note||''};
+ saveCart();renderMenu();renderCart();
+}
+function cartStats(){
+ let count=0,total=0;
+ Object.values(cart).forEach(c=>{count+=c.qty;total+=c.qty*c.price});
+ return{count,total};
+}
+function renderCart(){
+ const {count,total}=cartStats();
+ $('headCount').textContent=count;$('bottomItems').textContent=text().items(count);
+ $('bottomTotal').textContent=format(total);$('sheetTotal').textContent=format(total);$('bottomCart').hidden=!count;
+ const entries=Object.entries(cart);
+ $('cartItems').innerHTML=entries.length?entries.map(([name,c])=>{
+   const i=menu.find(x=>x.name===name)||{name,en:name};
+   return `<div class="cart-item"><div class="cart-row"><div><div class="cart-name">${safe(itemName(i))}</div><div class="cart-price">${format(c.price*c.qty)}</div></div><div class="cart-controls"><button data-cminus="${safe(name)}">−</button><b>${c.qty}</b><button data-cplus="${safe(name)}">+</button><button class="remove" data-remove="${safe(name)}">×</button></div></div><textarea class="item-note" data-note="${safe(name)}" placeholder="${safe(text().itemNote)}">${safe(c.note||'')}</textarea></div>`;
+ }).join(''):`<div class="empty">${text().empty}</div>`;
+ document.querySelectorAll('[data-cminus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.cminus,-1));
+ document.querySelectorAll('[data-cplus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.cplus,1));
+ document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];saveCart();renderMenu();renderCart()});
+ document.querySelectorAll('[data-note]').forEach(n=>n.oninput=()=>{cart[n.dataset.note].note=n.value;saveCart()});
+ $('checkout').style.display=entries.length?'block':'none';
+}
 function openCart(){renderCart();$('overlay').classList.add('open');$('sheet').classList.add('open');$('sheet').setAttribute('aria-hidden','false');document.body.classList.add('lock')}
 function closeCart(){$('overlay').classList.remove('open');$('sheet').classList.remove('open');$('sheet').setAttribute('aria-hidden','true');document.body.classList.remove('lock')}
 function setOrder(type){orderType=type;document.querySelectorAll('[data-order]').forEach(b=>b.classList.toggle('active',b.dataset.order===type));$('locationBox').classList.toggle('show',type==='delivery')}
 function setPay(pay){payment=pay;document.querySelectorAll('[data-pay]').forEach(b=>b.classList.toggle('active',b.dataset.pay===pay));$('bankBox').classList.toggle('show',pay==='transfer')}
 function useWhatsAppLocation(){locationMode='whatsapp';$('locationLink').value='';$('locStatus').textContent=text().waLocOk;$('locStatus').className='loc-status ok'}
-function getLocation(){if(!navigator.geolocation){$('locStatus').textContent=text().geoFail;$('locStatus').className='loc-status error';return}$('locStatus').textContent=text().geoWait;$('locStatus').className='loc-status';navigator.geolocation.getCurrentPosition(p=>{const url=`https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;$('locationLink').value=url;locationMode='link';$('locStatus').textContent=text().geoOk;$('locStatus').className='loc-status ok'},()=>{$('locStatus').textContent=text().geoFail;$('locStatus').className='loc-status error'},{enableHighAccuracy:true,timeout:12000,maximumAge:60000})}
-function buildMessage(){const lines=[`*${text().orderTitle}*`,''];Object.entries(cart).forEach(([name,c])=>{const i=menu.find(x=>x.name===name)||{name,en:name};lines.push(`• ${itemName(i)} × ${c.qty} — ${format(c.qty*c.price)}`);if(c.note?.trim())lines.push(`  (${text().itemNoteLabel}: ${c.note.trim()})`)});lines.push('',`*${text().total}: ${format(cartStats().total)}*`,'',`${text().typeLabel}: ${orderType==='delivery'?text().delivery.replace('🚗 ',''):text().pickup.replace('🏪 ','')}`,`${text().paymentLabel}: ${payment==='cash'?text().cash.replace('💵 ',''):payment==='transfer'?text().transfer.replace('🏦 ',''):text().card.replace('💳 ','')}`);if(payment==='transfer')lines.push(`${text().bankBox} ${BANK}`);if(orderType==='delivery'){const link=$('locationLink').value.trim();lines.push(`${text().locationLabel}: ${link||text().sendLocation}`)}const name=$('customerName').value.trim(),phone=$('customerPhone').value.trim(),note=$('generalNote').value.trim();if(name)lines.push(`${text().nameLabel}: ${name}`);if(phone)lines.push(`${text().phoneLabel}: ${phone}`);if(note)lines.push(`${text().noteLabel}: ${note}`);return lines.join('\n')}
-function sendOrder(){if(!cartStats().count){toast(text().empty);return}if(!orderType){toast(text().pickType);return}if(!payment){toast(text().pickPay);return}if(orderType==='delivery'&&!$('locationLink').value.trim()&&locationMode!=='whatsapp'){toast(text().needLoc);return}toast(text().opening);const url=`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(buildMessage())}`;window.open(url,'_blank','noopener')}
-function copyBank(){const done=()=>toast(text().copied);if(navigator.clipboard?.writeText)navigator.clipboard.writeText(BANK).then(done).catch(()=>prompt(text().bank,BANK));else prompt(text().bank,BANK)}
-function applyLanguage(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('langBtn').textContent=lang==='ar'?'EN':'AR';const t=text();const map={brandName:'brand',branchName:'branch',callBtn:'call',cartHeadText:'cart',eyebrow:'eyebrow',heroTitle:'heroTitle',heroText:'heroText',startOrder:'start',whatsappBtn:'wa',hoursLabel:'hoursLabel',hoursValue:'hours',phoneLabel:'phone',bankLabel:'bank',copyTop:'copy',menuTitle:'menu',menuSub:'menuSub',bottomCartText:'viewCart',sheetTitle:'sheetTitle',sheetSub:'sheetSub',closeSheet:'close',orderTypeLabel:'orderType',deliveryBtn:'delivery',pickupBtn:'pickup',geoBtn:'geo',waLocBtn:'waLoc',paymentLabel:'payment',cashBtn:'cash',transferBtn:'transfer',cardBtn:'card',bankBoxLabel:'bankBox',copyCart:'copy',optionalSummary:'optional',totalLabel:'total',sendBtn:'send',clearBtn:'clear',footerText:'footer'};Object.entries(map).forEach(([id,k])=>$(id).textContent=t[k]);$('search').placeholder=t.search;$('locationLink').placeholder=t.locPlaceholder;$('customerName').placeholder=t.name;$('customerPhone').placeholder=t.phonePh;$('generalNote').placeholder=t.note;$('loadStatus')&&($('loadStatus').textContent=t.loading);renderCategories();renderMenu();renderCart()}
-$('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';localStorage.setItem('tg_lang',lang);applyLanguage()};$('cartHead').onclick=openCart;$('bottomCart').onclick=openCart;$('closeSheet').onclick=closeCart;$('overlay').onclick=closeCart;$('search').oninput=renderMenu;$('deliveryBtn').onclick=()=>setOrder('delivery');$('pickupBtn').onclick=()=>setOrder('pickup');$('cashBtn').onclick=()=>setPay('cash');$('transferBtn').onclick=()=>setPay('transfer');$('cardBtn').onclick=()=>setPay('card');$('geoBtn').onclick=getLocation;$('waLocBtn').onclick=useWhatsAppLocation;$('sendBtn').onclick=sendOrder;$('clearBtn').onclick=()=>{if(confirm(text().confirmClear)){cart={};saveCart();renderMenu();renderCart()}};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCart()});
+function getLocation(){
+ if(!navigator.geolocation){$('locStatus').textContent=text().geoFail;$('locStatus').className='loc-status error';return}
+ $('locStatus').textContent=text().geoWait;$('locStatus').className='loc-status';
+ navigator.geolocation.getCurrentPosition(p=>{
+   $('locationLink').value=`https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+   locationMode='link';$('locStatus').textContent=text().geoOk;$('locStatus').className='loc-status ok';
+ },()=>{$('locStatus').textContent=text().geoFail;$('locStatus').className='loc-status error'},{enableHighAccuracy:true,timeout:12000,maximumAge:60000});
+}
+function buildMessage(){
+ const lines=[`*${text().orderTitle}*`,''];
+ Object.entries(cart).forEach(([name,c])=>{
+   const i=menu.find(x=>x.name===name)||{name,en:name};
+   lines.push(`• ${itemName(i)} × ${c.qty} — ${format(c.qty*c.price)}`);
+   if(c.note?.trim())lines.push(`  (${text().itemNoteLabel}: ${c.note.trim()})`);
+ });
+ lines.push('',`*${text().total}: ${format(cartStats().total)}*`,'',
+ `${text().typeLabel}: ${orderType==='delivery'?text().delivery.replace('🚗 ',''):text().pickup.replace('🏪 ','')}`,
+ `${text().paymentLabel}: ${payment==='cash'?text().cash.replace('💵 ',''):payment==='transfer'?text().transfer.replace('🏦 ',''):text().card.replace('💳 ','')}`);
+ if(payment==='transfer')lines.push(`${text().bankBox} ${BANK}`);
+ if(orderType==='delivery'){const link=$('locationLink').value.trim();lines.push(`${text().locationLabel}: ${link||text().sendLocation}`)}
+ const name=$('customerName').value.trim(),phone=$('customerPhone').value.trim(),note=$('generalNote').value.trim();
+ if(name)lines.push(`${text().nameLabel}: ${name}`);if(phone)lines.push(`${text().phoneLabel}: ${phone}`);if(note)lines.push(`${text().noteLabel}: ${note}`);
+ return lines.join('\n');
+}
+function sendOrder(){
+ if(!cartStats().count){toast(text().empty);return}
+ if(!orderType){toast(text().pickType);return}
+ if(!payment){toast(text().pickPay);return}
+ if(orderType==='delivery'&&!$('locationLink').value.trim()&&locationMode!=='whatsapp'){toast(text().needLoc);return}
+ toast(text().opening);
+ window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(buildMessage())}`,'_blank','noopener');
+}
+function copyBank(){
+ const done=()=>toast(text().copied);
+ if(navigator.clipboard?.writeText)navigator.clipboard.writeText(BANK).then(done).catch(()=>prompt(text().bank,BANK));
+ else prompt(text().bank,BANK);
+}
+function applyLanguage(){
+ document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('langBtn').textContent=lang==='ar'?'EN':'AR';
+ const t=text();
+ const map={brandName:'brand',branchName:'branch',callBtn:'call',cartHeadText:'cart',eyebrow:'eyebrow',heroTitle:'heroTitle',heroText:'heroText',startOrder:'start',whatsappBtn:'wa',hoursLabel:'hoursLabel',hoursValue:'hours',phoneLabel:'phone',bankLabel:'bank',copyTop:'copy',menuTitle:'menu',menuSub:'menuSub',bottomCartText:'viewCart',sheetTitle:'sheetTitle',sheetSub:'sheetSub',closeSheet:'close',orderTypeLabel:'orderType',deliveryBtn:'delivery',pickupBtn:'pickup',geoBtn:'geo',waLocBtn:'waLoc',paymentLabel:'payment',cashBtn:'cash',transferBtn:'transfer',cardBtn:'card',bankBoxLabel:'bankBox',copyCart:'copy',optionalSummary:'optional',totalLabel:'total',sendBtn:'send',clearBtn:'clear',footerText:'footer'};
+ Object.entries(map).forEach(([id,k])=>$(id).textContent=t[k]);
+ $('search').placeholder=t.search;$('locationLink').placeholder=t.locPlaceholder;$('customerName').placeholder=t.name;$('customerPhone').placeholder=t.phonePh;$('generalNote').placeholder=t.note;
+ if($('loadStatus'))$('loadStatus').textContent=t.loading;
+ renderCategories();renderMenu();renderCart();
+}
+$('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';localStorage.setItem('tg_lang',lang);applyLanguage()};
+$('cartHead').onclick=openCart;$('bottomCart').onclick=openCart;$('closeSheet').onclick=closeCart;$('overlay').onclick=closeCart;$('search').oninput=renderMenu;
+$('deliveryBtn').onclick=()=>setOrder('delivery');$('pickupBtn').onclick=()=>setOrder('pickup');$('cashBtn').onclick=()=>setPay('cash');$('transferBtn').onclick=()=>setPay('transfer');$('cardBtn').onclick=()=>setPay('card');
+$('geoBtn').onclick=getLocation;$('waLocBtn').onclick=useWhatsAppLocation;$('sendBtn').onclick=sendOrder;
+$('clearBtn').onclick=()=>{if(confirm(text().confirmClear)){cart={};saveCart();renderMenu();renderCart()}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCart()});
 applyLanguage();loadMenu();
 </script>
 </body>
