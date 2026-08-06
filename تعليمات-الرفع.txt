@@ -1,0 +1,12 @@
+ارفع الملفات الأربعة إلى جذر مستودع GitHub نفسه:
+index.html
+manifest.json
+service-worker.js
+icon.svg
+
+استبدل الملفات القديمة، ثم اضغط Commit changes.
+الرابط يبقى:
+https://walzainn-creator.github.io/turkish-garden-samail/
+
+بعد النشر افتحه أول مرة:
+https://walzainn-creator.github.io/turkish-garden-samail/?v=10

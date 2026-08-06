@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8b1f17">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>الحديقة التركية - فرع سمائل</title>
+<style>
+:root{--r:#8b1f17;--r2:#b73929;--g:#176b45;--bg:#fff9ef;--card:#fff;--line:#eadbc8;--text:#241a15;--muted:#75665d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#fff8ed,#fffdf8);font-family:Tahoma,Arial,sans-serif;color:var(--text);padding-bottom:90px}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1100px,94%);margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(255,253,248,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.nav{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900}.brand small{display:block;color:var(--muted);font-size:11px}.cartbtn{border:0;background:var(--r);color:#fff;border-radius:12px;padding:11px 14px;font-weight:900}
+.hero{padding:18px 0}.heroBox{border-radius:26px;background:linear-gradient(135deg,#741814,#b83928);color:#fff;padding:30px;box-shadow:0 18px 45px rgba(85,22,16,.25)}.heroBox h1{font-size:clamp(30px,6vw,52px);margin:0 0 10px}.heroBox p{margin:0;line-height:1.8}.hello{margin-top:12px;background:#fff2cd;border:1px solid #ebce85;border-radius:16px;padding:13px;text-align:center;font-weight:900;color:#70490c}.info{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.info div{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px}.info b{display:block;color:var(--r);margin-bottom:4px}
+.offer{margin:12px 0;background:#fff4dc;border:1px solid #ecd09a;border-radius:16px;padding:13px;line-height:1.7}
+.tools{position:sticky;top:64px;z-index:20;background:linear-gradient(#fffdf8 80%,transparent);padding:8px 0 12px}.search{width:100%;border:1px solid var(--line);border-radius:15px;padding:13px;background:#fff}.chips{display:flex;gap:7px;overflow:auto;padding-top:9px}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:900}.chip.active{background:var(--r);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;min-height:130px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(72,34,20,.06)}.item h3{margin:0 0 8px;font-size:16px}.price{font-size:18px;font-weight:900;color:var(--r)}.itemBottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;gap:8px}.add,.qty button{border:0;background:#fff0df;border-radius:10px;padding:9px 11px;font-weight:900}.qty{display:flex;align-items:center;gap:6px}.qty button{width:32px}
+.floatCart{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(560px,94%);z-index:50;border:0;background:linear-gradient(135deg,var(--r),var(--r2));color:#fff;border-radius:17px;padding:14px 16px;display:flex;justify-content:space-between;font-weight:900;box-shadow:0 16px 40px rgba(83,20,15,.35)}.floatCart[hidden]{display:none}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;display:none}.overlay.open{display:block}.sheet{position:fixed;z-index:61;top:0;right:0;bottom:0;width:min(560px,100%);background:#fffdf8;transform:translateX(105%);transition:.22s;display:flex;flex-direction:column}.sheet.open{transform:translateX(0)}.sheetHead{padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.close{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px}.sheetBody{padding:14px;overflow:auto;flex:1}.cartLine{padding:11px 0;border-bottom:1px dashed #d9c8b4}.row{display:flex;justify-content:space-between;gap:10px}.note,.field{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}.note{margin-top:7px}.step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;margin:10px 0}.step b{color:var(--r)}.segments{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}.seg{border:1px solid var(--line);background:#fff7eb;border-radius:11px;padding:11px 5px;font-weight:900}.seg.active{border-color:#d99a34;background:#fff0d5}.location,.bank,.receipt,.cardNote,.replace{display:none;margin-top:9px}.show{display:block!important}.locBtns{display:flex;gap:7px;flex-wrap:wrap}.locBtns button{border:1px solid var(--line);background:#fff4df;border-radius:10px;padding:9px;font-weight:900}.status{font-size:13px;color:var(--muted);line-height:1.7;margin-top:7px}.fee{margin-top:8px;padding:10px;border-radius:11px;background:#eff8f3;border:1px solid #b7dbc8}.bank,.cardNote,.replace{padding:10px;border-radius:11px;background:#fff2d7;border:1px solid #e8ca8d}.fields{display:grid;gap:8px}.replace label{display:block;margin:6px 0}.sheetFoot{padding:12px;border-top:1px solid var(--line)}.total{display:flex;justify-content:space-between;line-height:1.9}.grand{font-size:21px;font-weight:900;color:var(--r)}.send{width:100%;border:0;background:var(--g);color:#fff;border-radius:13px;padding:13px;font-weight:900;font-size:16px}.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#241a15;color:#fff;border-radius:999px;padding:10px 15px;z-index:90;display:none}.toast.show{display:block}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.info{grid-template-columns:1fr 1fr}.info div:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr 1fr;gap:8px}.item{padding:11px;min-height:115px}.sheet{top:auto;height:93vh;border-radius:22px 22px 0 0;transform:translateY(105%)}.sheet.open{transform:translateY(0)}.segments{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand">مطعم الحديقة التركية<small>فرع سمائل</small></div><button class="cartbtn" id="openCart">السلة (<span id="headCount">0</span>)</button></div></header>
+
+<section class="hero"><div class="wrap">
+<div class="heroBox"><h1>اختَر وجبتك وأرسل طلبك</h1><p>تحديد موقع العميل، حساب المسافة ورسوم التوصيل، وإرسال الطلب كاملًا عبر واتساب.</p></div>
+<div class="hello" id="hello"></div>
+<div class="info"><div><b>ساعات العمل</b>3 مساءً – 2 صباحًا</div><div><b>الطلب والواتساب</b>95474488</div><div><b>التحويل باسم سيف المحروقي</b>96205536</div><div><b>زوار الموقع</b><span id="visitorCount">1</span></div></div>
+<div class="offer"><b>التوصيل:</b> مجاني للطلبات بقيمة 6 ر.ع أو أكثر داخل أقل من 10 كم. وللطلبات الأقل من 6 ر.ع يضاف 0.500 ر.ع إذا كان زمن الوصول التقديري 20 دقيقة أو أقل.</div>
+</div></section>
+
+<main class="wrap">
+<div class="tools"><input id="search" class="search" placeholder="ابحث عن صنف"><div class="chips" id="chips"></div></div>
+<div class="grid" id="menu"></div>
+</main>
+
+<footer>الحديقة التركية – فرع سمائل<br>تصميم wail elzain</footer>
+
+<button class="floatCart" id="floatCart" hidden><span>عرض السلة</span><span id="floatTotal">0.000 ر.ع</span></button>
+<div class="overlay" id="overlay"></div>
+<aside class="sheet" id="sheet">
+<div class="sheetHead"><strong>إتمام الطلب</strong><button class="close" id="close">إغلاق ✕</button></div>
+<div class="sheetBody">
+<div id="cartItems"></div>
+
+<div class="step"><b>نوع الطلب</b><div class="segments"><button class="seg" data-order="delivery">🚗 توصيل</button><button class="seg" data-order="pickup">🏪 استلام</button></div>
+<div class="location" id="locationBox"><div class="locBtns"><button id="locate">📍 تحديد موقعي</button></div><input id="locationLink" class="field" placeholder="أو الصق رابط Google Maps"><div id="locStatus" class="status">حدد موقعك لعرض المسافة والرسوم.</div><div id="feeBox" class="fee">لم يتم الحساب بعد.</div></div></div>
+
+<div class="step"><b>طريقة الدفع</b><div class="segments"><button class="seg" data-pay="cash">💵 كاش</button><button class="seg" data-pay="transfer">🏦 تحويل</button><button class="seg" data-pay="card">💳 فيزا / بطاقة</button></div>
+<div id="bankBox" class="bank">التحويل باسم <b>سيف المحروقي</b> — الرقم: <b>96205536</b></div>
+<div id="receiptBox" class="receipt"><input type="file" id="receipt" class="field" accept="image/*"></div>
+<div id="cardBox" class="cardNote">الدفع بالبطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.</div></div>
+
+<div class="step"><b>بيانات العميل</b><div class="fields"><input id="name" class="field" placeholder="الاسم"><input id="phone" class="field" inputmode="tel" placeholder="رقم الهاتف (إلزامي)"><textarea id="generalNote" class="field" rows="2" placeholder="ملاحظة عامة"></textarea></div>
+<div id="replaceBox" class="replace"><b>إذا لم تتوفر شاورما اللحم:</b><label><input type="radio" name="rep" value="استبدالها بشاورما دجاج"> شاورما دجاج</label><label><input type="radio" name="rep" value="استبدالها بجامبو شاورما"> جامبو شاورما</label><label><input type="radio" name="rep" value="الاتصال بي قبل الاستبدال" checked> الاتصال بي قبل الاستبدال</label></div></div>
+</div>
+<div class="sheetFoot"><div class="total"><span>قيمة الطلب</span><span id="subtotal">0.000 ر.ع</span></div><div class="total"><span>رسوم التوصيل</span><span id="deliveryFee">—</span></div><div class="total grand"><span>الإجمالي</span><span id="grand">0.000 ر.ع</span></div><button id="send" class="send">إرسال الطلب عبر واتساب</button></div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA='96895474488';
+const RESTAURANT={lat:23.3039,lon:57.9580}; // موقع تقريبي مقابل سلطان سنتر - سمائل
+const MENU=[
+['الشاورما','شاورما دجاج',0.500],['الشاورما','شاورما لحم',0.700],['الشاورما','جامبو شاورما دجاج',1.000],['الشاورما','جامبو شاورما لحم',1.200],
+['الصواريخ','صاروخ شاورما دجاج',0.800],['الصواريخ','صاروخ شاورما لحم',0.800],['الصواريخ','صاروخ تكة دجاج',0.800],['الصواريخ','صاروخ كباب دجاج',0.800],['الصواريخ','صاروخ كباب لحم',0.800],
+['المشاوي','تكة دجاج',1.500],['المشاوي','تكة لحم',1.800],['المشاوي','كباب دجاج',1.500],['المشاوي','كباب لحم',1.800],['المشاوي','كباب ربيان',2.000],['المشاوي','كريسبي',1.500],
+['الكلوبات','كلوب شاورما دجاج',1.500],['الكلوبات','كلوب شاورما لحم',1.800],['الكلوبات','كلوب روست بيف',1.800],['الكلوبات','كلوب ربيان',2.000],
+['المشروبات','كينزا كولا',0.300],['المشروبات','كينزا ليمون',0.300],['المشروبات','كينزا توت',0.300],['المشروبات','كينزا برتقال',0.300],['المشروبات','كينزا حمضيات',0.300],['المشروبات','كينزا كولا دايت',0.300],['المشروبات','كينزا ليمون دايت',0.300],['المشروبات','سنتوب',0.200]
+].map((x,i)=>({id:i,cat:x[0],name:x[1],price:x[2]}));
+let cart=JSON.parse(localStorage.getItem('tg_cart_final')||'{}'),cat='الشاورما',order='',pay='',coords=null,km=null,mins=null,fee=null;
+const $=x=>document.getElementById(x),fmt=n=>Number(n).toFixed(3)+' ر.ع';
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)}
+function save(){localStorage.setItem('tg_cart_final',JSON.stringify(cart))}
+function hello(){let a=['مرحبًا، نورتنا 🌹','تفضل عشاء اليوم من اختيارك 🍽️','أهلاً بك في الحديقة التركية ❤️','وجبتك المفضلة بانتظارك 😋'];$('hello').textContent=a[Math.floor(Math.random()*a.length)]}
+function cats(){let cs=[...new Set(MENU.map(x=>x.cat))];$('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${c}">${c}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;$('search').value='';cats();renderMenu()})}
+function renderMenu(){let q=$('search').value.trim();let list=MENU.filter(x=>q?x.name.includes(q):x.cat===cat);$('menu').innerHTML=list.map(x=>{let c=cart[x.id];return `<div class="item"><h3>${x.name}</h3><div class="itemBottom"><span class="price">${fmt(x.price)}</span>${c?`<div class="qty"><button data-minus="${x.id}">−</button><b>${c.qty}</b><button data-plus="${x.id}">+</button></div>`:`<button class="add" data-add="${x.id}">+ أضف</button>`}</div></div>`}).join('');document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>qty(+b.dataset.add,1));document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>qty(+b.dataset.plus,1));document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>qty(+b.dataset.minus,-1))}
+function qty(id,d){let i=MENU.find(x=>x.id===id),q=(cart[id]?.qty||0)+d;if(q<=0)delete cart[id];else cart[id]={qty:q,note:cart[id]?.note||''};save();renderMenu();renderCart()}
+function stats(){let count=0,sum=0;Object.entries(cart).forEach(([id,c])=>{let i=MENU.find(x=>x.id==id);count+=c.qty;sum+=c.qty*i.price});return{count,sum}}
+function calc(){let s=stats().sum;if(order!=='delivery'){fee=0;return}if(km==null){fee=null;return}if(s>=6&&km<10)fee=0;else if(s<6&&mins<=20)fee=.5;else fee=null}
+function renderCart(){let {count,sum}=stats();calc();$('headCount').textContent=count;$('floatCart').hidden=!count;$('floatTotal').textContent=fmt(sum);$('subtotal').textContent=fmt(sum);$('deliveryFee').textContent=order==='pickup'?'0.000 ر.ع':fee===0?'مجاني':fee===.5?fmt(.5):'يحدد مع المطعم';$('grand').textContent=fmt(sum+(fee||0));$('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{let i=MENU.find(x=>x.id==id);return `<div class="cartLine"><div class="row"><b>${i.name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="ملاحظة للصنف">${c.note||''}</textarea></div>`}).join(''):'<div class="status">السلة فارغة</div>';document.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{cart[t.dataset.note].note=t.value;save()});$('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>MENU.find(x=>x.id==id)?.name.includes('شاورما لحم')))}
+function openCart(){$('overlay').classList.add('open');$('sheet').classList.add('open');renderCart()}function closeCart(){$('overlay').classList.remove('open');$('sheet').classList.remove('open')}
+function hav(a,b){let R=6371,r=x=>x*Math.PI/180,dlat=r(b.lat-a.lat),dlon=r(b.lon-a.lon),v=Math.sin(dlat/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dlon/2)**2;return 2*R*Math.asin(Math.sqrt(v))}
+function setLoc(c){coords=c;km=hav(RESTAURANT,c);mins=Math.max(5,Math.round(km/40*60));$('locationLink').value=`https://maps.google.com/?q=${c.lat},${c.lon}`;$('locStatus').textContent=`المسافة التقريبية: ${km.toFixed(1)} كم — الزمن المتوقع: ${mins} دقيقة`;calc();$('feeBox').textContent=fee===0?'🎉 التوصيل مجاني':fee===.5?'رسوم التوصيل: 0.500 ر.ع':'يتم تأكيد رسوم التوصيل مع المطعم';renderCart()}
+$('locate').onclick=()=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>setLoc({lat:p.coords.latitude,lon:p.coords.longitude}),()=>toast('فعّل الموقع GPS واسمح للمتصفح'),{enableHighAccuracy:true,timeout:12000}):toast('الموقع غير مدعوم');
+document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{order=b.dataset.order;document.querySelectorAll('[data-order]').forEach(x=>x.classList.toggle('active',x===b));$('locationBox').classList.toggle('show',order==='delivery');renderCart()});
+document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{pay=b.dataset.pay;document.querySelectorAll('[data-pay]').forEach(x=>x.classList.toggle('active',x===b));$('bankBox').classList.toggle('show',pay==='transfer');$('receiptBox').classList.toggle('show',pay==='transfer');$('cardBox').classList.toggle('show',pay==='card')});
+$('send').onclick=()=>{let {count,sum}=stats();if(!count)return toast('السلة فارغة');if(!order)return toast('اختر نوع الطلب');if(!pay)return toast('اختر طريقة الدفع');let ph=$('phone').value.replace(/\D/g,'');if(ph.length<8)return toast('أدخل رقم الهاتف');if(order==='delivery'&&!$('locationLink').value.trim())return toast('حدد موقع العميل');let lines=['🍽️ *طلب جديد - الحديقة التركية فرع سمائل*',''];Object.entries(cart).forEach(([id,c])=>{let i=MENU.find(x=>x.id==id);lines.push(`• ${i.name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});lines.push('',`قيمة الطلب: ${fmt(sum)}`);if(order==='delivery'){lines.push(`رسوم التوصيل: ${fee===0?'مجاني':fee===.5?fmt(.5):'تحدد مع المطعم'}`,`الإجمالي: ${fmt(sum+(fee||0))}`)}lines.push('',`نوع الطلب: ${order==='delivery'?'توصيل':'استلام'}`,`طريقة الدفع: ${pay==='cash'?'كاش':pay==='transfer'?'تحويل':'فيزا / بطاقة'}`,`الاسم: ${$('name').value||'غير مذكور'}`,`الهاتف: ${$('phone').value}`);if(order==='delivery'){lines.push(`الموقع: ${$('locationLink').value}`);if(km!=null)lines.push(`المسافة من المطعم: ${km.toFixed(1)} كم`,`الزمن المتوقع: ${mins} دقيقة`)}let rep=document.querySelector('input[name="rep"]:checked')?.value;if($('replaceBox').classList.contains('show'))lines.push(`بديل شاورما اللحم: ${rep}`);if($('generalNote').value.trim())lines.push(`ملاحظة: ${$('generalNote').value.trim()}`);if(pay==='transfer')lines.push('تم اختيار التحويل — يرجى إرسال صورة الإيصال في واتساب.');window.open(`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank')};
+$('openCart').onclick=openCart;$('floatCart').onclick=openCart;$('close').onclick=closeCart;$('overlay').onclick=closeCart;$('search').oninput=renderMenu;
+async function initVisitors(){
+  let local=Number(localStorage.getItem('tg_visits_v2')||0)+1;
+  localStorage.setItem('tg_visits_v2',local);
+  $('visitorCount').textContent=local.toLocaleString('ar');
+  try{
+    const r=await fetch('https://api.counterapi.dev/v1/turkish-garden-samail/visits/up',{cache:'no-store'});
+    const d=await r.json();
+    if(Number.isFinite(Number(d.count))) $('visitorCount').textContent=Number(d.count).toLocaleString('ar');
+  }catch(e){}
+}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+hello();cats();renderMenu();renderCart();initVisitors();
+</script>
+</body></html>
