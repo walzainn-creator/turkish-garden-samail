@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8f1d18">
+<meta name="theme-color" content="#8f1d18"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <meta name="description" content="قائمة مطعم الحديقة التركية فرع سمائل وطلب مباشر عبر واتساب.">
 <title>الحديقة التركية - فرع سمائل</title>
 <style>
@@ -37,7 +37,7 @@ h1{font-size:clamp(29px,6vw,55px);line-height:1.15;margin:14px 0 8px;position:re
 <div class="hero-card"><span class="eyebrow">مطعم الحديقة التركية • سمائل</span><h1>اختَر وجبتك وأرسل طلبك مباشرة</h1><p>قائمة سريعة ومنظمة، خيارات دفع متعددة، وحساب تلقائي للمسافة ورسوم التوصيل.</p><div class="hero-actions"><a class="primary" href="#menu">ابدأ الطلب</a><a class="ghost" href="https://api.whatsapp.com/send?phone=96895474488">واتساب المطعم</a></div></div>
 <div class="greeting" id="greeting"></div>
 <div class="quick"><div class="quick-card"><b>ساعات العمل</b><span>3 مساءً – 2 صباحًا</span></div><div class="quick-card"><b>رقم الطلب</b><a class="ltr" href="tel:+96895474488">95474488</a></div><div class="quick-card"><b>التحويل باسم سيف المحروقي</b><span class="ltr">96205536</span> <button class="copy" onclick="copyBank()">نسخ</button></div></div>
-<div class="offer"><b>عرض التوصيل:</b> توصيل مجاني للطلبات بقيمة 6 ر.ع أو أكثر داخل 18 كم. للطلبات الأقل من 6 ر.ع يضاف 0.500 ر.ع عندما يكون زمن الوصول التقديري 20 دقيقة أو أقل.<div class="visitor"><span>عداد الزيارات على هذا الجهاز</span><b id="visitorCount">1</b></div></div>
+<div class="offer"><b>عرض التوصيل:</b> توصيل مجاني للطلبات بقيمة 6 ر.ع أو أكثر داخل 18 كم. للطلبات الأقل من 6 ر.ع يضاف 0.500 ر.ع عندما يكون زمن الوصول التقديري 20 دقيقة أو أقل.<div class="visitor"><span>عدد زيارات الموقع</span><b id="visitorCount">1</b></div></div>
 </div></section>
 
 <section class="menu" id="menu"><div class="wrap">
@@ -56,9 +56,9 @@ h1{font-size:clamp(29px,6vw,55px);line-height:1.15;margin:14px 0 8px;position:re
 <div class="step"><div class="step-title">1. نوع الطلب</div><div class="segments"><button class="seg" data-order="delivery">🚗 توصيل</button><button class="seg" data-order="pickup">🏪 استلام</button></div>
 <div class="location" id="locationBox"><div class="loc-buttons"><button id="geoBtn">📍 تحديد موقعي</button><button id="setRestaurantBtn">🏪 تثبيت موقع المطعم مرة واحدة</button></div><input class="field" id="locationLink" placeholder="أو الصق رابط Google Maps"><div class="loc-status" id="locStatus"></div><div class="fee-box" id="feeBox">حدد موقعك لحساب المسافة.</div></div></div>
 
-<div class="step"><div class="step-title">2. طريقة الدفع</div><div class="segments three"><button class="seg" data-pay="cash">💵 كاش</button><button class="seg" data-pay="transfer">🏦 تحويل</button><button class="seg" data-pay="card">💳 بطاقة</button></div>
+<div class="step"><div class="step-title">2. طريقة الدفع</div><div class="segments three"><button class="seg" data-pay="cash">💵 كاش</button><button class="seg" data-pay="transfer">🏦 تحويل</button><button class="seg" data-pay="card">💳 فيزا / بطاقة</button></div>
 <div class="bank-box" id="bankBox"><b>التحويل باسم سيف المحروقي:</b> <span class="ltr">96205536</span> <button class="copy" onclick="copyBank()">نسخ</button></div>
-<div class="receipt" id="receiptBox"><label><b>إيصال التحويل:</b></label><input class="field" type="file" id="receiptFile" accept="image/*"></div></div>
+<div class="receipt" id="receiptBox"><label><b>إيصال التحويل:</b></label><input class="field" type="file" id="receiptFile" accept="image/*"></div><div class="bank-box" id="cardBox"><b>الدفع بالفيزا/البطاقة:</b> يتم عند الاستلام أو في المطعم حسب توفر جهاز الدفع.</div></div>
 
 <div class="step"><div class="step-title">3. بيانات الطلب</div><div class="fields"><input class="field" id="customerName" placeholder="الاسم"><input class="field" id="customerPhone" inputmode="tel" placeholder="رقم الهاتف (إلزامي)"><textarea class="field" id="generalNote" rows="2" placeholder="ملاحظة عامة"></textarea></div>
 <div class="replacement" id="replacementBox"><b>إذا لم تتوفر شاورما اللحم:</b><label><input type="radio" name="replacement" value="استبدالها بشاورما دجاج"> شاورما دجاج</label><label><input type="radio" name="replacement" value="استبدالها بجامبو شاورما"> جامبو شاورما</label><label><input type="radio" name="replacement" value="الاتصال بي قبل الاستبدال" checked> الاتصال بي قبل الاستبدال</label></div></div>
@@ -69,7 +69,7 @@ h1{font-size:clamp(29px,6vw,55px);line-height:1.15;margin:14px 0 8px;position:re
 
 <script>
 const WHATSAPP='96895474488',BANK='96205536';
-const DATA_FILES=['index_v5.html?v=20260806','https://walzainn-creator.github.io/turkish-garden-samail/index_v5.html?v=20260806'];
+const DATA_FILES=['./index_v5.html?v=20260806-2','index_v5.html?v=20260806-2'];
 const FALLBACK=[
 {cat:'الشاورما',name:'شاورما دجاج',price:.5,en:'Chicken Shawarma'},
 {cat:'الشاورما',name:'شاورما لحم',price:.7,en:'Meat Shawarma'},
@@ -86,8 +86,35 @@ const $=id=>document.getElementById(id),safe=s=>String(s??'').replace(/[&<>"']/g
 function toast(m){$('toast').textContent=m;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)}
 function copyBank(){navigator.clipboard?.writeText(BANK);toast('تم نسخ رقم التحويل')}
 function initGreeting(){const a=['مرحبًا، نورتنا 🌹','تفضل عشاء اليوم من اختيارك 🍽️','أهلاً بك في الحديقة التركية ❤️','وجبتك المفضلة بانتظارك 😋'];$('greeting').textContent=a[Math.floor(Math.random()*a.length)]}
-function initVisitors(){let n=Number(localStorage.getItem('tg_visits')||0)+1;localStorage.setItem('tg_visits',n);$('visitorCount').textContent=n}
-async function loadMenu(){for(const u of DATA_FILES){try{const r=await fetch(u,{cache:'no-store'});if(!r.ok)continue;const h=await r.text();const m=h.match(/const\s+MENU\s*=\s*(\[[\s\S]*?\]);\s*const\s+CATS/);if(m){menu=JSON.parse(m[1]);break}}catch(e){}}if(!menu.length)menu=FALLBACK;else $('loadStatus').remove();menu=[...menu,...FALLBACK.filter(x=>!menu.some(y=>y.name===x.name))];activeCat=menu.some(x=>x.cat==='الشاورما')?'الشاورما':menu[0].cat;renderCategories();renderMenu();renderCart()}
+async function initVisitors(){
+  let local=Number(localStorage.getItem('tg_visits')||0)+1;
+  localStorage.setItem('tg_visits',local);
+  $('visitorCount').textContent=local;
+  try{
+    const r=await fetch('https://api.counterapi.dev/v1/turkish-garden-samail/visits/up',{cache:'no-store'});
+    const d=await r.json();
+    if(Number.isFinite(Number(d.count))) $('visitorCount').textContent=Number(d.count).toLocaleString('ar');
+  }catch(e){}
+}
+async function loadMenu(){
+  for(const u of DATA_FILES){
+    try{
+      const r=await fetch(u,{cache:'no-store'});
+      if(!r.ok) continue;
+      const h=await r.text();
+      const m=h.match(/const\s+MENU\s*=\s*(\[[\s\S]*?\])\s*;/);
+      if(m){
+        menu=(new Function('return '+m[1]))();
+        if(Array.isArray(menu)&&menu.length) break;
+      }
+    }catch(e){}
+  }
+  if(!menu.length) menu=FALLBACK;
+  menu=[...menu,...FALLBACK.filter(x=>!menu.some(y=>y.name===x.name))];
+  $('loadStatus')?.remove();
+  activeCat=menu.some(x=>x.cat==='الشاورما')?'الشاورما':menu[0].cat;
+  renderCategories();renderMenu();renderCart();
+}
 function renderCategories(){const cats=[...new Set(menu.map(x=>x.cat))];$('categories').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" data-cat="${safe(c)}">${safe(c)}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{activeCat=b.dataset.cat;$('search').value='';renderCategories();renderMenu()})}
 function renderMenu(){const q=$('search').value.trim().toLowerCase();const list=q?menu.filter(i=>(i.name+' '+(i.en||'')+' '+i.cat).toLowerCase().includes(q)):menu.filter(i=>i.cat===activeCat);$('menuView').innerHTML=`<div class="category-title"><h3>${safe(q?'نتائج البحث':activeCat)}</h3><span>${list.length} صنف</span></div><div class="grid">${list.map(cardHTML).join('')}</div>`;bindMenu()}
 function cardHTML(i){const c=cart[i.name];return `<article class="item ${c?'in-cart':''}"><h4>${safe(i.name)}</h4>${i.detail?`<div class="detail">${safe(i.detail)}</div>`:''}<div class="item-bottom"><span class="price">${format(i.price)}</span>${c?`<div class="qty-inline"><button data-minus="${safe(i.name)}">−</button><b>${c.qty}</b><button data-plus="${safe(i.name)}">+</button></div>`:`<button class="add" data-add="${safe(i.name)}">+ أضف</button>`}</div></article>`}
@@ -103,8 +130,8 @@ function getGeo(cb){if(!navigator.geolocation){toast('الموقع غير مدع
 $('setRestaurantBtn').onclick=()=>getGeo(c=>{localStorage.setItem('tg_restaurant_coords',JSON.stringify(c));toast('تم تثبيت موقع المطعم على هذا الجهاز');updateDistance()});
 $('geoBtn').onclick=()=>getGeo(c=>{customerCoords=c;$('locationLink').value=`https://maps.google.com/?q=${c.lat},${c.lon}`;updateDistance()});
 document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{orderType=b.dataset.order;document.querySelectorAll('[data-order]').forEach(x=>x.classList.toggle('active',x===b));$('locationBox').classList.toggle('show',orderType==='delivery');renderCart()});
-document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{payment=b.dataset.pay;document.querySelectorAll('[data-pay]').forEach(x=>x.classList.toggle('active',x===b));$('bankBox').classList.toggle('show',payment==='transfer');$('receiptBox').classList.toggle('show',payment==='transfer')});
-function sendOrder(){const {count,total}=stats();if(!count)return toast('السلة فارغة');if(!orderType)return toast('اختر نوع الطلب');if(!payment)return toast('اختر طريقة الدفع');const phone=$('customerPhone').value.trim();if(phone.replace(/\D/g,'').length<8)return toast('أدخل رقم هاتف صحيح');if(orderType==='delivery'&&!$('locationLink').value.trim())return toast('حدد موقع العميل');const replacement=document.querySelector('input[name="replacement"]:checked')?.value||'';let lines=['🍽️ *طلب جديد — الحديقة التركية فرع سمائل*',''];Object.entries(cart).forEach(([n,c])=>{lines.push(`• ${n} × ${c.qty} — ${format(c.qty*c.price)}${c.note?` (${c.note})`:''}`)});lines.push('',`قيمة الطلب: ${format(total)}`);if(orderType==='delivery')lines.push(`رسوم التوصيل: ${deliveryFee===0?'مجاني':deliveryFee===.5?format(.5):'تحدد مع المطعم'}`,`الإجمالي الحالي: ${format(total+(deliveryFee||0))}`);lines.push('',`نوع الطلب: ${orderType==='delivery'?'توصيل':'استلام'}`,`طريقة الدفع: ${payment==='cash'?'كاش':payment==='transfer'?'تحويل':'بطاقة'}`,`الاسم: ${$('customerName').value||'غير مذكور'}`,`الهاتف: ${phone}`);if(orderType==='delivery'){lines.push(`الموقع: ${$('locationLink').value}`);if(distanceKm!=null)lines.push(`المسافة من المطعم: ${distanceKm.toFixed(1)} كم`,`الزمن التقديري: ${etaMin} دقيقة`)}if(replacement&&Object.keys(cart).some(n=>n.includes('شاورما لحم')))lines.push(`بديل شاورما اللحم عند عدم التوفر: ${replacement}`);if($('generalNote').value.trim())lines.push(`ملاحظة: ${$('generalNote').value.trim()}`);if(payment==='transfer')lines.push('تم اختيار التحويل البنكي — يرجى إرفاق صورة الإيصال في واتساب.');window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank')}
+document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{payment=b.dataset.pay;document.querySelectorAll('[data-pay]').forEach(x=>x.classList.toggle('active',x===b));$('bankBox').classList.toggle('show',payment==='transfer');$('receiptBox').classList.toggle('show',payment==='transfer');$('cardBox').classList.toggle('show',payment==='card')});
+function sendOrder(){const {count,total}=stats();if(!count)return toast('السلة فارغة');if(!orderType)return toast('اختر نوع الطلب');if(!payment)return toast('اختر طريقة الدفع');const phone=$('customerPhone').value.trim();if(phone.replace(/\D/g,'').length<8)return toast('أدخل رقم هاتف صحيح');if(orderType==='delivery'&&!$('locationLink').value.trim())return toast('حدد موقع العميل');const replacement=document.querySelector('input[name="replacement"]:checked')?.value||'';let lines=['🍽️ *طلب جديد — الحديقة التركية فرع سمائل*',''];Object.entries(cart).forEach(([n,c])=>{lines.push(`• ${n} × ${c.qty} — ${format(c.qty*c.price)}${c.note?` (${c.note})`:''}`)});lines.push('',`قيمة الطلب: ${format(total)}`);if(orderType==='delivery')lines.push(`رسوم التوصيل: ${deliveryFee===0?'مجاني':deliveryFee===.5?format(.5):'تحدد مع المطعم'}`,`الإجمالي الحالي: ${format(total+(deliveryFee||0))}`);lines.push('',`نوع الطلب: ${orderType==='delivery'?'توصيل':'استلام'}`,`طريقة الدفع: ${payment==='cash'?'كاش':payment==='transfer'?'تحويل':'فيزا / بطاقة عند الاستلام أو في المطعم'}`,`الاسم: ${$('customerName').value||'غير مذكور'}`,`الهاتف: ${phone}`);if(orderType==='delivery'){lines.push(`الموقع: ${$('locationLink').value}`);if(distanceKm!=null)lines.push(`المسافة من المطعم: ${distanceKm.toFixed(1)} كم`,`الزمن التقديري: ${etaMin} دقيقة`)}if(replacement&&Object.keys(cart).some(n=>n.includes('شاورما لحم')))lines.push(`بديل شاورما اللحم عند عدم التوفر: ${replacement}`);if($('generalNote').value.trim())lines.push(`ملاحظة: ${$('generalNote').value.trim()}`);if(payment==='transfer')lines.push('تم اختيار التحويل البنكي — يرجى إرفاق صورة الإيصال في واتساب.');window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank')}
 $('sendBtn').onclick=sendOrder;$('cartHead').onclick=openCart;$('bottomCart').onclick=openCart;$('closeSheet').onclick=closeCart;$('overlay').onclick=closeCart;$('search').oninput=renderMenu;$('locationLink').onchange=()=>{$('locStatus').textContent='تم حفظ رابط الموقع. لحساب المسافة استخدم زر تحديد موقعي.'};$('clearBtn').onclick=()=>{if(confirm('تفريغ السلة؟')){cart={};localStorage.removeItem('tg_cart_v3');renderMenu();renderCart()}}
 initGreeting();initVisitors();loadMenu();
 </script>
