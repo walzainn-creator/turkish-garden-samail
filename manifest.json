@@ -2,9 +2,10 @@
   "name": "مطعم الحديقة التركية - فرع سمائل",
   "short_name": "الحديقة التركية",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#fff9ef",
-  "theme_color": "#8b1f17",
+  "background_color": "#fff8ed",
+  "theme_color": "#7f1d1d",
   "lang": "ar",
   "dir": "rtl",
   "icons": [

@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#8b1f17"/>
-<circle cx="256" cy="256" r="176" fill="#fff4dc"/>
-<text x="256" y="318" text-anchor="middle" font-size="190" font-family="Arial" font-weight="700" fill="#8b1f17">ح</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#7f1d1d"/><circle cx="256" cy="256" r="180" fill="#fff2d2"/><text x="256" y="322" text-anchor="middle" font-size="195" font-family="Arial" font-weight="700" fill="#7f1d1d">ح</text></svg>

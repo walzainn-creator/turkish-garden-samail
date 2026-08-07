@@ -1,0 +1,25 @@
+طريقة التشغيل على Cloudflare
+
+ارفع الملفات الخمسة إلى جذر مستودع GitHub:
+index.html
+manifest.json
+service-worker.js
+icon.svg
+wrangler.jsonc
+
+في شاشة Cloudflare:
+Project name: turkish-garden-samail
+Build command: اتركه فارغاً
+Deploy command: npx wrangler deploy
+ثم اضغط Deploy.
+
+بعد نجاح النشر سيظهر لك رابط Cloudflare.
+
+رابط لوحة المالك الخاصة بعد معرفة رابط موقعك:
+ضع في نهاية رابط الموقع:
+?owner=WZ-0696D25B
+
+مثال:
+https://اسم-الموقع.workers.dev/?owner=WZ-0696D25B
+
+لا تشارك رابط لوحة المالك مع الزبائن.
