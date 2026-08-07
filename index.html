@@ -395,7 +395,7 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
         <div class="pageTitle" data-i18n="finalReview">كل شيء جاهز ✨</div>
         <div class="pageHint" data-i18n="finalHint">راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.</div>
         <div class="secureHint" id="secureHint">
-          <b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بزخرفة وختم بصري خاص. رقم العميل ورابط موقعه يبقيان واضحين وقابلين للضغط والنسخ.
+          <b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بختم بصري خاص، بينما الكميات والمبالغ ورقم العميل تبقى بأرقام عادية واضحة وثابتة الاتجاه لسهولة القراءة والنسخ.
         </div>
         <div class="review" id="reviewBox"></div>
       </div>
@@ -458,9 +458,9 @@ brand:'Turkish Garden Restaurant',branch:'Samail Branch',call:'Call',cart:'Cart'
 const CAT_EN={"الشاورما":"Shawarma","بوكسات الشاورما":"Shawarma Boxes","صحون الشاورما":"Shawarma Plates","المقبلات والسلطات":"Appetizers & Salads","الفطائر":"Pastries","البرجر":"Burgers","الفرايز":"Loaded Fries","المشاوي":"Charcoal Grills","البيتزا":"Pizza","الكريسبي":"Crispy Chicken","الصواريخ":"Rocket Wraps","العصائر والمشروبات":"Fresh Juices & Drinks","المشروبات والروب":"Drinks & Yogurt","العروض":"Offers","المشروبات الباردة":"Cold Drinks"};
 const CAT={
 ar:{
-'البيتزا':['🍕 البيتزا من أيادي الشيف الرائع رياض التونسي','كل بيتزا تُجهّز بعناية لتصل ساخنة وبنكهة تستحق الرجوع لها.'],
-'المشاوي':['🔥 والأفضل دائمًا أبو السيد الباشا','اختر صحن المشاوي الكلاسيكي أو مشكل الحديقة لتجربة أكثر من صنف في طبق واحد.'],
-'الشاورما':['🌯 لمسات الشيف رياض التونسي','شاورما طازجة ومشبعة تُحضّر لك وقت الطلب.'],
+'البيتزا':['🍕 البيتزا بإشراف الشيف رياض التونسي','مختص البيتزا في الحديقة التركية — تُحضّر كل بيتزا بعناية لتصل ساخنة وبنكهة تستحق الرجوع لها.'],
+'المشاوي':['🔥 المشاوي بإشراف الشيف أبو السيد الباشا','مختص المشاوي في الحديقة التركية — اختر صحن المشاوي الكلاسيكي أو مشكل الحديقة لتجربة أكثر من صنف في طبق واحد.'],
+'الشاورما':['🌯 شاورما الحديقة التركية','طازجة ومشبعة وتُحضّر لك وقت الطلب بعناية.'],
 'الصواريخ':['🚀 سريع، مشبع، وعلى مزاجك','اختيارك السريع عندما تريد وجبة ممتعة بدون انتظار.'],
 'الكلوبات':['🥪 كلوب الحديقة… خفيف في الشكل، كبير في الطعم','طازج ومرتب ومناسب لوجبة سريعة.'],
 'المشروبات':['🥤 كمل وجبتك بمشروبك المفضل','اختيارات باردة ترافق طلبك.'],
@@ -470,9 +470,9 @@ ar:{
 'بوكسات الشاورما':['📦 بوكس الحديقة… مشاركة أسهل','اختيارات مناسبة للفرد والعائلة.']
 },
 en:{
-'البيتزا':['🍕 Pizza by Chef Riad Al-Tunisi','Prepared with care and served with the flavor worth coming back for.'],
-'المشاوي':['🔥 Grills by Abu Al-Sayed Al-Basha','Choose the classic grill plate or Garden Mix to taste several favorites in one plate.'],
-'الشاورما':['🌯 Chef Riad’s shawarma touch','Fresh and filling, prepared when you order.'],
+'البيتزا':['🍕 Pizza by Chef Riad Al-Tunisi','Turkish Garden pizza specialist — every pizza is prepared carefully and served hot.'],
+'المشاوي':['🔥 Grills by Chef Abu Al-Sayed Al-Basha','Turkish Garden grill specialist — choose the classic grill plate or Garden Mix to taste several favorites in one plate.'],
+'الشاورما':['🌯 Turkish Garden Shawarma','Fresh and filling, prepared carefully when you order.'],
 'الصواريخ':['🚀 Fast, filling, and satisfying','A quick choice when you want a fun meal without the wait.'],
 'الكلوبات':['🥪 Turkish Garden clubs','Light in look, big on flavor.'],
 'المشروبات':['🥤 Complete your meal','Cold drinks to go with your order.'],
@@ -512,7 +512,7 @@ function applyLang(){
  $('replaceAlt').placeholder=lang==='ar'?'اكتب البديل الذي تريده':'Type your preferred replacement';
  if($('clearCartText'))$('clearCartText').textContent=lang==='ar'?'تفريغ السلة':'Clear cart';
  if($('secureHint'))$('secureHint').innerHTML=lang==='ar'
-   ?'<b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بزخرفة وختم بصري خاص. رقم العميل ورابط موقعه يبقيان واضحين وقابلين للضغط والنسخ.'
+   ?'<b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بختم بصري خاص، بينما الكميات والمبالغ ورقم العميل تبقى بأرقام عادية واضحة وثابتة الاتجاه لسهولة القراءة والنسخ.'
    :'<b>🔒 Secured order:</b> The order is saved before WhatsApp opens, with a branded visual seal. Phone and location stay readable, tappable, and copyable.';
  welcome();cats();renderMenu();renderCart();renderReview();showLoyalty($('loyaltyPhone').value);renderOffer();
 }
@@ -685,17 +685,10 @@ function renderReview(q){
 }
 function copyText(txt){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(txt);const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();return Promise.resolve()}
 
-function decorDigits(value){
- const map={'0':'⓪','1':'①','2':'②','3':'③','4':'④','5':'⑤','6':'⑥','7':'⑦','8':'⑧','9':'⑨'};
- return String(value).replace(/[0-9]/g,d=>map[d]||d);
-}
-function decorMoney(value){
- return decorDigits(Number(value||0).toFixed(3));
-}
-function decorOrderId(id){
- const s=String(id||'').replace(/-/g,' • ');
- return `✦⟦ ${s.split('').map(ch=>/[0-9]/.test(ch)?decorDigits(ch):ch).join('')} ⟧✦`;
-}
+function ltr(value){ return '\u2066'+String(value)+'\u2069'; }
+function clearQty(value){ return ltr(String(Number(value)||0)); }
+function clearMoney(value){ return ltr(Number(value||0).toFixed(3)); }
+function clearOrderId(id){ return ltr(String(id||'')); }
 function visualSeal(order){
  const fee=order.deliveryFee==null?'?':order.deliveryFee===0?'FREE':Number(order.deliveryFee).toFixed(3);
  const raw=`${order.shortId}|${Number(order.subtotal).toFixed(3)}|${fee}|${Number(order.total).toFixed(3)}`;
@@ -755,7 +748,7 @@ async function sendOrder(){
      '═══════════════════ 🟩🟨🟥',
      '',
      `🔒 *${lang==='ar'?'طلب مثبت في النظام':'SECURED ORDER'}*`,
-     decorOrderId(secure.shortId),
+     `🔖 ${lang==='ar'?'رقم الطلب':'Order ID'}: *${clearOrderId(secure.shortId)}*`,
      seal,
      '',
      `🎨 ${lang==='ar'?'البطاقة الملونة المعتمدة':'Official colored order card'}:`,
@@ -764,17 +757,18 @@ async function sendOrder(){
      '┏━━━ '+(lang==='ar'?'تفاصيل الطلب':'ORDER DETAILS')+' ━━━┓'
    ];
    secure.items.forEach((i,n)=>{
-     lines.push(`┃ ${decorDigits(n+1)}. ${lang==='ar'?i.name:i.en}`);
-     lines.push(`┃   × ${decorDigits(i.qty)}   ◂ ${decorMoney(i.lineTotal)} ر.ع${i.note?`   ⟦${i.note}⟧`:''}`);
+     lines.push(`┃ ${lang==='ar'?'الصنف':'Item'} ${clearQty(n+1)}: ${lang==='ar'?i.name:i.en}`);
+     lines.push(`┃   ${lang==='ar'?'الكمية':'Qty'}: *${clearQty(i.qty)}*`);
+     lines.push(`┃   ${lang==='ar'?'المبلغ':'Amount'}: *${clearMoney(i.lineTotal)}* ${lang==='ar'?'ريال عماني':'OMR'}${i.note?`   ⟦${i.note}⟧`:''}`);
    });
    lines.push('┗━━━━━━━━━━━━━━━━━━┛');
 
    lines.push(
      '',
      '╭──── '+(lang==='ar'?'الملخص المالي':'TOTALS')+' ────╮',
-     `│ ${tr('subtotal')}: *${decorMoney(secure.subtotal)}* ر.ع`,
-     `│ ${tr('deliveryFee')}: ${secure.deliveryFee==null?(lang==='ar'?'يحدد بعد التأكيد':'Confirm first'):(secure.deliveryFee===0?(lang==='ar'?'🎁 مجاني':'🎁 Free'):`*${decorMoney(secure.deliveryFee)}* ر.ع`)}`,
-     `│ ${tr('grand')}: *${decorMoney(secure.total)}* ر.ع`,
+     `│ ${tr('subtotal')}: *${clearMoney(secure.subtotal)}* ${lang==='ar'?'ريال عماني':'OMR'}`,
+     `│ ${tr('deliveryFee')}: ${secure.deliveryFee==null?(lang==='ar'?'يحدد بعد التأكيد':'Confirm first'):(secure.deliveryFee===0?(lang==='ar'?'🎁 مجاني':'🎁 Free'):`*${clearMoney(secure.deliveryFee)}* ${lang==='ar'?'ريال عماني':'OMR'}`)}`,
+     `│ ${tr('grand')}: *${clearMoney(secure.total)}* ${lang==='ar'?'ريال عماني':'OMR'}`,
      '╰──────────────────╯',
      '',
      `🚚 ${lang==='ar'?'نوع الطلب':'Order type'}: ${secure.orderType==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')}`,
@@ -782,11 +776,11 @@ async function sendOrder(){
      `👤 ${lang==='ar'?'الاسم':'Name'}: ${secure.name||'-'}`,
      '',
      '── '+(lang==='ar'?'بيانات الوصول المباشر':'DIRECT CONTACT')+' ──',
-     `📱 ${lang==='ar'?'رقم العميل':'Customer phone'}: ${secure.phone}`
+     `📱 ${lang==='ar'?'رقم العميل':'Customer phone'}: ${ltr(secure.phone)}`
    );
 
    if(secure.distanceKm!=null){
-     lines.push(`📏 ${lang==='ar'?'المسافة':'Distance'}: ${secure.distanceKm.toFixed(1)} km`);
+     lines.push(`📏 ${lang==='ar'?'المسافة':'Distance'}: ${ltr(secure.distanceKm.toFixed(1))} km`);
    }
    if(secure.locationUrl) lines.push(`📍 ${lang==='ar'?'موقع العميل':'Customer location'}: ${secure.locationUrl}`);
    if(secure.generalNote) lines.push(`${lang==='ar'?'ملاحظة':'Note'}: ${secure.generalNote}`);
