@@ -1,17 +1,19 @@
-تحديث Cloudflare لنفس الموقع
+استبدل الملفات الخمسة في جذر مستودع GitHub بنفس الأسماء:
+index.html
+manifest.json
+service-worker.js
+icon.svg
+wrangler.jsonc
 
-1) فك ضغط الملف.
-2) ارفع الملفات الخمسة إلى جذر مستودع GitHub نفسه واستبدل القديمة:
-   index.html
-   manifest.json
-   service-worker.js
-   icon.svg
-   wrangler.jsonc
-3) في Cloudflare افتح مشروع turkish-garden-samail.
-4) Deployments > Retry build أو ابدأ Build جديد.
-5) Build command: فارغ
-6) Deploy command: npx wrangler deploy
-7) بعد نجاح النشر افتح نفس رابط workers.dev.
+ثم Commit changes.
+Cloudflare سيبدأ Build تلقائياً لأن المشروع مربوط بالمستودع.
+بعد ظهور Active deployment بنسبة 100% افتح نفس رابط workers.dev.
 
-رابط المالك يبقى:
-?owner=WZ-0696D25B
+عداد الزوار لا يظهر للزبائن؛ يظهر فقط عند فتح رابط المالك.
+
+
+تحديث V7 للمشاوي:
+- صحن مشاوي 4.000 ر.ع: 4 أسياخ (تكة لحم، تكة دجاج، كباب لحم، كباب دجاج) + قطعة عرايس.
+- صحن المشاوي 7.000 ر.ع: دبل الكمية.
+- مشكل الحديقة 4.000 ر.ع: نصف دجاجة + سيخان + شاورما.
+- مشكل الحديقة 7.000 ر.ع: دبل الكمية.

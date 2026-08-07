@@ -89,6 +89,32 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.94);backdro
 footer{text-align:center;padding:26px 0 14px;color:var(--muted);font-size:12px}
 @media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.info{grid-template-columns:1fr 1fr}.infoCard:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr 1fr;gap:8px}.item{padding:11px;min-height:120px}.courier{grid-template-columns:105px 1fr}.sheet{top:auto;height:94vh;bottom:0;width:100%;border-radius:23px 23px 0 0;transform:translateY(105%)}.sheet.open{transform:translateY(0)}.segments{grid-template-columns:1fr}.loyaltyForm{grid-template-columns:1fr}}
+
+.hero{min-height:calc(100svh - 66px);display:flex;align-items:center}
+.hero>.wrap{width:min(1120px,94%)}
+main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
+.chefStrip{position:relative;overflow:hidden}
+.chefStrip:after{content:"✦";position:absolute;left:16px;top:-4px;font-size:54px;color:rgba(120,27,23,.045)}
+.item{transition:transform .18s ease,box-shadow .18s ease}
+.item:active{transform:scale(.985)}
+.item small{display:block;margin-top:2px;line-height:1.55}
+.loyaltyPeek{position:fixed;right:14px;bottom:78px;z-index:68;border:0;border-radius:999px;padding:11px 15px;background:linear-gradient(135deg,#53130f,#8e251e);color:#fff;font-weight:900;box-shadow:0 12px 30px rgba(80,20,15,.25)}
+.loyaltyOverlay{position:fixed;inset:0;background:rgba(28,17,12,.58);z-index:130;display:none;backdrop-filter:blur(5px)}
+.loyaltyOverlay.open{display:block}
+.loyaltyModal{position:fixed;z-index:131;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(430px,92%);background:#fffdfa;border:1px solid var(--line);border-radius:22px;box-shadow:0 25px 80px rgba(35,18,10,.32);opacity:0;pointer-events:none;transition:.2s}
+.loyaltyModal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.loyaltyModalHead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#53130f,#8e251e);color:#fff;border-radius:22px 22px 0 0}
+.loyaltyModalHead b{display:block;color:#ffd781;font-size:18px}.loyaltyModalHead small{display:block;margin-top:4px;color:#f4d8cd}.loyaltyModalHead button{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:8px 10px}
+.loyaltyModalBody{padding:16px}.loyaltyExplain{color:var(--muted);line-height:1.75;font-size:13px;margin:0 0 11px}
+.loyaltyModal .loyaltyStatus{background:#fff5e8;color:#664738;border:1px solid #eed8ba}
+.loyaltyModal .progress{background:#eee1d3}.loyaltyModal .progress i{background:linear-gradient(90deg,var(--gold),#f3c76c)}
+.ownerPanel{margin-top:18px}
+@media(max-width:620px){
+ .hero{min-height:calc(100svh - 66px)}
+ .loyaltyPeek{right:10px;bottom:76px;padding:10px 13px}
+ .grid{grid-template-columns:1fr 1fr}
+}
+
 </style>
 </head>
 <body>
@@ -169,15 +195,9 @@ footer{text-align:center;padding:26px 0 14px;color:var(--muted);font-size:12px}
   <div class="chefStrip" id="chefStrip"></div>
   <div class="grid" id="menuGrid"></div>
 
-  <section class="loyalty">
-    <div class="loyaltyHead"><div><h3 data-i18n="loyaltyTitle">⭐ برنامج الولاء</h3><p data-i18n="loyaltyIntro">طلباتك الكبيرة تعود لك بمكافآت. اجمع نقاطك واستبدلها عندما تكتمل.</p></div><div style="font-size:30px">🎁</div></div>
-    <div class="loyaltyForm">
-      <input id="loyaltyPhone" class="field" inputmode="tel" placeholder="رقم هاتفك">
-      <button class="loyaltyBtn" id="loyaltyBtn" data-i18n="showPoints">عرض النقاط</button>
-    </div>
-    <div class="loyaltyStatus" id="loyaltyStatus"></div>
-    <div class="progress"><i id="loyaltyProgress"></i></div>
-  </section>
+  
+  <button class="loyaltyPeek" id="openLoyalty">⭐ <span data-i18n="loyaltyTitle">برنامج الولاء</span></button>
+
 
   <div class="ownerPanel" id="ownerPanel"><b>لوحة المالك</b><div id="ownerStats" style="margin-top:7px;line-height:1.8"></div></div>
 </main>
@@ -300,6 +320,27 @@ footer{text-align:center;padding:26px 0 14px;color:var(--muted);font-size:12px}
   </div>
 </aside>
 
+
+<div class="loyaltyOverlay" id="loyaltyOverlay"></div>
+<div class="loyaltyModal" id="loyaltyModal">
+  <div class="loyaltyModalHead">
+    <div>
+      <b data-i18n="loyaltyTitle">⭐ برنامج الولاء</b>
+      <small data-i18n="loyaltyIntro">برنامج اختياري لمن يرغب بجمع المكافآت.</small>
+    </div>
+    <button id="closeLoyalty">✕</button>
+  </div>
+  <div class="loyaltyModalBody">
+    <p class="loyaltyExplain" id="loyaltyExplain"></p>
+    <div class="loyaltyForm">
+      <input id="loyaltyPhone" class="field" inputmode="tel" placeholder="رقم هاتفك">
+      <button class="loyaltyBtn" id="loyaltyBtn" data-i18n="showPoints">عرض النقاط</button>
+    </div>
+    <div class="loyaltyStatus" id="loyaltyStatus"></div>
+    <div class="progress"><i id="loyaltyProgress"></i></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -318,54 +359,33 @@ en:{
 brand:'Turkish Garden Restaurant',branch:'Samail Branch',call:'Call',cart:'Cart',heroTitle:'From your first choice to delivery, every detail matters.',heroText:'A smoother ordering journey: choose, share your location, review everything, then send your order with confidence.',startOrder:'Start order',whatsapp:'Restaurant WhatsApp',hours:'Opening hours',hoursValue:'3 PM – 2 AM',orders:'Orders',transfer:'Bank transfer',transferName:'Saif Al Mahrouqi',deliveryPolicy:'Clear delivery pricing:',restaurantLocation:'📍 Restaurant location',directions:'🧭 Directions',courierTitle:'🚗 Abu Sahar is ready for your delivery',courierText:'Share your location and we will show distance and delivery charge clearly. Over 10 km requires confirmation first.',loyaltyTitle:'⭐ Loyalty rewards',loyaltyIntro:'Larger orders bring rewards. Collect points and redeem them when ready.',showPoints:'Show points',viewCart:'View cart',yourJourney:'Your order journey',close:'Close ✕',j1:'Order',j2:'Location',j3:'Payment',j4:'Confirm',reviewOrder:'Review your choices',reviewHint:'Adjust quantities or add notes before continuing.',deliveryStep:'How would you like to receive it?',deliveryHint:'Choose delivery or pickup. Delivery distance and charge follow one consistent rule.',delivery:'🚗 Delivery',pickup:'🏪 Pickup',locate:'📍 Use my location',route:'🧭 Directions',farTitle:'Distance is over 10 km',farText:'Please confirm delivery availability and charge with Abu Sahar first.',confirmCourier:'Confirm delivery',confirmed:'Delivery confirmed with Abu Sahar',paymentStep:'Payment & rewards',paymentHint:'Choose payment method, then enter your phone number to calculate rewards.',cash:'💵 Cash',bank:'🏦 Transfer',card:'💳 Visa / Card',bankTo:'Transfer to Saif Al Mahrouqi',copy:'Copy number',cardNote:'Card payment is available on delivery or at the restaurant when the terminal is available.',replaceTitle:'If beef shawarma is unavailable:',repChicken:'Replace with chicken shawarma',repCall:'Call me before replacing',repOwn:'I will choose another item',redeem:'Redeem 100 points for a 1.000 OMR discount on this order',finalReview:'Everything is ready ✨',finalHint:'Review the final summary. The same delivery charge shown here will be included in WhatsApp.',subtotal:'Subtotal',deliveryFee:'Delivery fee',rewardDiscount:'Points discount',grand:'Total',back:'Back',next:'Next',send:'Send order via WhatsApp'}
 };
 
+const CAT_EN={"الشاورما":"Shawarma","بوكسات الشاورما":"Shawarma Boxes","صحون الشاورما":"Shawarma Plates","المقبلات والسلطات":"Appetizers & Salads","الفطائر":"Pastries","البرجر":"Burgers","الفرايز":"Loaded Fries","المشاوي":"Charcoal Grills","البيتزا":"Pizza","الكريسبي":"Crispy Chicken","الصواريخ":"Rocket Wraps","العصائر والمشروبات":"Fresh Juices & Drinks","المشروبات والروب":"Drinks & Yogurt","العروض":"Offers"};
 const CAT={
 ar:{
 'البيتزا':['🍕 البيتزا من أيادي الشيف الرائع رياض التونسي','كل بيتزا تُجهّز بعناية لتصل ساخنة وبنكهة تستحق الرجوع لها.'],
-'المشاوي':['🔥 والأفضل دائمًا أبو السيد الباشا','مشاوي بنكهة أصيلة ولمسة تعرف طريقها إلى الذوق.'],
+'المشاوي':['🔥 والأفضل دائمًا أبو السيد الباشا','اختر صحن المشاوي الكلاسيكي أو مشكل الحديقة لتجربة أكثر من صنف في طبق واحد.'],
 'الشاورما':['🌯 لمسات الشيف رياض التونسي','شاورما طازجة ومشبعة تُحضّر لك وقت الطلب.'],
 'الصواريخ':['🚀 سريع، مشبع، وعلى مزاجك','اختيارك السريع عندما تريد وجبة ممتعة بدون انتظار.'],
 'الكلوبات':['🥪 كلوب الحديقة… خفيف في الشكل، كبير في الطعم','طازج ومرتب ومناسب لوجبة سريعة.'],
-'المشروبات':['🥤 كمل وجبتك بمشروبك المفضل','اختيارات باردة ترافق طلبك.']
+'المشروبات':['🥤 كمل وجبتك بمشروبك المفضل','اختيارات باردة ترافق طلبك.'],
+'العصائر والمشروبات':['🍹 العصائر الطازجة… انتعاش الحديقة في كل كوب','فواكه ونكهات منعشة تُحضّر لتكمل وجبتك.'],
+'صحون الشاورما':['🍽️ صحنك كامل على راحتك','شاورما بكمية أكبر وتقديم مناسب للوجبة الكاملة.'],
+'بوكسات الشاورما':['📦 بوكس الحديقة… مشاركة أسهل','اختيارات مناسبة للفرد والعائلة.']
 },
 en:{
 'البيتزا':['🍕 Pizza by Chef Riad Al-Tunisi','Prepared with care and served with the flavor worth coming back for.'],
-'المشاوي':['🔥 Grills by Abu Al-Sayed Al-Basha','Authentic grilling with a confident signature.'],
+'المشاوي':['🔥 Grills by Abu Al-Sayed Al-Basha','Choose the classic grill plate or Garden Mix to taste several favorites in one plate.'],
 'الشاورما':['🌯 Chef Riad’s shawarma touch','Fresh and filling, prepared when you order.'],
 'الصواريخ':['🚀 Fast, filling, and satisfying','A quick choice when you want a fun meal without the wait.'],
 'الكلوبات':['🥪 Turkish Garden clubs','Light in look, big on flavor.'],
-'المشروبات':['🥤 Complete your meal','Cold drinks to go with your order.']
+'المشروبات':['🥤 Complete your meal','Cold drinks to go with your order.'],
+'العصائر والمشروبات':['🍹 Fresh juices from Turkish Garden','Refreshing fruit flavors to complete your meal.'],
+'صحون الشاورما':['🍽️ A complete shawarma plate','A fuller serving for a complete meal.'],
+'بوكسات الشاورما':['📦 Turkish Garden shawarma boxes','Easy choices for one or for sharing.']
 }};
 
-const MENU=[
-['البيتزا','بيتزا مارجريتا','Margherita Pizza',1.500],
-['البيتزا','بيتزا دجاج','Chicken Pizza',1.800],
-['البيتزا','بيتزا لحم','Meat Pizza',2.000],
-['الشاورما','شاورما دجاج','Chicken Shawarma',0.500],
-['الشاورما','شاورما لحم','Beef Shawarma',0.700],
-['الصواريخ','صاروخ شاورما دجاج','Chicken Shawarma Rocket',0.800],
-['الصواريخ','صاروخ شاورما لحم','Beef Shawarma Rocket',0.800],
-['الصواريخ','صاروخ تكة دجاج','Chicken Tikka Rocket',0.800],
-['الصواريخ','صاروخ كباب دجاج','Chicken Kebab Rocket',0.800],
-['الصواريخ','صاروخ كباب لحم','Beef Kebab Rocket',0.800],
-['المشاوي','تكة دجاج','Chicken Tikka',1.500],
-['المشاوي','تكة لحم','Beef Tikka',1.800],
-['المشاوي','كباب دجاج','Chicken Kebab',1.500],
-['المشاوي','كباب لحم','Beef Kebab',1.800],
-['المشاوي','كباب ربيان','Shrimp Kebab',2.000],
-['المشاوي','كريسبي','Crispy',1.500],
-['الكلوبات','كلوب شاورما دجاج','Chicken Shawarma Club',1.500],
-['الكلوبات','كلوب شاورما لحم','Beef Shawarma Club',1.800],
-['الكلوبات','كلوب روست بيف','Roast Beef Club',1.800],
-['الكلوبات','كلوب ربيان','Shrimp Club',2.000],
-['المشروبات','كينزا كولا','Kinza Cola',0.300],
-['المشروبات','كينزا ليمون','Kinza Lemon',0.300],
-['المشروبات','كينزا توت','Kinza Berry',0.300],
-['المشروبات','كينزا برتقال','Kinza Orange',0.300],
-['المشروبات','كينزا حمضيات','Kinza Citrus',0.300],
-['المشروبات','كينزا كولا دايت','Kinza Cola Diet',0.300],
-['المشروبات','كينزا ليمون دايت','Kinza Lemon Diet',0.300],
-['المشروبات','سنتوب','Suntop',0.200]
-].map((x,i)=>({id:i,cat:x[0],ar:x[1],en:x[2],price:x[3]}));
+const MENU=[{"cat":"الشاورما","name":"ساندويتش شاورما دجاج","price":0.4,"detail":"","en":"Chicken Shawarma Sandwich","detailEn":""},{"cat":"الشاورما","name":"ساندويتش شاورما لحم","price":0.5,"detail":"","en":"Meat Shawarma Sandwich","detailEn":""},{"cat":"الشاورما","name":"ساندويتش شاورما مكس","price":0.4,"detail":"","en":"Mixed Shawarma Sandwich","detailEn":""},{"cat":"الشاورما","name":"صاروخ شاورما دجاج","price":0.8,"detail":"","en":"Chicken Shawarma Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"صاروخ شاورما لحم","price":1.2,"detail":"","en":"Meat Shawarma Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"صاروخ شاورما مكس","price":1.2,"detail":"","en":"Mixed Shawarma Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"صاروخ خاص دجاج","price":1.0,"detail":"","en":"Special Chicken Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"صاروخ خاص لحم","price":1.0,"detail":"","en":"Special Meat Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"صاروخ خاص مكس","price":1.4,"detail":"","en":"Special Mixed Rocket Wrap","detailEn":""},{"cat":"الشاورما","name":"برجر شاورما دجاج","price":0.7,"detail":"","en":"Chicken Shawarma Burger","detailEn":""},{"cat":"الشاورما","name":"برجر شاورما لحم","price":1.0,"detail":"","en":"Meat Shawarma Burger","detailEn":""},{"cat":"الشاورما","name":"إسكندر دجاج","price":1.2,"detail":"","en":"Chicken Iskender","detailEn":""},{"cat":"الشاورما","name":"إسكندر لحم","price":1.7,"detail":"","en":"Meat Iskender","detailEn":""},{"cat":"الشاورما","name":"إسكندر مكس","price":1.2,"detail":"","en":"Mixed Iskender","detailEn":""},{"cat":"الشاورما","name":"ساندويتش فلافل","price":0.3,"detail":"","en":"Falafel Sandwich","detailEn":""},{"cat":"الشاورما","name":"صاروخ فلافل","price":0.7,"detail":"","en":"Falafel Rocket Wrap","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما صغير دجاج","price":1.5,"detail":"","en":"Chicken Shawarma Box - Small","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما صغير لحم","price":2.0,"detail":"","en":"Meat Shawarma Box - Small","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما صغير مكس","price":3.0,"detail":"","en":"Mixed Shawarma Box - Small","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما متوسط دجاج","price":3.0,"detail":"","en":"Chicken Shawarma Box - Medium","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما متوسط لحم","price":4.5,"detail":"","en":"Meat Shawarma Box - Medium","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما متوسط مكس","price":4.0,"detail":"","en":"Mixed Shawarma Box - Medium","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما كبير دجاج","price":4.0,"detail":"","en":"Chicken Shawarma Box - Large","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما كبير لحم","price":5.2,"detail":"","en":"Meat Shawarma Box - Large","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما كبير مكس","price":5.0,"detail":"","en":"Mixed Shawarma Box - Large","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي دجاج","price":5.0,"detail":"","en":"Chicken Shawarma Box - Family","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي لحم","price":6.2,"detail":"","en":"Meat Shawarma Box - Family","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي مكس","price":6.0,"detail":"","en":"Mixed Shawarma Box - Family","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي XL دجاج","price":6.0,"detail":"","en":"Chicken Shawarma Box - Family XL","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي XL لحم","price":7.2,"detail":"","en":"Meat Shawarma Box - Family XL","detailEn":""},{"cat":"بوكسات الشاورما","name":"بوكس شاورما عائلي XL مكس","price":7.0,"detail":"","en":"Mixed Shawarma Box - Family XL","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما صغير دجاج","price":1.5,"detail":"","en":"Chicken Shawarma Plate - Small","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما صغير لحم","price":2.2,"detail":"","en":"Meat Shawarma Plate - Small","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما صغير مكس","price":2.0,"detail":"","en":"Mixed Shawarma Plate - Small","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما متوسط دجاج","price":2.0,"detail":"","en":"Chicken Shawarma Plate - Medium","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما متوسط لحم","price":2.7,"detail":"","en":"Meat Shawarma Plate - Medium","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما متوسط مكس","price":2.5,"detail":"","en":"Mixed Shawarma Plate - Medium","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما كبير دجاج","price":3.0,"detail":"","en":"Chicken Shawarma Plate - Large","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما كبير لحم","price":3.7,"detail":"","en":"Meat Shawarma Plate - Large","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما كبير مكس","price":3.5,"detail":"","en":"Mixed Shawarma Plate - Large","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما عائلي دجاج","price":4.0,"detail":"","en":"Chicken Shawarma Plate - Family","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما عائلي لحم","price":5.2,"detail":"","en":"Meat Shawarma Plate - Family","detailEn":""},{"cat":"صحون الشاورما","name":"صحن شاورما عائلي مكس","price":6.0,"detail":"","en":"Mixed Shawarma Plate - Family","detailEn":""},{"cat":"المقبلات والسلطات","name":"متبل صغير","price":0.5,"detail":"","en":"Mutabbal - Small","detailEn":""},{"cat":"المقبلات والسلطات","name":"متبل كبير","price":1.0,"detail":"","en":"Mutabbal - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"حمص صغير","price":0.5,"detail":"","en":"Hummus - Small","detailEn":""},{"cat":"المقبلات والسلطات","name":"حمص كبير","price":1.0,"detail":"","en":"Hummus - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"محمرة كبير","price":1.0,"detail":"","en":"Muhammara - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"صحن تومية صغير","price":0.5,"detail":"","en":"Garlic Sauce Plate - Small","detailEn":""},{"cat":"المقبلات والسلطات","name":"صحن تومية كبير","price":1.0,"detail":"","en":"Garlic Sauce Plate - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"صحن فلافل كبير","price":1.0,"detail":"","en":"Falafel Plate - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"صحن فول كبير","price":1.0,"detail":"","en":"Foul Plate - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"مزة فلافل مع حمص كبير","price":1.3,"detail":"","en":"Falafel Mezze with Hummus - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"شيبس مقلي صغير","price":0.5,"detail":"","en":"French Fries - Small","detailEn":""},{"cat":"المقبلات والسلطات","name":"شيبس مقلي كبير","price":1.0,"detail":"","en":"French Fries - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"السلطة الخضراء كبير","price":1.0,"detail":"","en":"Green Salad - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"السلطة اليونانية صغير","price":1.0,"detail":"","en":"Greek Salad - Small","detailEn":""},{"cat":"المقبلات والسلطات","name":"السلطة اليونانية كبير","price":2.0,"detail":"","en":"Greek Salad - Large","detailEn":""},{"cat":"المقبلات والسلطات","name":"سلطة الزيتون كبير","price":1.0,"detail":"","en":"Olive Salad - Large","detailEn":""},{"cat":"الفطائر","name":"لبنة (زعتر - عسل - زيتون)","price":0.9,"detail":"","en":"Labneh (Za’atar - Honey - Olives)","detailEn":""},{"cat":"الفطائر","name":"جبن مع بيض","price":0.9,"detail":"","en":"Cheese with Egg","detailEn":""},{"cat":"الفطائر","name":"جبن كرافت مع عسل","price":0.9,"detail":"","en":"Kraft Cheese with Honey","detailEn":""},{"cat":"الفطائر","name":"جبن نقانق","price":0.9,"detail":"","en":"Cheese & Sausage","detailEn":""},{"cat":"الفطائر","name":"جبن لحم","price":1.0,"detail":"","en":"Cheese & Meat","detailEn":""},{"cat":"الفطائر","name":"جبن دجاج","price":0.9,"detail":"","en":"Cheese & Chicken","detailEn":""},{"cat":"الفطائر","name":"عزيزة لحم","price":1.0,"detail":"","en":"Aziza - Meat","detailEn":""},{"cat":"الفطائر","name":"عزيزة دجاج","price":1.0,"detail":"","en":"Aziza - Chicken","detailEn":""},{"cat":"الفطائر","name":"ريال مدريد","price":1.2,"detail":"","en":"Real Madrid","detailEn":""},{"cat":"الفطائر","name":"برشلونة","price":1.0,"detail":"","en":"Barcelona","detailEn":""},{"cat":"الفطائر","name":"وردة","price":1.0,"detail":"","en":"Warda","detailEn":""},{"cat":"الفطائر","name":"ربيعة","price":1.0,"detail":"","en":"Rabia","detailEn":""},{"cat":"الفطائر","name":"سبانخ (جبن - دجاج)","price":1.0,"detail":"","en":"Spinach (Cheese - Chicken)","detailEn":""},{"cat":"البرجر","name":"برجر لحم طازج","price":1.2,"detail":"","en":"Fresh Beef Burger","detailEn":""},{"cat":"البرجر","name":"برجر دجاج طازج","price":1.0,"detail":"","en":"Fresh Chicken Burger","detailEn":""},{"cat":"البرجر","name":"برجر الحديقة لحم","price":1.2,"detail":"","en":"Turkish Garden Beef Burger","detailEn":""},{"cat":"البرجر","name":"برجر الحديقة دجاج","price":1.2,"detail":"","en":"Turkish Garden Chicken Burger","detailEn":""},{"cat":"الفرايز","name":"فرايز شاورما دجاج","price":1.5,"detail":"","en":"Chicken Shawarma Loaded Fries","detailEn":""},{"cat":"الفرايز","name":"فرايز شاورما لحم","price":1.7,"detail":"","en":"Meat Shawarma Loaded Fries","detailEn":""},{"cat":"الفرايز","name":"فرايز تكة دجاج","price":1.5,"detail":"","en":"Chicken Tikka Loaded Fries","detailEn":""},{"cat":"الفرايز","name":"فرايز تكة لحم","price":1.7,"detail":"","en":"Meat Tikka Loaded Fries","detailEn":""},{"cat":"المشاوي","name":"صحن مشاوي","price":4.0,"detail":"4 أسياخ: تكة لحم + تكة دجاج + كباب لحم + كباب دجاج، مع قطعة عرايس واحدة.","en":"Grill Plate","detailEn":"4 skewers: beef tikka + chicken tikka + beef kebab + chicken kebab, with 1 arayes piece."},{"cat":"المشاوي","name":"صحن المشاوي المتوسط","price":7.0,"detail":"دبل صحن المشاوي: 8 أسياخ (2 تكة لحم + 2 تكة دجاج + 2 كباب لحم + 2 كباب دجاج) + قطعتان عرايس.","en":"Grill Plate - Medium","detailEn":"Double grill plate: 8 skewers (2 beef tikka + 2 chicken tikka + 2 beef kebab + 2 chicken kebab) + 2 arayes pieces."},{"cat":"المشاوي","name":"صحن المشاوي العائلي","price":14.0,"detail":"16 سيخ + 3 عرايس مع خبز + مقبلات + سلطات.","en":"Family Grill Plate","detailEn":"16 skewers + 3 arayes with bread + appetizers + salads."},{"cat":"المشاوي","name":"صحن مشكل الحديقة الصغير","price":4.0,"detail":"نصف دجاجة على الفحم + سيخان مشاوي + شاورما، لتجربة أصناف الحديقة التركية المختلفة في طبق واحد.","en":"Turkish Garden Mixed Plate - Small","detailEn":"Half charcoal-grilled chicken + 2 grill skewers + shawarma, made to let you taste different Turkish Garden favorites in one plate."},{"cat":"المشاوي","name":"صحن مشكل الحديقة المتوسط","price":7.0,"detail":"دبل مشكل الحديقة: دجاجة كاملة على الفحم + 4 أسياخ مشاوي + شاورما مضاعفة، لتجربة أصنافنا المختلفة في طبق واحد.","en":"Turkish Garden Mixed Plate - Medium","detailEn":"Double Garden mixed plate: whole charcoal-grilled chicken + 4 grill skewers + double shawarma, bringing different Turkish Garden favorites together in one plate."},{"cat":"المشاوي","name":"صحن مشكل الحديقة العائلي","price":14.0,"detail":"2 دجاجة + 8 أسياخ + شاورما مع خبز + مقبلات + سلطات.","en":"Turkish Garden Mixed Plate - Family","detailEn":"2 chickens + 8 skewers + shawarma with bread + appetizers + salads."},{"cat":"المشاوي","name":"صحن تكة لحم","price":3.5,"detail":"3 أسياخ تكة لحم مع خبز + مقبلات + سلطات.","en":"Meat Tikka Plate","detailEn":"3 meat tikka skewers with bread + appetizers + salads."},{"cat":"المشاوي","name":"صحن تكة دجاج","price":3.5,"detail":"3 أسياخ تكة دجاج مع خبز + مقبلات + سلطات.","en":"Chicken Tikka Plate","detailEn":"3 chicken tikka skewers with bread + appetizers + salads."},{"cat":"المشاوي","name":"صحن تكة كباب (لحم - دجاج)","price":3.5,"detail":"4 أسياخ كباب (لحم ودجاج) مع خبز + مقبلات + سلطات.","en":"Tikka & Kebab Plate (Meat - Chicken)","detailEn":"4 kebab skewers (meat & chicken) with bread + appetizers + salads."},{"cat":"المشاوي","name":"ريش - 4 قطع","price":3.5,"detail":"4 قطع ريش مشوية على الفحم.","en":"Lamb Chops - 4 Pieces","detailEn":"4 charcoal-grilled lamb chops."},{"cat":"المشاوي","name":"دجاجة على الفحم","price":3.5,"detail":"دجاجة كاملة مشوية على الفحم مع خبز + مقبلات + سلطات.","en":"Whole Charcoal-Grilled Chicken","detailEn":"Whole charcoal-grilled chicken with bread + appetizers + salads."},{"cat":"المشاوي","name":"نصف دجاج على الفحم","price":1.8,"detail":"نصف دجاجة مشوية على الفحم مع خبز + مقبلات + سلطات.","en":"Half Charcoal-Grilled Chicken","detailEn":"Half charcoal-grilled chicken with bread + appetizers + salads."},{"cat":"البيتزا","name":"بيتزا دجاج - صغير","price":1.5,"detail":"","en":"Chicken Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا دجاج - متوسط","price":3.0,"detail":"","en":"Chicken Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا دجاج - كبير","price":4.0,"detail":"","en":"Chicken Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا لحم - صغير","price":1.5,"detail":"","en":"Meat Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا لحم - متوسط","price":3.0,"detail":"","en":"Meat Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا لحم - كبير","price":4.0,"detail":"","en":"Meat Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا شاورما - صغير","price":1.5,"detail":"","en":"Shawarma Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا شاورما - متوسط","price":3.0,"detail":"","en":"Shawarma Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا شاورما - كبير","price":4.0,"detail":"","en":"Shawarma Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا بابروني - صغير","price":1.5,"detail":"","en":"Pepperoni Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا بابروني - متوسط","price":3.0,"detail":"","en":"Pepperoni Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا بابروني - كبير","price":4.0,"detail":"","en":"Pepperoni Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشكل - صغير","price":1.5,"detail":"","en":"Mixed Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشكل - متوسط","price":3.0,"detail":"","en":"Mixed Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشكل - كبير","price":4.0,"detail":"","en":"Mixed Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا خضار - صغير","price":1.5,"detail":"","en":"Vegetable Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا خضار - متوسط","price":3.0,"detail":"","en":"Vegetable Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا خضار - كبير","price":4.0,"detail":"","en":"Vegetable Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا جبن - صغير","price":1.5,"detail":"","en":"Cheese Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا جبن - متوسط","price":3.0,"detail":"","en":"Cheese Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا جبن - كبير","price":4.0,"detail":"","en":"Cheese Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشروم (فطر) - صغير","price":1.8,"detail":"","en":"Mushroom Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشروم (فطر) - متوسط","price":3.2,"detail":"","en":"Mushroom Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا مشروم (فطر) - كبير","price":4.2,"detail":"","en":"Mushroom Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا روبيان - صغير","price":1.8,"detail":"","en":"Shrimp Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا روبيان - متوسط","price":3.2,"detail":"","en":"Shrimp Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا روبيان - كبير","price":4.2,"detail":"","en":"Shrimp Pizza - Large","detailEn":""},{"cat":"البيتزا","name":"بيتزا تونة - صغير","price":1.8,"detail":"","en":"Tuna Pizza - Small","detailEn":""},{"cat":"البيتزا","name":"بيتزا تونة - متوسط","price":3.2,"detail":"","en":"Tuna Pizza - Medium","detailEn":""},{"cat":"البيتزا","name":"بيتزا تونة - كبير","price":4.2,"detail":"","en":"Tuna Pizza - Large","detailEn":""},{"cat":"الكريسبي","name":"صحن كريسبي (4 قطع مع الشيبس والصوص)","price":1.7,"detail":"","en":"Crispy Chicken Plate (4 pcs with fries & sauce)","detailEn":""},{"cat":"الكريسبي","name":"فرايز كريسبي","price":1.5,"detail":"","en":"Crispy Chicken Loaded Fries","detailEn":""},{"cat":"الكريسبي","name":"صاروخ كريسبي","price":1.0,"detail":"","en":"Crispy Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ تكة لحم","price":1.0,"detail":"","en":"Meat Tikka Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ تكة دجاج","price":0.8,"detail":"","en":"Chicken Tikka Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ كباب لحم","price":0.8,"detail":"","en":"Meat Kebab Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ كباب دجاج","price":0.8,"detail":"","en":"Chicken Kebab Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ رويان","price":1.3,"detail":"","en":"Shrimp Rocket Wrap","detailEn":""},{"cat":"الصواريخ","name":"صاروخ مسحب","price":1.3,"detail":"","en":"Boneless Chicken Rocket Wrap","detailEn":""},{"cat":"العصائر والمشروبات","name":"كركديه","price":0.7,"detail":"","en":"Hibiscus","detailEn":""},{"cat":"العصائر والمشروبات","name":"عصير الحديقة الخاص","price":1.0,"detail":"","en":"Turkish Garden Special Juice","detailEn":""},{"cat":"العصائر والمشروبات","name":"مانجو","price":1.0,"detail":"","en":"Mango","detailEn":""},{"cat":"العصائر والمشروبات","name":"أفوكادو","price":1.0,"detail":"","en":"Avocado","detailEn":""},{"cat":"العصائر والمشروبات","name":"أناناس","price":0.8,"detail":"","en":"Pineapple","detailEn":""},{"cat":"العصائر والمشروبات","name":"ليمون نعناع","price":0.8,"detail":"","en":"Lemon Mint","detailEn":""},{"cat":"العصائر والمشروبات","name":"بطيخ سلاش","price":0.8,"detail":"","en":"Watermelon Slush","detailEn":""},{"cat":"العصائر والمشروبات","name":"كوكتيل","price":1.0,"detail":"","en":"Fruit Cocktail","detailEn":""},{"cat":"العصائر والمشروبات","name":"موز","price":0.8,"detail":"","en":"Banana","detailEn":""},{"cat":"العصائر والمشروبات","name":"فيمتو","price":0.5,"detail":"","en":"Vimto","detailEn":""},{"cat":"العصائر والمشروبات","name":"موهيتو","price":0.8,"detail":"","en":"Mojito","detailEn":""},{"cat":"العصائر والمشروبات","name":"عصير التفاح","price":1.0,"detail":"","en":"Apple Juice","detailEn":""},{"cat":"العصائر والمشروبات","name":"عصير فراولة","price":1.0,"detail":"","en":"Strawberry Juice","detailEn":""},{"cat":"المشروبات والروب","name":"روب مانجو","price":1.0,"detail":"","en":"Mango Yogurt","detailEn":""},{"cat":"المشروبات والروب","name":"روب فراولة","price":1.0,"detail":"","en":"Strawberry Yogurt","detailEn":""},{"cat":"المشروبات والروب","name":"لبن بالتمر","price":0.4,"detail":"","en":"Laban with Dates","detailEn":""},{"cat":"المشروبات والروب","name":"ماء 500 مل","price":0.1,"detail":"","en":"Water 500 ml","detailEn":""},{"cat":"العروض","name":"عرض صاروخ شاورما - 10 قطع","price":1.5,"detail":"عرض ترويجي ظاهر في الصور المرسلة","en":"Shawarma Rocket Offer - 10 Pieces","detailEn":"Promotional offer."},{"cat":"العصائر والمشروبات","name":"كينزا كولا عادي","price":0.3,"detail":"","en":"Kinza Cola Original","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا كولا دايت","price":0.3,"detail":"","en":"Kinza Cola Diet","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا ليمون عادي","price":0.3,"detail":"","en":"Kinza Lemon Original","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا ليمون دايت","price":0.3,"detail":"","en":"Kinza Lemon Diet","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا حمضيات","price":0.3,"detail":"","en":"Kinza Citrus","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا برتقال","price":0.3,"detail":"","en":"Kinza Orange","detailEn":""},{"cat":"العصائر والمشروبات","name":"كينزا توت","price":0.3,"detail":"","en":"Kinza Berry","detailEn":""}];
+MENU.forEach((x,i)=>x.id=i);
 
 let cart=JSON.parse(localStorage.getItem('tg_cart_v5')||'{}');
 let cat='الشاورما',order='',pay='',coords=null,km=null,mins=null,step=1;
@@ -395,17 +415,19 @@ function welcome(){
 }
 function cats(){
  const cs=[...new Set(MENU.map(x=>x.cat))];
- const labels={ar:{'البيتزا':'البيتزا','المشاوي':'المشاوي','الشاورما':'الشاورما','الصواريخ':'الصواريخ','الكلوبات':'الكلوبات','المشروبات':'المشروبات'},en:{'البيتزا':'Pizza','المشاوي':'Grills','الشاورما':'Shawarma','الصواريخ':'Rockets','الكلوبات':'Clubs','المشروبات':'Drinks'}};
- $('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${c}">${labels[lang][c]}</button>`).join('');
+ $('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${c}">${lang==='ar'?c:(CAT_EN[c]||c)}</button>`).join('');
  document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;$('search').value='';cats();renderMenu()});
- const m=CAT[lang][cat];$('chefStrip').innerHTML=`<b>${m[0]}</b><span>${m[1]}</span>`;
+ const genericAr=['✨ من مطبخ الحديقة التركية','اختيارات تُحضّر بعناية لتكون رحلتك معنا ألذ.'];
+ const genericEn=['✨ From Turkish Garden kitchen','Prepared with care to make your visit more enjoyable.'];
+ const m=(CAT[lang]&&CAT[lang][cat]) || (lang==='ar'?genericAr:genericEn);
+ $('chefStrip').innerHTML=`<b>${m[0]}</b><span>${m[1]}</span>`;
 }
 function renderMenu(){
  const q=$('search').value.trim().toLowerCase();
- const list=MENU.filter(x=>q?((x.ar+' '+x.en).toLowerCase().includes(q)):x.cat===cat);
+ const list=MENU.filter(x=>q?((x.name+' '+(x.en||'')).toLowerCase().includes(q)):x.cat===cat);
  $('menuGrid').innerHTML=list.map(x=>{
-  const c=cart[x.id],name=lang==='ar'?x.ar:x.en;
-  return `<article class="item"><h3>${name}</h3><div class="itemBottom"><span class="price">${fmt(x.price)}</span>${c?`<div class="qtyLite"><button data-minus="${x.id}">−</button><b>${c.qty}</b><button data-plus="${x.id}">+</button></div>`:`<button class="add" data-add="${x.id}">${lang==='ar'?'+ أضف':'+ Add'}</button>`}</div></article>`
+  const c=cart[x.id],name=lang==='ar'?x.name:(x.en||x.name),detail=lang==='ar'?(x.detail||''):(x.detailEn||x.detail||'');
+  return `<article class="item"><h3>${name}</h3>${detail?`<small>${detail}</small>`:''}<div class="itemBottom"><span class="price">${fmt(x.price)}</span>${c?`<div class="qtyLite"><button data-minus="${x.id}">−</button><b>${c.qty}</b><button data-plus="${x.id}">+</button></div>`:`<button class="add" data-add="${x.id}">${lang==='ar'?'+ أضف':'+ Add'}</button>`}</div></article>`
  }).join('');
  document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>changeQty(+b.dataset.add,1));
  document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>changeQty(+b.dataset.plus,1));
@@ -461,7 +483,7 @@ function renderCart(){
  $('headCount').textContent=count;$('floatCart').hidden=!count;$('floatTotal').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));$('subtotal').textContent=fmt(sum);
  $('deliveryFee').textContent=q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee));
  $('discountRow').style.display=discount?'flex':'none';$('grand').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));
- $('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.ar:i.en;return `<div class="cartLine"><div class="row"><b>${name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="${lang==='ar'?'ملاحظة للصنف':'Item note'}">${c.note||''}</textarea></div>`}).join(''):`<div class="status">${lang==='ar'?'السلة فارغة':'Cart is empty'}</div>`;
+ $('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.name:(i.en||i.name);return `<div class="cartLine"><div class="row"><b>${name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="${lang==='ar'?'ملاحظة للصنف':'Item note'}">${c.note||''}</textarea></div>`}).join(''):`<div class="status">${lang==='ar'?'السلة فارغة':'Cart is empty'}</div>`;
  document.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{cart[t.dataset.note].note=t.value;saveCart()});
  $('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>MENU.find(x=>x.id==id)?.ar.includes('شاورما لحم')));
  const d=loyaltySummary($('phone').value);$('redeemBox').classList.toggle('hidden',!(d&&d.points>=100));
@@ -501,7 +523,7 @@ function sendOrder(){
  const {count,sum}=stats(),q=deliveryQuote();if(!count)return;
  if(!canNext())return;const ph=$('phone').value.replace(/\D/g,''),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
  const lines=[lang==='ar'?'🍽️ *طلب جديد — الحديقة التركية | فرع سمائل*':'🍽️ *New Order — Turkish Garden | Samail*',''];
- Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.ar:i.en;lines.push(`• ${name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});
+ Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.name:(i.en||i.name);lines.push(`• ${name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});
  lines.push('',`${tr('subtotal')}: ${fmt(sum)}`,`${tr('deliveryFee')}: ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}`);
  if(discount)lines.push(`${tr('rewardDiscount')}: -${fmt(discount)}`);
  lines.push(`${tr('grand')}: ${fmt(total)}`,'',`${lang==='ar'?'نوع الطلب':'Order type'}: ${order==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')}`,`${lang==='ar'?'طريقة الدفع':'Payment'}: ${pay==='cash'?(lang==='ar'?'كاش':'Cash'):pay==='transfer'?(lang==='ar'?'تحويل':'Transfer'):(lang==='ar'?'فيزا / بطاقة':'Visa / Card')}`,`${lang==='ar'?'الاسم':'Name'}: ${$('name').value||'-'}`,`${lang==='ar'?'الهاتف':'Phone'}: ${$('phone').value}`);
@@ -530,12 +552,47 @@ $('backStep').onclick=()=>gotoStep(Math.max(1,step-1));$('nextStep').onclick=()=
 $('restaurantMap').href=RESTAURANT_MAP;$('restaurantDirections').href=RESTAURANT_DIR;$('routeFromHere').href=RESTAURANT_DIR;
 $('confirmCourierLink').href=`https://wa.me/${WA}?text=${encodeURIComponent('مرحباً، أريد التأكد من إمكانية التوصيل لمسافة أكثر من 10 كم ومعرفة رسوم التوصيل مع أبو سحر.')}`;
 
+
+function openLoyaltyModal(){
+ $('loyaltyOverlay').classList.add('open');
+ $('loyaltyModal').classList.add('open');
+ $('loyaltyExplain').textContent=lang==='ar'
+ ?'التسجيل اختياري. أدخل رقم هاتفك فقط إذا رغبت في جمع ومتابعة نقاطك.'
+ :'Registration is optional. Enter your phone only if you want to collect and view rewards.';
+ showLoyalty($('loyaltyPhone').value);
+}
+function closeLoyaltyModal(){
+ $('loyaltyOverlay').classList.remove('open');
+ $('loyaltyModal').classList.remove('open');
+}
+$('openLoyalty').onclick=openLoyaltyModal;
+$('closeLoyalty').onclick=closeLoyaltyModal;
+$('loyaltyOverlay').onclick=closeLoyaltyModal;
+
+let visitCountForOwner=null;
+async function trackVisit(){
+ try{
+   const base='https://api.counterapi.dev/v1/turkish-garden-samail-v6/visits';
+   if(!sessionStorage.getItem('tg_visit_v6')){
+     const r=await fetch(base+'/up',{cache:'no-store'});const d=await r.json();
+     if(Number.isFinite(Number(d.count)))visitCountForOwner=Number(d.count);
+     sessionStorage.setItem('tg_visit_v6','1');
+   }else{
+     const r=await fetch(base,{cache:'no-store'});const d=await r.json();
+     if(Number.isFinite(Number(d.count)))visitCountForOwner=Number(d.count);
+   }
+ }catch(e){}
+ return visitCountForOwner;
+}
+
 async function ownerPanel(){
- if(new URLSearchParams(location.search).get('owner')!==OWNER_KEY)return;
- $('ownerPanel').classList.add('show');let global='غير متاح';
- try{const r=await fetch('https://api.counterapi.dev/v1/turkish-garden-samail-v5/visits/up',{cache:'no-store'});const d=await r.json();if(Number.isFinite(Number(d.count)))global=Number(d.count).toLocaleString('ar')}catch(e){}
- const orders=Number(localStorage.getItem('tg_owner_orders')||0),sales=Number(localStorage.getItem('tg_owner_sales')||0);
- $('ownerStats').innerHTML=`زوار الموقع: <b>${global}</b><br>طلبات أرسلت من هذا الجهاز: <b>${orders}</b><br>قيمة الطلبات المسجلة على هذا الجهاز: <b>${sales.toFixed(3)} ر.ع</b>`;
+ const isOwner=new URLSearchParams(location.search).get('owner')===OWNER_KEY;
+ const count=await trackVisit();
+ if(!isOwner)return;
+ $('ownerPanel').classList.add('show');
+ const orders=Number(localStorage.getItem('tg_owner_orders')||0);
+ const sales=Number(localStorage.getItem('tg_owner_sales')||0);
+ $('ownerStats').innerHTML=`زوار الموقع: <b>${count==null?'غير متاح':count.toLocaleString('ar')}</b><br>طلبات أُرسلت من هذا الجهاز: <b>${orders}</b><br>قيمة الطلبات المسجلة على هذا الجهاز: <b>${sales.toFixed(3)} ر.ع</b>`;
 }
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
