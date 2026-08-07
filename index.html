@@ -130,6 +130,18 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
 .ownerPanel{padding:16px}.ownerTop{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.12)}.ownerTop b{font-size:20px}.ownerTop small{display:block;color:#cbbdb3;margin-top:4px}.ownerStats{margin-top:10px;line-height:1.9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px}.ownerOfferEditor{margin-top:12px;background:#fff;color:#211914;border-radius:15px;padding:13px}.ownerOfferEditor h3{margin:0;color:#781b17}.ownerOfferEditor p{color:#74665e;font-size:12px;line-height:1.65}.ownerGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ownerGrid textarea{grid-column:1/-1}.ownerCheck{display:block;margin:10px 0;font-weight:900}.ownerEditorActions{display:flex;gap:8px}.ownerSave,.ownerRemove{flex:1;border:0;border-radius:11px;padding:10px;font-weight:900}.ownerSave{background:#17734a;color:#fff}.ownerRemove{background:#f5e9e2;color:#8b3327}.ownerOfferStatus{margin-top:8px;color:#6a5b52;font-size:12px;line-height:1.6}
 @media(max-width:620px){.offersHead{align-items:flex-start}.offersBadge{width:52px;height:52px}.ownerGrid{grid-template-columns:1fr}}
 
+
+.deliveryRules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.deliveryRule{background:#fffaf2;border:1px solid #ead8bf;border-radius:14px;padding:11px;display:flex;gap:9px;align-items:flex-start}
+.deliveryRule .ruleIcon{width:35px;height:35px;border-radius:11px;background:#fff0d4;display:grid;place-items:center;flex:0 0 auto}
+.deliveryRule b{display:block;color:#6f1b17;margin-bottom:3px;font-size:13px}
+.deliveryRule span{display:block;color:#6f6057;font-size:12px;line-height:1.65}
+.deliveryRule.freeRule{background:#eff9f3;border-color:#bfdfcb}
+.deliveryRule.farRule{background:#fff1e9;border-color:#efc7ad}
+.feeCard strong{color:#17734a;font-size:17px}
+.feeBreakdown{display:block;margin-top:4px;font-size:12px;color:#6f6057}
+@media(max-width:620px){.deliveryRules{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -175,8 +187,8 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
   </div>
 
   <div class="deliveryNotice">
-    <strong data-i18n="deliveryPolicy">توصيل واضح بدون مفاجآت:</strong>
-    <span id="policyText"></span>
+    <strong data-i18n="deliveryPolicy">سياسة التوصيل باختصار:</strong>
+    <div id="policyText" class="deliveryRules"></div>
     <div class="placeActions">
       <a class="placeBtn" id="restaurantMap" target="_blank" data-i18n="restaurantLocation">📍 موقع المطعم</a>
       <a class="placeBtn alt" id="restaurantDirections" target="_blank" data-i18n="directions">🧭 الاتجاهات للمطعم</a>
@@ -196,7 +208,7 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
       <path d="M35 60 Q44 67 54 60" fill="none" stroke="#7d3d27" stroke-width="3" stroke-linecap="round"/>
       <path d="M27 31 Q44 18 61 31" fill="#f2b27e"/>
     </svg>
-    <div><h3 data-i18n="courierTitle">🚗 أبو سحر جاهز لرحلة طلبك</h3><p data-i18n="courierText">حدّد موقعك، وسنعرض المسافة والرسوم بوضوح. أكثر من 10 كم يحتاج تأكيدًا قبل اعتماد التوصيل.</p></div>
+    <div><h3 data-i18n="courierTitle">🚗 أبو سحر جاهز لرحلة طلبك</h3><p data-i18n="courierText">حدّد موقعك وسنحسب الرسوم تلقائيًا حسب المسافة وقيمة الطلب. المبلغ الذي يظهر في الملخص هو نفسه الذي يُرسل في رسالة واتساب.</p></div>
   </div>
 </div>
 </section>
@@ -414,9 +426,9 @@ const RESTAURANT_DIR=`https://www.google.com/maps/dir/?api=1&destination=${encod
 let lang=localStorage.getItem('tg_lang')||'ar';
 const T={
 ar:{
-brand:'مطعم الحديقة التركية',branch:'فرع سمائل',call:'اتصال',cart:'السلة',heroTitle:'من أول اختيار… حتى يصل طلبك، نهتم بالتفاصيل.',heroText:'رحلة طلب أبسط، أجمل، وأكثر وضوحًا: اختر، حدّد موقعك، راجع التفاصيل، ثم أرسل طلبك بثقة.',startOrder:'ابدأ الطلب',whatsapp:'واتساب المطعم',hours:'ساعات العمل',hoursValue:'3 مساءً – 2 صباحًا',orders:'الطلبات',transfer:'التحويل',transferName:'سيف المحروقي',deliveryPolicy:'توصيل واضح بدون مفاجآت:',restaurantLocation:'📍 موقع المطعم',directions:'🧭 الاتجاهات للمطعم',courierTitle:'🚗 أبو سحر جاهز لرحلة طلبك',courierText:'حدّد موقعك، وسنعرض المسافة والرسوم بوضوح. أكثر من 10 كم يحتاج تأكيدًا قبل اعتماد التوصيل.',loyaltyTitle:'⭐ برنامج الولاء',loyaltyIntro:'طلباتك الكبيرة تعود لك بمكافآت. اجمع نقاطك واستبدلها عندما تكتمل.',showPoints:'عرض النقاط',viewCart:'عرض السلة',yourJourney:'رحلة طلبك',close:'إغلاق ✕',j1:'الطلب',j2:'الموقع',j3:'الدفع',j4:'التأكيد',reviewOrder:'راجع اختياراتك',reviewHint:'هنا كل ما اخترته. عدّل الكمية أو أضف ملاحظة قبل الانتقال.',deliveryStep:'كيف تريد استلام طلبك؟',deliveryHint:'اختر التوصيل أو الاستلام. عند التوصيل سنحسب المسافة والرسوم بنفس القاعدة دائمًا.',delivery:'🚗 توصيل',pickup:'🏪 استلام',locate:'📍 تحديد موقعي',route:'🧭 الاتجاهات للمطعم',farTitle:'المسافة أكثر من 10 كم',farText:'يجب التأكد من أبو سحر أولًا لمعرفة إمكانية التوصيل والرسوم.',confirmCourier:'تواصل للتأكيد',confirmed:'تم التأكد من التوصيل مع أبو سحر',paymentStep:'الدفع والمكافآت',paymentHint:'اختر طريقة الدفع، ثم أدخل رقمك حتى نحسب نقاطك ومكافأتك.',cash:'💵 كاش',bank:'🏦 تحويل',card:'💳 فيزا / بطاقة',bankTo:'التحويل باسم سيف المحروقي',copy:'نسخ الرقم',cardNote:'الدفع بالبطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.',replaceTitle:'إذا لم تتوفر شاورما اللحم:',repChicken:'استبدالها بشاورما دجاج',repCall:'الاتصال بي قبل الاستبدال',repOwn:'أختار البديل بنفسي',redeem:'استبدال 100 نقطة بخصم 1.000 ر.ع على هذا الطلب',finalReview:'كل شيء جاهز ✨',finalHint:'راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.',subtotal:'قيمة الطلب',deliveryFee:'رسوم التوصيل',rewardDiscount:'خصم النقاط',grand:'الإجمالي',back:'رجوع',next:'التالي',send:'إرسال الطلب عبر واتساب'},
+brand:'مطعم الحديقة التركية',branch:'فرع سمائل',call:'اتصال',cart:'السلة',heroTitle:'من أول اختيار… حتى يصل طلبك، نهتم بالتفاصيل.',heroText:'رحلة طلب أبسط، أجمل، وأكثر وضوحًا: اختر، حدّد موقعك، راجع التفاصيل، ثم أرسل طلبك بثقة.',startOrder:'ابدأ الطلب',whatsapp:'واتساب المطعم',hours:'ساعات العمل',hoursValue:'3 مساءً – 2 صباحًا',orders:'الطلبات',transfer:'التحويل',transferName:'سيف المحروقي',deliveryPolicy:'توصيل واضح بدون مفاجآت:',restaurantLocation:'📍 موقع المطعم',directions:'🧭 الاتجاهات للمطعم',courierTitle:'🚗 أبو سحر جاهز لرحلة طلبك',courierText:'حدّد موقعك وسنحسب الرسوم تلقائيًا حسب المسافة وقيمة الطلب. المبلغ الذي يظهر في الملخص هو نفسه الذي يُرسل في رسالة واتساب.',loyaltyTitle:'⭐ برنامج الولاء',loyaltyIntro:'طلباتك الكبيرة تعود لك بمكافآت. اجمع نقاطك واستبدلها عندما تكتمل.',showPoints:'عرض النقاط',viewCart:'عرض السلة',yourJourney:'رحلة طلبك',close:'إغلاق ✕',j1:'الطلب',j2:'الموقع',j3:'الدفع',j4:'التأكيد',reviewOrder:'راجع اختياراتك',reviewHint:'هنا كل ما اخترته. عدّل الكمية أو أضف ملاحظة قبل الانتقال.',deliveryStep:'كيف تريد استلام طلبك؟',deliveryHint:'اختر التوصيل أو الاستلام. عند التوصيل سنحسب المسافة والرسوم بنفس القاعدة دائمًا.',delivery:'🚗 توصيل',pickup:'🏪 استلام',locate:'📍 تحديد موقعي',route:'🧭 الاتجاهات للمطعم',farTitle:'المسافة أكثر من 10 كم',farText:'يجب التأكد من أبو سحر أولًا لمعرفة إمكانية التوصيل والرسوم.',confirmCourier:'تواصل للتأكيد',confirmed:'تم التأكد من التوصيل مع أبو سحر',paymentStep:'الدفع والمكافآت',paymentHint:'اختر طريقة الدفع، ثم أدخل رقمك حتى نحسب نقاطك ومكافأتك.',cash:'💵 كاش',bank:'🏦 تحويل',card:'💳 فيزا / بطاقة',bankTo:'التحويل باسم سيف المحروقي',copy:'نسخ الرقم',cardNote:'الدفع بالبطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.',replaceTitle:'إذا لم تتوفر شاورما اللحم:',repChicken:'استبدالها بشاورما دجاج',repCall:'الاتصال بي قبل الاستبدال',repOwn:'أختار البديل بنفسي',redeem:'استبدال 100 نقطة بخصم 1.000 ر.ع على هذا الطلب',finalReview:'كل شيء جاهز ✨',finalHint:'راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.',subtotal:'قيمة الطلب',deliveryFee:'رسوم التوصيل',rewardDiscount:'خصم النقاط',grand:'الإجمالي',back:'رجوع',next:'التالي',send:'إرسال الطلب عبر واتساب'},
 en:{
-brand:'Turkish Garden Restaurant',branch:'Samail Branch',call:'Call',cart:'Cart',heroTitle:'From your first choice to delivery, every detail matters.',heroText:'A smoother ordering journey: choose, share your location, review everything, then send your order with confidence.',startOrder:'Start order',whatsapp:'Restaurant WhatsApp',hours:'Opening hours',hoursValue:'3 PM – 2 AM',orders:'Orders',transfer:'Bank transfer',transferName:'Saif Al Mahrouqi',deliveryPolicy:'Clear delivery pricing:',restaurantLocation:'📍 Restaurant location',directions:'🧭 Directions',courierTitle:'🚗 Abu Sahar is ready for your delivery',courierText:'Share your location and we will show distance and delivery charge clearly. Over 10 km requires confirmation first.',loyaltyTitle:'⭐ Loyalty rewards',loyaltyIntro:'Larger orders bring rewards. Collect points and redeem them when ready.',showPoints:'Show points',viewCart:'View cart',yourJourney:'Your order journey',close:'Close ✕',j1:'Order',j2:'Location',j3:'Payment',j4:'Confirm',reviewOrder:'Review your choices',reviewHint:'Adjust quantities or add notes before continuing.',deliveryStep:'How would you like to receive it?',deliveryHint:'Choose delivery or pickup. Delivery distance and charge follow one consistent rule.',delivery:'🚗 Delivery',pickup:'🏪 Pickup',locate:'📍 Use my location',route:'🧭 Directions',farTitle:'Distance is over 10 km',farText:'Please confirm delivery availability and charge with Abu Sahar first.',confirmCourier:'Confirm delivery',confirmed:'Delivery confirmed with Abu Sahar',paymentStep:'Payment & rewards',paymentHint:'Choose payment method, then enter your phone number to calculate rewards.',cash:'💵 Cash',bank:'🏦 Transfer',card:'💳 Visa / Card',bankTo:'Transfer to Saif Al Mahrouqi',copy:'Copy number',cardNote:'Card payment is available on delivery or at the restaurant when the terminal is available.',replaceTitle:'If beef shawarma is unavailable:',repChicken:'Replace with chicken shawarma',repCall:'Call me before replacing',repOwn:'I will choose another item',redeem:'Redeem 100 points for a 1.000 OMR discount on this order',finalReview:'Everything is ready ✨',finalHint:'Review the final summary. The same delivery charge shown here will be included in WhatsApp.',subtotal:'Subtotal',deliveryFee:'Delivery fee',rewardDiscount:'Points discount',grand:'Total',back:'Back',next:'Next',send:'Send order via WhatsApp'}
+brand:'Turkish Garden Restaurant',branch:'Samail Branch',call:'Call',cart:'Cart',heroTitle:'From your first choice to delivery, every detail matters.',heroText:'A smoother ordering journey: choose, share your location, review everything, then send your order with confidence.',startOrder:'Start order',whatsapp:'Restaurant WhatsApp',hours:'Opening hours',hoursValue:'3 PM – 2 AM',orders:'Orders',transfer:'Bank transfer',transferName:'Saif Al Mahrouqi',deliveryPolicy:'Clear delivery pricing:',restaurantLocation:'📍 Restaurant location',directions:'🧭 Directions',courierTitle:'🚗 Abu Sahar is ready for your delivery',courierText:'Share your location and the app will calculate the delivery charge automatically from distance and order value. The same amount appears in the summary and WhatsApp message.',loyaltyTitle:'⭐ Loyalty rewards',loyaltyIntro:'Larger orders bring rewards. Collect points and redeem them when ready.',showPoints:'Show points',viewCart:'View cart',yourJourney:'Your order journey',close:'Close ✕',j1:'Order',j2:'Location',j3:'Payment',j4:'Confirm',reviewOrder:'Review your choices',reviewHint:'Adjust quantities or add notes before continuing.',deliveryStep:'How would you like to receive it?',deliveryHint:'Choose delivery or pickup. Delivery distance and charge follow one consistent rule.',delivery:'🚗 Delivery',pickup:'🏪 Pickup',locate:'📍 Use my location',route:'🧭 Directions',farTitle:'Distance is over 10 km',farText:'Please confirm delivery availability and charge with Abu Sahar first.',confirmCourier:'Confirm delivery',confirmed:'Delivery confirmed with Abu Sahar',paymentStep:'Payment & rewards',paymentHint:'Choose payment method, then enter your phone number to calculate rewards.',cash:'💵 Cash',bank:'🏦 Transfer',card:'💳 Visa / Card',bankTo:'Transfer to Saif Al Mahrouqi',copy:'Copy number',cardNote:'Card payment is available on delivery or at the restaurant when the terminal is available.',replaceTitle:'If beef shawarma is unavailable:',repChicken:'Replace with chicken shawarma',repCall:'Call me before replacing',repOwn:'I will choose another item',redeem:'Redeem 100 points for a 1.000 OMR discount on this order',finalReview:'Everything is ready ✨',finalHint:'Review the final summary. The same delivery charge shown here will be included in WhatsApp.',subtotal:'Subtotal',deliveryFee:'Delivery fee',rewardDiscount:'Points discount',grand:'Total',back:'Back',next:'Next',send:'Send order via WhatsApp'}
 };
 
 const CAT_EN={"الشاورما":"Shawarma","بوكسات الشاورما":"Shawarma Boxes","صحون الشاورما":"Shawarma Plates","المقبلات والسلطات":"Appetizers & Salads","الفطائر":"Pastries","البرجر":"Burgers","الفرايز":"Loaded Fries","المشاوي":"Charcoal Grills","البيتزا":"Pizza","الكريسبي":"Crispy Chicken","الصواريخ":"Rocket Wraps","العصائر والمشروبات":"Fresh Juices & Drinks","المشروبات والروب":"Drinks & Yogurt","العروض":"Offers","المشروبات الباردة":"Cold Drinks"};
@@ -459,9 +471,15 @@ function saveCart(){localStorage.setItem('tg_cart_v5',JSON.stringify(cart))}
 function applyLang(){
  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('langBtn').textContent=lang==='ar'?'EN':'AR';
  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[lang][k])el.textContent=T[lang][k]});
- $('policyText').textContent=lang==='ar'
- ?' أقل من 7.5 كم = 0.500 ر.ع. من 7.5 حتى 10 كم = 1.000 ر.ع. إذا تجاوز الطلب 6 ر.ع وكانت المسافة أقل من 7 كم فالتوصيل مجاني. أكثر من 10 كم يحتاج تأكيد أبو سحر.'
- :' Under 7.5 km = 0.500 OMR. From 7.5 to 10 km = 1.000 OMR. Orders over 6 OMR within 7 km get free delivery. Over 10 km requires confirmation.';
+ $('policyText').innerHTML=lang==='ar'
+ ?`<div class="deliveryRule freeRule"><div class="ruleIcon">🎁</div><div><b>أقل من 3 كم</b><span>التوصيل مجاني إذا تجاوزت قيمة الطلب 3.000 ر.ع.</span></div></div>
+   <div class="deliveryRule"><div class="ruleIcon">🚗</div><div><b>من 3 إلى 7 كم</b><span>0.500 ر.ع للطلبات حتى 6.000 ر.ع، ومجاني إذا تجاوز الطلب 6.000 ر.ع.</span></div></div>
+   <div class="deliveryRule"><div class="ruleIcon">📍</div><div><b>أكثر من 7 وحتى 10 كم</b><span>0.500 ر.ع + 0.200 ر.ع لكل كيلومتر أو جزء منه بعد 7 كم.</span></div></div>
+   <div class="deliveryRule farRule"><div class="ruleIcon">📞</div><div><b>أكثر من 10 كم</b><span>يتم التأكد أولًا من أبو سحر عن إمكانية التوصيل والرسوم.</span></div></div>`
+ :`<div class="deliveryRule freeRule"><div class="ruleIcon">🎁</div><div><b>Under 3 km</b><span>Free delivery when the order total is over 3.000 OMR.</span></div></div>
+   <div class="deliveryRule"><div class="ruleIcon">🚗</div><div><b>3–7 km</b><span>0.500 OMR for orders up to 6.000 OMR; free when the order exceeds 6.000 OMR.</span></div></div>
+   <div class="deliveryRule"><div class="ruleIcon">📍</div><div><b>Over 7 up to 10 km</b><span>0.500 OMR + 0.200 OMR for each started kilometre after 7 km.</span></div></div>
+   <div class="deliveryRule farRule"><div class="ruleIcon">📞</div><div><b>Over 10 km</b><span>Delivery availability and charge must be confirmed with Abu Sahar first.</span></div></div>`;
  $('search').placeholder=lang==='ar'?'ابحث عن صنف':'Search menu';
  $('name').placeholder=lang==='ar'?'الاسم':'Name';
  $('phone').placeholder=lang==='ar'?'رقم الهاتف':'Phone number';
@@ -501,12 +519,42 @@ function changeQty(id,d){const q=(cart[id]?.qty||0)+d;if(q<=0)delete cart[id];el
 function stats(){let count=0,sum=0;Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id);if(i){count+=c.qty;sum+=c.qty*i.price}});return{count,sum}}
 function deliveryQuote(){
  const s=stats().sum;
- if(order!=='delivery')return {type:'pickup',fee:0,text:lang==='ar'?'بدون رسوم توصيل':'No delivery fee'};
- if(km==null)return {type:'unknown',fee:null,text:lang==='ar'?'حدد موقعك أولاً':'Share your location first'};
- if(km>10)return {type:'far',fee:null,text:lang==='ar'?'يحتاج تأكيد أبو سحر':'Needs Abu Sahar confirmation'};
- if(s>6 && km<7)return {type:'free',fee:0,text:lang==='ar'?'🎉 مبروك! التوصيل مجاني':'🎉 Free delivery'};
- if(km<7.5)return {type:'paid',fee:.5,text:lang==='ar'?'رسوم التوصيل 0.500 ر.ع':'Delivery 0.500 OMR'};
- return {type:'paid',fee:1,text:lang==='ar'?'رسوم التوصيل 1.000 ر.ع':'Delivery 1.000 OMR'};
+
+ if(order!=='delivery'){
+   return {type:'pickup',fee:0,text:lang==='ar'?'استلام من المطعم — بدون رسوم توصيل':'Pickup — no delivery fee'};
+ }
+ if(km==null){
+   return {type:'unknown',fee:null,text:lang==='ar'?'حدّد موقعك لاحتساب رسوم التوصيل':'Share your location to calculate delivery'};
+ }
+ if(km>10){
+   return {type:'far',fee:null,text:lang==='ar'?'أكثر من 10 كم — يجب التأكد من أبو سحر':'Over 10 km — confirm with Abu Sahar'};
+ }
+
+ // عرض القرب: أقل من 3 كم + طلب فوق 3 ر.ع = مجاني
+ if(km<3 && s>3){
+   return {type:'free',fee:0,text:lang==='ar'
+     ?'🎉 موقعك أقل من 3 كم وطلبك فوق 3.000 ر.ع — التوصيل مجاني'
+     :'🎉 Under 3 km and order over 3.000 OMR — free delivery'};
+ }
+
+ // من 3 إلى 7 كم
+ if(km<=7){
+   if(s>6){
+     return {type:'free',fee:0,text:lang==='ar'
+       ?'🎉 طلبك تجاوز 6.000 ر.ع وموقعك ضمن 7 كم — التوصيل مجاني'
+       :'🎉 Order over 6.000 OMR within 7 km — free delivery'};
+   }
+   return {type:'paid',fee:0.500,text:lang==='ar'
+     ?'رسوم التوصيل 0.500 ر.ع'
+     :'Delivery fee 0.500 OMR'};
+ }
+
+ // فوق 7 وحتى 10 كم: نص ريال + 200 بيسة لكل كيلومتر أو جزء منه
+ const extraKm=Math.ceil((km-7)-1e-9);
+ const fee=Number((0.500 + extraKm*0.200).toFixed(3));
+ return {type:'paid-distance',fee,extraKm,text:lang==='ar'
+   ?`رسوم التوصيل ${fee.toFixed(3)} ر.ع — 0.500 أساسي + ${extraKm} × 0.200 ر.ع بعد 7 كم`
+   :`Delivery ${fee.toFixed(3)} OMR — 0.500 base + ${extraKm} × 0.200 OMR after 7 km`};
 }
 function loyaltyKey(ph){return 'tg_loyalty_v5_'+String(ph||'').replace(/\D/g,'')}
 function getLoyalty(ph){try{return JSON.parse(localStorage.getItem(loyaltyKey(ph))||'{"points":0,"orders":0,"spend":[],"bonusLevel":0,"recent":[]}')}catch(e){return{points:0,orders:0,spend:[],bonusLevel:0,recent:[]}}}
@@ -543,18 +591,44 @@ function currentDiscount(){
  return $('redeemReward').checked&&d&&d.points>=100?1:0;
 }
 function renderCart(){
- const {count,sum}=stats(),q=deliveryQuote(),discount=currentDiscount();
- $('headCount').textContent=count;$('floatCart').hidden=!count;$('floatTotal').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));$('subtotal').textContent=fmt(sum);
+ const {count,sum}=stats();
+ const q=deliveryQuote();
+ const discount=currentDiscount();
+ const deliveryAmount=q.fee==null?0:q.fee;
+ const total=Math.max(0,sum+deliveryAmount-discount);
+
+ $('headCount').textContent=count;
+ $('floatCart').hidden=!count;
+ $('floatTotal').textContent=fmt(total);
+ $('subtotal').textContent=fmt(sum);
  $('deliveryFee').textContent=q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee));
- $('discountRow').style.display=discount?'flex':'none';$('grand').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));
- $('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.name:(i.en||i.name);return `<div class="cartLine"><div class="row"><b>${name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="${lang==='ar'?'ملاحظة للصنف':'Item note'}">${c.note||''}</textarea></div>`}).join(''):`<div class="status">${lang==='ar'?'السلة فارغة':'Cart is empty'}</div>`;
+ $('discountRow').style.display=discount?'flex':'none';
+ $('grand').textContent=fmt(total);
+
+ $('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{
+   const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.name:(i.en||i.name);
+   return `<div class="cartLine"><div class="row"><b>${name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="${lang==='ar'?'ملاحظة للصنف':'Item note'}">${c.note||''}</textarea></div>`;
+ }).join(''):`<div class="status">${lang==='ar'?'السلة فارغة':'Cart is empty'}</div>`;
+
  document.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{cart[t.dataset.note].note=t.value;saveCart()});
- $('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>MENU.find(x=>x.id==id)?.ar.includes('شاورما لحم')));
- const d=loyaltySummary($('phone').value);$('redeemBox').classList.toggle('hidden',!(d&&d.points>=100));
- renderFeeCard();renderReview();
+ $('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>{
+   const item=MENU.find(x=>x.id==id);
+   return item && String(item.name||'').includes('شاورما لحم');
+ }));
+ const d=loyaltySummary($('phone').value);
+ $('redeemBox').classList.toggle('hidden',!(d&&d.points>=100));
+
+ renderFeeCard(q);
+ renderReview(q);
 }
-function renderFeeCard(){
- const q=deliveryQuote();$('feeCard').className='feeCard'+(q.type==='free'?' free':q.type==='far'?' warn':'');$('feeCard').textContent=q.text;
+function renderFeeCard(q){
+ q=q||deliveryQuote();
+ $('feeCard').className='feeCard'+(q.type==='free'?' free':q.type==='far'?' warn':'');
+ if(q.fee===0){
+   $('feeCard').innerHTML=`<strong>${lang==='ar'?'التوصيل مجاني':'Free delivery'}</strong><span class="feeBreakdown">${q.text}</span>`;
+ }else{
+   $('feeCard').textContent=q.text;
+ }
  $('farBox').classList.toggle('show',q.type==='far');
 }
 function parseCoords(v){const m=String(v||'').match(/(-?\d{1,2}(?:\.\d+)?)\s*[,،]\s*(-?\d{1,3}(?:\.\d+)?)/);if(!m)return null;const lat=Number(m[1]),lon=Number(m[2]);return Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180?{lat,lon}:null}
@@ -576,8 +650,8 @@ function canNext(){
  if(step===3){if(!pay){toast(lang==='ar'?'اختر طريقة الدفع':'Choose payment method');return false}if($('phone').value.replace(/\D/g,'').length<8){toast(lang==='ar'?'أدخل رقم الهاتف':'Enter phone number');return false}return true}
  return true;
 }
-function renderReview(){
- if(!$('reviewBox'))return;const {sum}=stats(),q=deliveryQuote(),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
+function renderReview(q){
+ if(!$('reviewBox'))return;q=q||deliveryQuote();const {sum}=stats(),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
  const orderTxt=order?(order==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')):'—';
  const payTxt=pay?(pay==='cash'?tr('cash'):pay==='transfer'?tr('bank'):tr('card')):'—';
  $('reviewBox').innerHTML=`<div class="reviewBox"><b>${tr('subtotal')}:</b> ${fmt(sum)}<br><b>${tr('deliveryFee')}:</b> ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}${discount?`<br><b>${tr('rewardDiscount')}:</b> -${fmt(discount)}`:''}<br><b>${tr('grand')}:</b> ${fmt(total)}</div><div class="reviewBox"><b>${lang==='ar'?'نوع الطلب':'Order type'}:</b> ${orderTxt}<br><b>${lang==='ar'?'طريقة الدفع':'Payment'}:</b> ${payTxt}${km!=null?`<br><b>${lang==='ar'?'المسافة':'Distance'}:</b> ${km.toFixed(1)} km`:''}</div>`;
@@ -617,7 +691,16 @@ $('clearCartBtn').onclick=clearCart;
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';localStorage.setItem('tg_lang',lang);applyLang()};
 $('search').oninput=renderMenu;$('openCart').onclick=openCart;$('floatCart').onclick=openCart;$('close').onclick=closeCart;$('overlay').onclick=closeCart;
 $('locate').onclick=locate;$('locationLink').addEventListener('change',()=>{const c=parseCoords($('locationLink').value);if(c)setLocation(c)});
-document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{order=b.dataset.order;document.querySelectorAll('[data-order]').forEach(x=>x.classList.toggle('active',x===b));$('locationBox').classList.toggle('show',order==='delivery');renderCart()});
+document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{
+ order=b.dataset.order;
+ document.querySelectorAll('[data-order]').forEach(x=>x.classList.toggle('active',x===b));
+ $('locationBox').classList.toggle('show',order==='delivery');
+ if(order==='pickup'){
+   km=null;mins=null;coords=null;
+   $('locStatus').textContent='';
+ }
+ renderCart();
+});
 document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{pay=b.dataset.pay;document.querySelectorAll('[data-pay]').forEach(x=>x.classList.toggle('active',x===b));$('bankBox').classList.toggle('show',pay==='transfer');$('receiptBox').classList.toggle('show',pay==='transfer');$('cardBox').classList.toggle('show',pay==='card')});
 $('copyTransfer').onclick=()=>copyText('96205536').then(()=>toast(lang==='ar'?'تم نسخ رقم التحويل':'Transfer number copied'));
 $('loyaltyBtn').onclick=()=>showLoyalty($('loyaltyPhone').value);$('loyaltyPhone').addEventListener('keyup',e=>{if(e.key==='Enter')showLoyalty(e.target.value)});
