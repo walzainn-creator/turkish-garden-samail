@@ -142,6 +142,20 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
 .feeBreakdown{display:block;margin-top:4px;font-size:12px;color:#6f6057}
 @media(max-width:620px){.deliveryRules{grid-template-columns:1fr}}
 
+
+.sendBtn[disabled]{opacity:.65;cursor:wait}
+.secureHint{margin-top:9px;padding:10px 11px;border-radius:12px;background:#eef8f2;border:1px solid #b9ddc7;color:#315d43;font-size:12px;line-height:1.7}
+.secureHint b{color:#17734a}
+.ownerSecureOrders{margin-top:12px;background:#fff;color:#211914;border-radius:15px;padding:13px}
+.ownerSecureOrdersHead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ownerSecureOrders h3{margin:0;color:#781b17}
+.ownerRefresh{border:0;background:#f3eadf;border-radius:10px;padding:8px 10px;font-weight:900}
+.secureOrderRow{border:1px solid #eadbc9;border-radius:12px;padding:10px;margin-top:8px;background:#fffaf3}
+.secureOrderRow .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.secureOrderRow b{color:#781b17}
+.secureOrderRow small{display:block;color:#77685f;margin-top:4px;line-height:1.6}
+.secureOrderRow a{display:inline-block;margin-top:6px;padding:7px 9px;border-radius:9px;background:#17734a;color:#fff;font-size:12px;font-weight:900}
+
 </style>
 </head>
 <body>
@@ -269,6 +283,13 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
     </div>
     <div class="ownerOfferStatus" id="ownerOfferStatus"></div>
   </div>
+  <div class="ownerSecureOrders">
+    <div class="ownerSecureOrdersHead">
+      <h3>🔒 الطلبات المثبتة</h3>
+      <button class="ownerRefresh" id="refreshSecureOrders">تحديث</button>
+    </div>
+    <div id="secureOrdersList" style="margin-top:8px;color:#6d5f56;font-size:12px">تظهر هنا آخر الطلبات المحفوظة في النظام.</div>
+  </div>
 </div>
 
 </main>
@@ -373,6 +394,9 @@ main#menu{min-height:100svh;padding-top:12px;padding-bottom:54px}
       <div class="pageCard">
         <div class="pageTitle" data-i18n="finalReview">كل شيء جاهز ✨</div>
         <div class="pageHint" data-i18n="finalHint">راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.</div>
+        <div class="secureHint" id="secureHint">
+          <b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بزخرفة وختم بصري خاص. رقم العميل ورابط موقعه يبقيان واضحين وقابلين للضغط والنسخ.
+        </div>
         <div class="review" id="reviewBox"></div>
       </div>
     </section>
@@ -487,6 +511,9 @@ function applyLang(){
  $('loyaltyPhone').placeholder=lang==='ar'?'رقم هاتفك':'Your phone number';
  $('replaceAlt').placeholder=lang==='ar'?'اكتب البديل الذي تريده':'Type your preferred replacement';
  if($('clearCartText'))$('clearCartText').textContent=lang==='ar'?'تفريغ السلة':'Clear cart';
+ if($('secureHint'))$('secureHint').innerHTML=lang==='ar'
+   ?'<b>🔒 تثبيت الطلب:</b> عند الإرسال تُحفظ نسخة معتمدة قبل فتح واتساب، وتظهر الرسالة بزخرفة وختم بصري خاص. رقم العميل ورابط موقعه يبقيان واضحين وقابلين للضغط والنسخ.'
+   :'<b>🔒 Secured order:</b> The order is saved before WhatsApp opens, with a branded visual seal. Phone and location stay readable, tappable, and copyable.';
  welcome();cats();renderMenu();renderCart();renderReview();showLoyalty($('loyaltyPhone').value);renderOffer();
 }
 function welcome(){
@@ -657,27 +684,158 @@ function renderReview(q){
  $('reviewBox').innerHTML=`<div class="reviewBox"><b>${tr('subtotal')}:</b> ${fmt(sum)}<br><b>${tr('deliveryFee')}:</b> ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}${discount?`<br><b>${tr('rewardDiscount')}:</b> -${fmt(discount)}`:''}<br><b>${tr('grand')}:</b> ${fmt(total)}</div><div class="reviewBox"><b>${lang==='ar'?'نوع الطلب':'Order type'}:</b> ${orderTxt}<br><b>${lang==='ar'?'طريقة الدفع':'Payment'}:</b> ${payTxt}${km!=null?`<br><b>${lang==='ar'?'المسافة':'Distance'}:</b> ${km.toFixed(1)} km`:''}</div>`;
 }
 function copyText(txt){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(txt);const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();return Promise.resolve()}
-function sendOrder(){
- const {count,sum}=stats(),q=deliveryQuote();if(!count)return;
- if(!canNext())return;const ph=$('phone').value.replace(/\D/g,''),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
- const lines=[lang==='ar'?'🍽️ *طلب جديد — الحديقة التركية | فرع سمائل*':'🍽️ *New Order — Turkish Garden | Samail*',''];
- Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.name:(i.en||i.name);lines.push(`• ${name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});
- lines.push('',`${tr('subtotal')}: ${fmt(sum)}`,`${tr('deliveryFee')}: ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}`);
- if(discount)lines.push(`${tr('rewardDiscount')}: -${fmt(discount)}`);
- lines.push(`${tr('grand')}: ${fmt(total)}`,'',`${lang==='ar'?'نوع الطلب':'Order type'}: ${order==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')}`,`${lang==='ar'?'طريقة الدفع':'Payment'}: ${pay==='cash'?(lang==='ar'?'كاش':'Cash'):pay==='transfer'?(lang==='ar'?'تحويل':'Transfer'):(lang==='ar'?'فيزا / بطاقة':'Visa / Card')}`,`${lang==='ar'?'الاسم':'Name'}: ${$('name').value||'-'}`,`${lang==='ar'?'الهاتف':'Phone'}: ${$('phone').value}`);
- if(order==='delivery'){lines.push(`${lang==='ar'?'المسافة':'Distance'}: ${km.toFixed(1)} km`,`${lang==='ar'?'الوقت المتوقع':'ETA'}: ${mins} min`,`📍 https://maps.google.com/?q=${coords.lat},${coords.lon}`);if(q.type==='far')lines.push(lang==='ar'?'✅ تم التأكد من التوصيل مع أبو سحر':'✅ Delivery confirmed with Abu Sahar')}
- let rep=document.querySelector('input[name="rep"]:checked')?.value;if($('replaceBox').classList.contains('show')){if(rep==='بديل من اختيار العميل'&&$('replaceAlt').value.trim())rep+=': '+$('replaceAlt').value.trim();lines.push(`${lang==='ar'?'بديل شاورما اللحم':'Beef shawarma replacement'}: ${rep}`)}
- if($('generalNote').value.trim())lines.push(`${lang==='ar'?'ملاحظة':'Note'}: ${$('generalNote').value.trim()}`);
- if(pay==='transfer')lines.push(lang==='ar'?'يرجى إرسال صورة إيصال التحويل في واتساب.':'Please send the transfer receipt image in WhatsApp.');
- const signature=Object.entries(cart).map(([id,c])=>id+'x'+c.qty).join('-')+'-'+sum.toFixed(3)+'-'+new Date().toISOString().slice(0,13);
- const loy=registerLoyalty(ph,sum,signature);if(loy&&loy.gained>0)lines.push(`${lang==='ar'?'⭐ نقاط هذا الطلب':'⭐ Points earned'}: +${loy.gained}`);
- if(discount){redeemIfSelected(ph);lines.push(lang==='ar'?'🎁 تم استخدام 100 نقطة لخصم 1.000 ر.ع':'🎁 100 points redeemed for 1.000 OMR discount')}
- localStorage.setItem('tg_owner_orders',String(Number(localStorage.getItem('tg_owner_orders')||0)+1));
- localStorage.setItem('tg_owner_sales',String(Number(localStorage.getItem('tg_owner_sales')||0)+total));
- window.open(`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank');showLoyalty(ph);
+
+function decorDigits(value){
+ const map={'0':'⓪','1':'①','2':'②','3':'③','4':'④','5':'⑤','6':'⑥','7':'⑦','8':'⑧','9':'⑨'};
+ return String(value).replace(/[0-9]/g,d=>map[d]||d);
+}
+function decorMoney(value){
+ return decorDigits(Number(value||0).toFixed(3));
+}
+function decorOrderId(id){
+ const s=String(id||'').replace(/-/g,' • ');
+ return `✦⟦ ${s.split('').map(ch=>/[0-9]/.test(ch)?decorDigits(ch):ch).join('')} ⟧✦`;
+}
+function visualSeal(order){
+ const fee=order.deliveryFee==null?'?':order.deliveryFee===0?'FREE':Number(order.deliveryFee).toFixed(3);
+ const raw=`${order.shortId}|${Number(order.subtotal).toFixed(3)}|${fee}|${Number(order.total).toFixed(3)}`;
+ let h=2166136261;
+ for(let i=0;i<raw.length;i++){h^=raw.charCodeAt(i);h=Math.imul(h,16777619)}
+ const code=(h>>>0).toString(36).toUpperCase().padStart(7,'0').slice(-7);
+ return `◈ TG-SEAL • ${code.slice(0,3)}-${code.slice(3)} ◈`;
 }
 
+async function sendOrder(){
+ const {count,sum}=stats(),q=deliveryQuote();
+ if(!count)return;
+ if(!canNext())return;
 
+ const sendBtn=$('send');
+ const originalText=sendBtn.textContent;
+ sendBtn.disabled=true;
+ sendBtn.textContent=lang==='ar'?'🔒 جارٍ تثبيت الطلب...':'🔒 Securing order...';
+
+ const ph=$('phone').value.replace(/\D/g,'');
+ const discount=currentDiscount();
+ const total=Math.max(0,sum+(q.fee||0)-discount);
+
+ let rep=document.querySelector('input[name="rep"]:checked')?.value||'';
+ if($('replaceBox').classList.contains('show') && rep==='بديل من اختيار العميل' && $('replaceAlt').value.trim()){
+   rep+=': '+$('replaceAlt').value.trim();
+ }
+
+ const payload={
+   lang,
+   items:Object.entries(cart).map(([id,c])=>({id:Number(id),qty:Number(c.qty),note:String(c.note||'').slice(0,180)})),
+   orderType:order,
+   payment:pay,
+   name:$('name').value.trim().slice(0,80),
+   phone:ph,
+   coords:coords?{lat:Number(coords.lat),lon:Number(coords.lon)}:null,
+   courierConfirmed:$('courierConfirmed').checked,
+   generalNote:$('generalNote').value.trim().slice(0,300),
+   replacement:rep.slice(0,180),
+   rewardDiscountRequested:discount?1:0
+ };
+
+ try{
+   const r=await fetch('/api/order',{
+     method:'POST',
+     headers:{'Content-Type':'application/json'},
+     body:JSON.stringify(payload)
+   });
+   const data=await r.json().catch(()=>({}));
+   if(!r.ok || !data.ok) throw new Error(data.error||'تعذر تثبيت الطلب');
+
+   const secure=data.order;
+   const seal=visualSeal(secure);
+   const lines=[
+     '🟥🟨🟩 ═══════════════════',
+     lang==='ar'?'🍽️ *الحديقة التركية — فرع سمائل*':'🍽️ *Turkish Garden — Samail Branch*',
+     '═══════════════════ 🟩🟨🟥',
+     '',
+     `🔒 *${lang==='ar'?'طلب مثبت في النظام':'SECURED ORDER'}*`,
+     decorOrderId(secure.shortId),
+     seal,
+     '',
+     `🎨 ${lang==='ar'?'البطاقة الملونة المعتمدة':'Official colored order card'}:`,
+     secure.verifyUrl,
+     '',
+     '┏━━━ '+(lang==='ar'?'تفاصيل الطلب':'ORDER DETAILS')+' ━━━┓'
+   ];
+   secure.items.forEach((i,n)=>{
+     lines.push(`┃ ${decorDigits(n+1)}. ${lang==='ar'?i.name:i.en}`);
+     lines.push(`┃   × ${decorDigits(i.qty)}   ◂ ${decorMoney(i.lineTotal)} ر.ع${i.note?`   ⟦${i.note}⟧`:''}`);
+   });
+   lines.push('┗━━━━━━━━━━━━━━━━━━┛');
+
+   lines.push(
+     '',
+     '╭──── '+(lang==='ar'?'الملخص المالي':'TOTALS')+' ────╮',
+     `│ ${tr('subtotal')}: *${decorMoney(secure.subtotal)}* ر.ع`,
+     `│ ${tr('deliveryFee')}: ${secure.deliveryFee==null?(lang==='ar'?'يحدد بعد التأكيد':'Confirm first'):(secure.deliveryFee===0?(lang==='ar'?'🎁 مجاني':'🎁 Free'):`*${decorMoney(secure.deliveryFee)}* ر.ع`)}`,
+     `│ ${tr('grand')}: *${decorMoney(secure.total)}* ر.ع`,
+     '╰──────────────────╯',
+     '',
+     `🚚 ${lang==='ar'?'نوع الطلب':'Order type'}: ${secure.orderType==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')}`,
+     `💳 ${lang==='ar'?'طريقة الدفع':'Payment'}: ${secure.paymentLabel}`,
+     `👤 ${lang==='ar'?'الاسم':'Name'}: ${secure.name||'-'}`,
+     '',
+     '── '+(lang==='ar'?'بيانات الوصول المباشر':'DIRECT CONTACT')+' ──',
+     `📱 ${lang==='ar'?'رقم العميل':'Customer phone'}: ${secure.phone}`
+   );
+
+   if(secure.distanceKm!=null){
+     lines.push(`📏 ${lang==='ar'?'المسافة':'Distance'}: ${secure.distanceKm.toFixed(1)} km`);
+   }
+   if(secure.locationUrl) lines.push(`📍 ${lang==='ar'?'موقع العميل':'Customer location'}: ${secure.locationUrl}`);
+   if(secure.generalNote) lines.push(`${lang==='ar'?'ملاحظة':'Note'}: ${secure.generalNote}`);
+   if(secure.replacement) lines.push(`${lang==='ar'?'البديل':'Replacement'}: ${secure.replacement}`);
+   if(pay==='transfer') lines.push(lang==='ar'?'يرجى إرسال صورة إيصال التحويل في واتساب.':'Please send the transfer receipt image in WhatsApp.');
+
+   lines.push(
+     '',
+     '🟥🟨🟩 '+seal,
+     lang==='ar'
+       ?'🔐 *للمطعم:* الزخرفة والختم يساعدان على اكتشاف التغيير بصريًا، لكن المرجع الأمني الحقيقي هو الطلب المحفوظ داخل رابط التحقق أعلاه.'
+       :'🔐 *Restaurant:* The decoration and seal help spot edits visually, but the true security reference is the stored order in the verification link above.'
+   );
+
+   const signature=secure.shortId;
+   const loy=registerLoyalty(ph,sum,signature);
+   if(loy&&loy.gained>0) lines.push(`${lang==='ar'?'⭐ نقاط هذا الطلب':'⭐ Points earned'}: +${loy.gained}`);
+   if(discount) redeemIfSelected(ph);
+
+   localStorage.setItem('tg_owner_orders',String(Number(localStorage.getItem('tg_owner_orders')||0)+1));
+   localStorage.setItem('tg_owner_sales',String(Number(localStorage.getItem('tg_owner_sales')||0)+secure.total));
+
+   showLoyalty(ph);
+   toast(lang==='ar'?'تم تثبيت الطلب 🔒 فتح واتساب...':'Order secured 🔒 Opening WhatsApp...');
+   openWhatsAppDirect(lines.join('\n'));
+ }catch(e){
+   toast((lang==='ar'?'لم يتم إرسال الطلب: ':'Order not sent: ')+(e.message||'خطأ'));
+ }finally{
+   setTimeout(()=>{
+     sendBtn.disabled=false;
+     sendBtn.textContent=originalText;
+   },1500);
+ }
+}
+
+function openWhatsAppDirect(message){
+ const encoded=encodeURIComponent(message);
+ const appUrl=`whatsapp://send?phone=${WA}&text=${encoded}`;
+ const webUrl=`https://wa.me/${WA}?text=${encoded}`;
+ let moved=false;
+ const onVis=()=>{if(document.hidden)moved=true};
+ document.addEventListener('visibilitychange',onVis,{once:true});
+ window.location.href=appUrl;
+ setTimeout(()=>{
+   if(!moved && document.visibilityState==='visible'){
+     window.location.href=webUrl;
+   }
+ },1800);
+}
 function clearCart(){
  if(!stats().count)return;
  const ok=confirm(lang==='ar'?'هل تريد تفريغ السلة بالكامل؟':'Clear the entire cart?');
@@ -833,6 +991,31 @@ $('offerOrderBtn').onclick=()=>{
   toast(lang==='ar'?'يمكنك طلب العرض عبر واتساب من أسفل الصفحة':'You can request the offer via WhatsApp');
 };
 
+
+async function loadSecureOrders(){
+ if(!$('ownerPanel').classList.contains('show'))return;
+ const key=new URLSearchParams(location.search).get('owner')||'';
+ $('secureOrdersList').textContent='جارٍ تحميل الطلبات...';
+ try{
+   const r=await fetch('/api/orders',{headers:{'X-Owner-Key':key},cache:'no-store'});
+   const d=await r.json();
+   if(!r.ok)throw new Error(d.error||'تعذر التحميل');
+   if(!d.orders.length){
+     $('secureOrdersList').textContent='لا توجد طلبات مثبتة حتى الآن.';
+     return;
+   }
+   $('secureOrdersList').innerHTML=d.orders.map(o=>`
+     <div class="secureOrderRow">
+       <div class="top"><b>${o.shortId}</b><strong>${Number(o.total).toFixed(3)} ر.ع</strong></div>
+       <small>${o.name||'-'} • ${o.phone||'-'} • ${new Date(o.createdAt).toLocaleString('ar-OM')}</small>
+       <a href="${o.verifyUrl}" target="_blank">فتح الطلب المعتمد</a>
+     </div>`).join('');
+ }catch(e){
+   $('secureOrdersList').textContent='تعذر تحميل الطلبات المثبتة.';
+ }
+}
+$('refreshSecureOrders').onclick=loadSecureOrders;
+
 async function ownerPanel(){
  const isOwner=new URLSearchParams(location.search).get('owner')===OWNER_KEY;
  const count=await trackVisit();
@@ -840,6 +1023,7 @@ async function ownerPanel(){
  $('ownerPanel').classList.add('show');
  const orders=Number(localStorage.getItem('tg_owner_orders')||0);
  const sales=Number(localStorage.getItem('tg_owner_sales')||0);
+ loadSecureOrders();
  $('ownerStats').innerHTML=`زوار الموقع: <b>${count==null?'غير متاح':count.toLocaleString('ar')}</b><br>طلبات أُرسلت من هذا الجهاز: <b>${orders}</b><br>قيمة الطلبات المسجلة على هذا الجهاز: <b>${sales.toFixed(3)} ر.ع</b>`;
 }
 
