@@ -1,0 +1,17 @@
+تحديث Cloudflare لنفس الموقع
+
+1) فك ضغط الملف.
+2) ارفع الملفات الخمسة إلى جذر مستودع GitHub نفسه واستبدل القديمة:
+   index.html
+   manifest.json
+   service-worker.js
+   icon.svg
+   wrangler.jsonc
+3) في Cloudflare افتح مشروع turkish-garden-samail.
+4) Deployments > Retry build أو ابدأ Build جديد.
+5) Build command: فارغ
+6) Deploy command: npx wrangler deploy
+7) بعد نجاح النشر افتح نفس رابط workers.dev.
+
+رابط المالك يبقى:
+?owner=WZ-0696D25B

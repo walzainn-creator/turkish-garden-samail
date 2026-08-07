@@ -3,200 +3,544 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#7f1d1d">
-<meta name="description" content="مطعم الحديقة التركية - فرع سمائل. طلب عبر واتساب، تحديد موقع، رسوم توصيل، ونقاط ولاء.">
+<meta name="theme-color" content="#6f1714">
+<meta name="description" content="مطعم الحديقة التركية - فرع سمائل">
 <link rel="manifest" href="manifest.json">
 <title>الحديقة التركية - فرع سمائل</title>
 <style>
-:root{--red:#7f1d1d;--red2:#a52a22;--gold:#d59a2f;--green:#17764b;--cream:#fff8ed;--paper:#fffdfa;--ink:#211813;--muted:#78685e;--line:#ead9c5}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fff6e8,#fffdfa 34%,#f8efe5);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:90px}
-button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,94%);margin:auto}
-header{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
-.nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-weight:900}.brand small{display:block;color:var(--muted);font-size:11px}.navActions{display:flex;gap:7px}.navBtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;font-weight:900}.cartBtn{background:var(--red);color:#fff;border:0}
-.hero{padding:18px 0 12px}.heroCard{border-radius:26px;background:linear-gradient(135deg,#681714,#a72d25);color:#fff;padding:clamp(24px,5vw,46px);position:relative;overflow:hidden;box-shadow:0 22px 55px rgba(94,24,18,.26)}
-.heroCard:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.07);left:-120px;top:-110px}.heroCard h1{margin:0 0 9px;font-size:clamp(30px,6vw,56px);line-height:1.15}.heroCard p{margin:0;color:#fff3ea;line-height:1.9;max-width:760px}.heroActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.heroActions a,.heroActions button{border:0;border-radius:13px;padding:12px 15px;font-weight:900}.primary{background:#ffd781;color:#4d2700}.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)!important}
-.hello{margin-top:12px;padding:13px;border-radius:16px;background:#fff2d2;border:1px solid #e9c97e;color:#744c0b;font-weight:900;text-align:center}
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.infoCard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 22px rgba(78,35,19,.05)}.infoCard b{display:block;color:var(--red);margin-bottom:5px}
-.deliveryIntro{margin:12px 0;background:linear-gradient(135deg,#fff0ce,#fff9ed);border:1px solid #e8c681;border-radius:18px;padding:14px;line-height:1.8}.deliveryIntro b{color:var(--red)}
-.placeActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.placeBtn{display:inline-flex;align-items:center;justify-content:center;border:0;background:var(--green);color:#fff;border-radius:11px;padding:10px 13px;font-weight:900}.placeBtn.alt{background:var(--red)}
-.courierBanner{display:grid;grid-template-columns:150px 1fr;gap:15px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0;box-shadow:0 8px 26px rgba(80,35,18,.06)}.courierBanner svg{width:100%;height:auto}.courierBanner h3{margin:0 0 5px;color:var(--red)}.courierBanner p{margin:0;color:var(--muted);line-height:1.7}
-.tools{position:sticky;top:64px;z-index:35;background:linear-gradient(#fffdfa 83%,rgba(255,253,250,0));padding:9px 0 14px}.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;outline:none}.chips{display:flex;gap:7px;overflow:auto;padding:9px 1px 1px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:900}.chip.active{background:var(--red);color:#fff;border-color:var(--red)}
-.catMessage{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;margin:2px 0 12px;box-shadow:0 7px 20px rgba(70,30,18,.04)}.catMessage b{color:var(--red);display:block;margin-bottom:4px}.catMessage span{color:var(--muted);line-height:1.7}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;min-height:132px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(74,32,18,.055)}.item h3{margin:0 0 7px;font-size:16px}.item small{color:var(--muted);line-height:1.55}.itemBottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px}.price{font-weight:900;color:var(--red);font-size:18px}.add,.qty button{border:0;background:#fff0df;border-radius:10px;padding:9px 11px;font-weight:900}.qty{display:flex;align-items:center;gap:6px}.qty button{width:31px}
-.loyaltyCard{background:linear-gradient(135deg,#fff9e8,#fff);border:1px solid #e8cf9f;border-radius:18px;padding:14px;margin:15px 0}.loyaltyCard h3{margin:0 0 8px;color:var(--red)}.loyaltyGrid{display:grid;grid-template-columns:1fr auto;gap:8px}.loyaltyGrid button{border:0;background:var(--red);color:#fff;border-radius:11px;padding:10px 13px;font-weight:900}.loyaltyStatus{margin-top:9px;color:var(--muted);line-height:1.7;font-size:13px}.progress{height:10px;background:#eee2d3;border-radius:99px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#f0c46b);width:0}
-.floatCart{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(560px,94%);z-index:65;border:0;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:900;box-shadow:0 17px 44px rgba(77,20,15,.35)}.floatCart[hidden]{display:none}
-.overlay{position:fixed;inset:0;background:rgba(27,17,12,.6);z-index:80;display:none}.overlay.open{display:block}.sheet{position:fixed;right:0;top:0;bottom:0;width:min(560px,100%);z-index:81;background:var(--paper);transform:translateX(105%);transition:.22s;display:flex;flex-direction:column}.sheet.open{transform:translateX(0)}.sheetHead{padding:15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.close{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-weight:900}.sheetBody{padding:13px 15px;overflow:auto;flex:1}.cartLine{padding:11px 0;border-bottom:1px dashed #d9c6b1}.row{display:flex;justify-content:space-between;gap:10px}.note,.field{width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;outline:none}.note{margin-top:7px;resize:vertical}.step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;margin:10px 0}.stepTitle{font-weight:900;color:var(--red);margin-bottom:8px}.segments{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.seg{border:1px solid var(--line);background:#fff8ee;border-radius:11px;padding:11px 6px;font-weight:900}.seg.active{background:#fff0d4;border-color:#d39b38;color:#6c3900}.location,.bank,.receipt,.cardNote,.replace,.over10{display:none;margin-top:9px}.show{display:block!important}.locBtns{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:8px}.locBtns button,.locBtns a{border:1px solid var(--line);background:#fff3df;border-radius:10px;padding:9px 10px;font-weight:900}.status{font-size:13px;color:var(--muted);line-height:1.7;margin-top:7px}.feeBox{padding:10px;border-radius:11px;background:#f0f9f4;border:1px solid #b5ddc6;margin-top:8px;line-height:1.7}.warn{background:#fff3e9;border-color:#efc5a4}.bank,.cardNote,.replace,.over10{padding:10px;border-radius:11px;background:#fff1d7;border:1px solid #e6c483}.fields{display:grid;gap:8px}.replace label,.over10 label{display:block;margin:6px 0}.miniBtn{border:0;background:var(--red);color:#fff;border-radius:9px;padding:8px 10px;font-weight:900}
-.sheetFoot{padding:12px 15px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}.total{display:flex;justify-content:space-between;line-height:1.9}.grand{font-size:21px;font-weight:900;color:var(--red)}.send{width:100%;border:0;background:var(--green);color:#fff;border-radius:13px;padding:13px;font-weight:900;font-size:16px}.clear{width:100%;border:0;background:transparent;color:#9b514c;padding:9px;font-weight:900}
+:root{
+  --red:#781b17;--red2:#a42d25;--gold:#d7a23a;--green:#17734a;--cream:#fff8ed;
+  --paper:#fffdfa;--ink:#211914;--muted:#796a61;--line:#eadbc9;--shadow:0 16px 42px rgba(73,30,18,.09)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 20% 0%,rgba(215,162,58,.09),transparent 28%),
+ linear-gradient(180deg,#fff6e9,#fffdfa 38%,#f8efe6);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:92px}
+button,input,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,94%);margin:auto}
+.hidden{display:none!important}
+
+/* Intro */
+.intro{position:fixed;inset:0;z-index:9999;background:#42100e;overflow:hidden;display:grid;place-items:center}
+.intro::before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 15% 25%,rgba(255,215,129,.16) 0 2px,transparent 3px),
+ radial-gradient(circle at 75% 60%,rgba(255,215,129,.12) 0 2px,transparent 3px),
+ repeating-radial-gradient(circle at 50% 120%,rgba(112,173,94,.08) 0 10px,transparent 11px 24px)}
+.introCard{position:relative;z-index:3;text-align:center;color:#fff;padding:28px;animation:introPop .7s ease both}
+.introMark{width:104px;height:104px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;border:2px solid #e8b956;background:rgba(255,255,255,.06);font-size:44px;box-shadow:0 0 0 8px rgba(255,215,129,.06)}
+.intro h1{margin:0;font-size:clamp(34px,8vw,68px);color:#ffd781}.intro p{margin:10px 0 0;font-size:18px}.intro small{display:block;margin-top:18px;color:#e8c99a;letter-spacing:.5px}
+.tileGrid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);z-index:4;pointer-events:none}
+.tileGrid span{background:linear-gradient(135deg,#42100e,#7d1b17);border:1px solid rgba(255,255,255,.015);opacity:0}
+.intro.leaving .introCard{animation:cardFade .65s ease forwards}
+.intro.leaving .tileGrid span{opacity:1;animation:tileFly 1.1s cubic-bezier(.65,.02,.2,1) forwards}
+.intro.done{display:none}
+.tileGrid span:nth-child(1){--x:-120%;--y:-120%}.tileGrid span:nth-child(2){--x:-60%;--y:-140%}.tileGrid span:nth-child(3){--x:40%;--y:-140%}.tileGrid span:nth-child(4){--x:130%;--y:-110%}
+.tileGrid span:nth-child(5){--x:-140%;--y:-55%}.tileGrid span:nth-child(6){--x:-90%;--y:-40%}.tileGrid span:nth-child(7){--x:95%;--y:-35%}.tileGrid span:nth-child(8){--x:145%;--y:-20%}
+.tileGrid span:nth-child(9){--x:-150%;--y:25%}.tileGrid span:nth-child(10){--x:-90%;--y:50%}.tileGrid span:nth-child(11){--x:80%;--y:45%}.tileGrid span:nth-child(12){--x:150%;--y:35%}
+.tileGrid span:nth-child(13){--x:-125%;--y:120%}.tileGrid span:nth-child(14){--x:-50%;--y:135%}.tileGrid span:nth-child(15){--x:55%;--y:140%}.tileGrid span:nth-child(16){--x:130%;--y:125%}
+@keyframes introPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes cardFade{to{opacity:0;transform:scale(.92)}}
+@keyframes tileFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,253,250,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-weight:900}.brand small{display:block;color:var(--muted);font-size:11px}
+.navActions{display:flex;gap:7px}.navBtn{border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 12px;font-weight:900}.navBtn.lang{min-width:48px}.cartBtn{background:var(--red);color:#fff;border:0}
+
+/* Hero */
+.hero{padding:18px 0 12px}.heroCard{border-radius:28px;background:linear-gradient(135deg,#5a1210,#9d2821 58%,#b23c27);color:#fff;padding:clamp(24px,5vw,44px);box-shadow:0 24px 62px rgba(93,23,17,.25);position:relative;overflow:hidden}
+.heroCard::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.055);left:-130px;top:-170px}
+.heroCard::after{content:"✦";position:absolute;left:28px;bottom:14px;font-size:88px;color:rgba(255,214,129,.08)}
+.heroCard h1{margin:0 0 9px;font-size:clamp(30px,6vw,54px);line-height:1.18}.heroCard p{margin:0;line-height:1.9;color:#fff2e7;max-width:760px}
+.heroActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.heroAction{border:0;border-radius:13px;padding:12px 15px;font-weight:900;background:#ffd781;color:#4f2800}.heroAction.alt{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.welcome{margin-top:12px;background:linear-gradient(135deg,#fff3cf,#fff9eb);border:1px solid #e9c878;border-radius:17px;padding:13px;text-align:center;font-weight:900;color:#754c09}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.infoCard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 24px rgba(70,31,18,.05)}.infoCard b{display:block;color:var(--red);margin-bottom:4px}
+.deliveryNotice{margin:12px 0;background:#fff;border:1px solid var(--line);border-radius:19px;padding:14px;box-shadow:var(--shadow);line-height:1.75}.deliveryNotice strong{color:var(--red)}
+.placeActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.placeBtn{display:inline-flex;align-items:center;justify-content:center;border:0;background:var(--green);color:#fff;border-radius:12px;padding:10px 13px;font-weight:900}.placeBtn.alt{background:var(--red)}
+.courier{display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center;background:linear-gradient(135deg,#fff,#fff7ee);border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0;box-shadow:var(--shadow)}.courier h3{margin:0 0 5px;color:var(--red)}.courier p{margin:0;color:var(--muted);line-height:1.7}.courier svg{width:100%;height:auto}
+
+/* Menu */
+.tools{position:sticky;top:66px;z-index:35;background:linear-gradient(#fffdfa 82%,rgba(255,253,250,0));padding:9px 0 14px}.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;outline:none}.chips{display:flex;gap:7px;overflow:auto;padding:9px 1px 1px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:900}.chip.active{background:var(--red);color:#fff;border-color:var(--red)}
+.chefStrip{background:linear-gradient(135deg,#fff7e6,#fff);border:1px solid #ecd6ad;border-radius:17px;padding:14px;margin-bottom:12px}.chefStrip b{display:block;color:var(--red);margin-bottom:4px}.chefStrip span{color:var(--muted);line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.item{background:#fff;border:1px solid var(--line);border-radius:19px;padding:14px;min-height:136px;display:flex;flex-direction:column;box-shadow:0 9px 26px rgba(72,31,18,.055)}.item h3{margin:0 0 7px;font-size:16px}.item small{color:var(--muted);line-height:1.55}.itemBottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px}.price{font-weight:900;color:var(--red);font-size:18px}.add{border:0;background:#fff0df;border-radius:11px;padding:9px 11px;font-weight:900}
+.qtyLite{display:inline-flex;align-items:center;gap:5px;background:#fff5e8;border:1px solid #efd8bb;border-radius:999px;padding:4px}.qtyLite button{width:28px;height:28px;border:0;border-radius:50%;background:#fff;color:var(--red);font-weight:900;display:grid;place-items:center}.qtyLite b{min-width:22px;text-align:center;font-size:13px}
+
+/* Loyalty */
+.loyalty{margin:16px 0;background:linear-gradient(145deg,#53130f,#8e251e);color:#fff;border-radius:21px;padding:16px;box-shadow:0 16px 38px rgba(75,20,15,.18)}.loyaltyHead{display:flex;justify-content:space-between;gap:10px;align-items:center}.loyalty h3{margin:0;color:#ffd781}.loyalty p{margin:6px 0 0;color:#f5ddd4;line-height:1.7;font-size:13px}.loyaltyForm{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:11px}.loyalty .field{background:rgba(255,255,255,.95)}.loyaltyBtn{border:0;background:#ffd781;color:#4b2600;border-radius:11px;padding:10px 13px;font-weight:900}.loyaltyStatus{margin-top:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:10px;line-height:1.75;font-size:13px}.progress{height:9px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;margin-top:9px}.progress i{display:block;height:100%;background:#ffd781;width:0}
+
+/* Cart / Journey */
+.floatCart{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(560px,94%);z-index:70;border:0;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-radius:18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:900;box-shadow:0 17px 44px rgba(77,20,15,.35)}.floatCart[hidden]{display:none}
+.overlay{position:fixed;inset:0;background:rgba(27,17,12,.62);z-index:80;display:none}.overlay.open{display:block}
+.sheet{position:fixed;right:0;top:0;bottom:0;width:min(590px,100%);z-index:81;background:var(--paper);transform:translateX(105%);transition:.25s;display:flex;flex-direction:column}.sheet.open{transform:translateX(0)}
+.sheetHead{padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.close{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-weight:900}
+.journey{padding:10px 14px 0}.journeyTrack{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.journeyStep{text-align:center;font-size:11px;color:var(--muted)}.journeyStep i{display:grid;place-items:center;width:30px;height:30px;margin:0 auto 4px;border-radius:50%;background:#f2e8da;font-style:normal;font-weight:900}.journeyStep.active{color:var(--red);font-weight:900}.journeyStep.active i,.journeyStep.done i{background:var(--red);color:#fff}
+.sheetBody{padding:12px 15px;overflow:auto;flex:1}.pane{display:none;animation:paneIn .28s ease}.pane.active{display:block}@keyframes paneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pageCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 8px 24px rgba(70,30,18,.05);margin-bottom:10px}.pageTitle{font-weight:900;color:var(--red);font-size:18px;margin-bottom:5px}.pageHint{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.cartLine{padding:10px 0;border-bottom:1px dashed #ddcbb7}.row{display:flex;justify-content:space-between;gap:10px}.note,.field{width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;outline:none}.note{margin-top:7px;resize:vertical}
+.segments{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.seg{border:1px solid var(--line);background:#fff8ee;border-radius:11px;padding:11px 6px;font-weight:900}.seg.active{background:#fff0d4;border-color:#d39b38;color:#6c3900}
+.locationBox,.bankBox,.receiptBox,.cardBox,.replaceBox,.farBox{display:none;margin-top:10px}.show{display:block!important}.locBtns{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:8px}.locBtns button,.locBtns a{border:1px solid var(--line);background:#fff3df;border-radius:10px;padding:9px 10px;font-weight:900}.status{font-size:13px;color:var(--muted);line-height:1.7;margin-top:7px}.feeCard{padding:11px;border-radius:12px;background:#eff9f3;border:1px solid #b7dcc7;margin-top:8px;line-height:1.7}.feeCard.free{background:#eef9ee;border-color:#b7ddb6}.feeCard.warn{background:#fff2e8;border-color:#efc3a1}.bankBox,.cardBox,.replaceBox,.farBox{padding:11px;border-radius:12px;background:#fff1d7;border:1px solid #e7c589;line-height:1.7}.copyBtn{border:0;background:var(--red);color:#fff;border-radius:9px;padding:7px 10px;font-weight:900;margin-inline-start:6px}
+.fields{display:grid;gap:8px}.replaceBox label,.farBox label{display:block;margin:7px 0}.replaceAlt{margin-top:8px}
+.review{display:grid;gap:8px}.reviewBox{border:1px solid var(--line);background:#fffaf3;border-radius:13px;padding:11px;line-height:1.75}.reviewBox b{color:var(--red)}
+.loyaltyRedeem{margin-top:10px;padding:11px;border-radius:12px;background:#f7f0ff;border:1px solid #d9c9ee}
+.navFoot{display:flex;gap:8px;padding:12px 15px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}.backBtn,.nextBtn,.sendBtn{flex:1;border:0;border-radius:13px;padding:13px;font-weight:900}.backBtn{background:#f4ece2;color:#704738}.nextBtn{background:var(--red);color:#fff}.sendBtn{background:var(--green);color:#fff}
+.totalBar{padding:10px 15px;border-top:1px solid var(--line);background:#fff}.total{display:flex;justify-content:space-between;line-height:1.8}.grand{font-size:20px;font-weight:900;color:var(--red)}
 .toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:120;background:#251a15;color:#fff;border-radius:999px;padding:10px 15px;display:none}.toast.show{display:block}
-.ownerPanel{display:none;background:#1c1714;color:#fff;border-radius:17px;padding:14px;margin:15px 0}.ownerPanel.show{display:block}.ownerPanel b{color:#ffd781}
+.ownerPanel{display:none;background:#191512;color:#fff;border-radius:17px;padding:14px;margin:15px 0}.ownerPanel.show{display:block}.ownerPanel b{color:#ffd781}
 footer{text-align:center;padding:26px 0 14px;color:var(--muted);font-size:12px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.info{grid-template-columns:1fr 1fr}.infoCard:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr 1fr;gap:8px}.item{padding:11px;min-height:118px}.courierBanner{grid-template-columns:110px 1fr}.sheet{top:auto;height:93vh;bottom:0;width:100%;border-radius:22px 22px 0 0;transform:translateY(105%)}.sheet.open{transform:translateY(0)}.segments{grid-template-columns:1fr}.loyaltyGrid{grid-template-columns:1fr}}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.info{grid-template-columns:1fr 1fr}.infoCard:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr 1fr;gap:8px}.item{padding:11px;min-height:120px}.courier{grid-template-columns:105px 1fr}.sheet{top:auto;height:94vh;bottom:0;width:100%;border-radius:23px 23px 0 0;transform:translateY(105%)}.sheet.open{transform:translateY(0)}.segments{grid-template-columns:1fr}.loyaltyForm{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header><div class="wrap nav"><div class="brand">مطعم الحديقة التركية<small>فرع سمائل</small></div><div class="navActions"><a class="navBtn" href="tel:+96895474488">اتصال</a><button class="navBtn cartBtn" id="openCart">السلة <span id="headCount">0</span></button></div></div></header>
 
-<section class="hero"><div class="wrap">
-<div class="heroCard"><h1>طعمك الأصيل… وخدمتنا الأسرع</h1><p>اختَر وجبتك، حدّد موقعك، واعرف رسوم التوصيل قبل إرسال الطلب مباشرة إلى واتساب.</p><div class="heroActions"><a class="primary" href="#menu">ابدأ الطلب</a><a class="ghost" href="https://api.whatsapp.com/send?phone=96895474488" target="_blank">واتساب المطعم</a></div></div>
-<div class="hello" id="hello"></div>
-<div class="info">
-<div class="infoCard"><b>ساعات العمل</b>3 مساءً – 2 صباحًا</div>
-<div class="infoCard"><b>الطلبات</b>95474488</div>
-<div class="infoCard"><b>التحويل باسم سيف المحروقي</b>96205536</div>
+<div class="intro" id="intro">
+  <div class="introCard">
+    <div class="introMark">🌿</div>
+    <h1>الحديقة التركية</h1>
+    <p>أهلاً بك… طلبك اليوم يبدأ بابتسامة وينتهي بطعمٍ تحبه.</p>
+    <small>Designed by Wail Elzain</small>
+  </div>
+  <div class="tileGrid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 </div>
-<div class="deliveryIntro"><b>التوصيل:</b> أقل من 7.5 كم = 0.500 ر.ع. من 7.5 حتى 10 كم = 1.000 ر.ع. أكثر من 10 كم يتطلب تأكيد التوصيل والرسوم مع أبو سحر. وإذا تجاوز طلبك 6 ر.ع وكانت المسافة أقل من 7 كم فالتوصيل مجاني.
-<div class="placeActions"><a class="placeBtn" id="restaurantMap" target="_blank">📍 موقع المطعم</a><a class="placeBtn alt" id="restaurantDirections" target="_blank">🧭 الاتجاهات إلى المطعم</a></div></div>
 
-<div class="courierBanner">
-<svg viewBox="0 0 220 150" aria-label="أبو سحر وسيارة التوصيل الحمراء">
-<rect x="62" y="82" width="130" height="43" rx="18" fill="#c5302a"/><rect x="91" y="58" width="75" height="38" rx="15" fill="#d64239"/><rect x="101" y="65" width="25" height="18" rx="5" fill="#cfe7f3"/><rect x="132" y="65" width="24" height="18" rx="5" fill="#cfe7f3"/><circle cx="91" cy="126" r="15" fill="#242424"/><circle cx="167" cy="126" r="15" fill="#242424"/><circle cx="91" cy="126" r="7" fill="#aaa"/><circle cx="167" cy="126" r="7" fill="#aaa"/>
-<circle cx="44" cy="50" r="27" fill="#f2b27e"/><ellipse cx="44" cy="78" rx="30" ry="28" fill="#991f1f"/><circle cx="35" cy="48" r="3" fill="#222"/><circle cx="53" cy="48" r="3" fill="#222"/><path d="M35 60 Q44 67 54 60" fill="none" stroke="#7d3d27" stroke-width="3" stroke-linecap="round"/><path d="M27 31 Q44 18 61 31" fill="#f2b27e"/><circle cx="28" cy="45" r="5" fill="#f2b27e"/><circle cx="60" cy="45" r="5" fill="#f2b27e"/>
-</svg>
-<div><h3>🚗 أبو سحر قادم إليك بأسرع طريقة ممكنة</h3><p>حدّد موقعك وسنحسب المسافة والرسوم تلقائيًا. وإذا كنت أبعد من 10 كم يظهر لك خيار تأكيد التوصيل أولًا.</p></div>
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span data-i18n="brand">مطعم الحديقة التركية</span><small data-i18n="branch">فرع سمائل</small></div>
+    <div class="navActions">
+      <button class="navBtn lang" id="langBtn">EN</button>
+      <a class="navBtn" href="tel:+96895474488" data-i18n="call">اتصال</a>
+      <button class="navBtn cartBtn" id="openCart"><span data-i18n="cart">السلة</span> <span id="headCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+<div class="wrap">
+  <div class="heroCard">
+    <h1 data-i18n="heroTitle">من أول اختيار… حتى يصل طلبك، نهتم بالتفاصيل.</h1>
+    <p data-i18n="heroText">رحلة طلب أبسط، أجمل، وأكثر وضوحًا: اختر، حدّد موقعك، راجع التفاصيل، ثم أرسل طلبك بثقة.</p>
+    <div class="heroActions">
+      <a class="heroAction" href="#menu" data-i18n="startOrder">ابدأ الطلب</a>
+      <a class="heroAction alt" href="https://api.whatsapp.com/send?phone=96895474488" target="_blank" data-i18n="whatsapp">واتساب المطعم</a>
+    </div>
+  </div>
+
+  <div class="welcome" id="welcome"></div>
+
+  <div class="info">
+    <div class="infoCard"><b data-i18n="hours">ساعات العمل</b><span data-i18n="hoursValue">3 مساءً – 2 صباحًا</span></div>
+    <div class="infoCard"><b data-i18n="orders">الطلبات</b>95474488</div>
+    <div class="infoCard"><b data-i18n="transfer">التحويل</b><span data-i18n="transferName">سيف المحروقي</span> — 96205536</div>
+  </div>
+
+  <div class="deliveryNotice">
+    <strong data-i18n="deliveryPolicy">توصيل واضح بدون مفاجآت:</strong>
+    <span id="policyText"></span>
+    <div class="placeActions">
+      <a class="placeBtn" id="restaurantMap" target="_blank" data-i18n="restaurantLocation">📍 موقع المطعم</a>
+      <a class="placeBtn alt" id="restaurantDirections" target="_blank" data-i18n="directions">🧭 الاتجاهات للمطعم</a>
+    </div>
+  </div>
+
+  <div class="courier">
+    <svg viewBox="0 0 220 150" aria-label="Delivery courier with red car">
+      <rect x="62" y="82" width="130" height="43" rx="18" fill="#c5302a"/>
+      <rect x="91" y="58" width="75" height="38" rx="15" fill="#d64239"/>
+      <rect x="101" y="65" width="25" height="18" rx="5" fill="#cfe7f3"/>
+      <rect x="132" y="65" width="24" height="18" rx="5" fill="#cfe7f3"/>
+      <circle cx="91" cy="126" r="15" fill="#242424"/><circle cx="167" cy="126" r="15" fill="#242424"/>
+      <circle cx="91" cy="126" r="7" fill="#aaa"/><circle cx="167" cy="126" r="7" fill="#aaa"/>
+      <circle cx="44" cy="50" r="27" fill="#f2b27e"/><ellipse cx="44" cy="78" rx="30" ry="28" fill="#991f1f"/>
+      <circle cx="35" cy="48" r="3" fill="#222"/><circle cx="53" cy="48" r="3" fill="#222"/>
+      <path d="M35 60 Q44 67 54 60" fill="none" stroke="#7d3d27" stroke-width="3" stroke-linecap="round"/>
+      <path d="M27 31 Q44 18 61 31" fill="#f2b27e"/>
+    </svg>
+    <div><h3 data-i18n="courierTitle">🚗 أبو سحر جاهز لرحلة طلبك</h3><p data-i18n="courierText">حدّد موقعك، وسنعرض المسافة والرسوم بوضوح. أكثر من 10 كم يحتاج تأكيدًا قبل اعتماد التوصيل.</p></div>
+  </div>
 </div>
-</div></section>
+</section>
 
 <main class="wrap" id="menu">
-<div class="tools"><input class="search" id="search" placeholder="ابحث: شاورما، مشاوي، كلوب، بيتزا..."><div class="chips" id="chips"></div></div>
-<div class="catMessage" id="catMessage"></div>
-<div class="grid" id="menuGrid"></div>
+  <div class="tools">
+    <input class="search" id="search" placeholder="ابحث عن صنف">
+    <div class="chips" id="chips"></div>
+  </div>
 
-<div class="loyaltyCard">
-<h3>⭐ نقاطك مع الحديقة التركية</h3>
-<div class="loyaltyGrid"><input id="loyaltyPhone" class="field" inputmode="tel" placeholder="أدخل رقم هاتفك لمعرفة نقاطك"><button id="loyaltyBtn">عرض النقاط</button></div>
-<div class="loyaltyStatus" id="loyaltyStatus">كل طلب مؤهل فوق 7 ر.ع يضيف 10 نقاط. عند 100 نقطة تظهر لك مكافأة استبدال.</div>
-<div class="progress"><i id="loyaltyProgress"></i></div>
-</div>
+  <div class="chefStrip" id="chefStrip"></div>
+  <div class="grid" id="menuGrid"></div>
 
-<div class="ownerPanel" id="ownerPanel"><b>لوحة المالك</b><div id="ownerStats" style="margin-top:7px;line-height:1.8"></div></div>
+  <section class="loyalty">
+    <div class="loyaltyHead"><div><h3 data-i18n="loyaltyTitle">⭐ برنامج الولاء</h3><p data-i18n="loyaltyIntro">طلباتك الكبيرة تعود لك بمكافآت. اجمع نقاطك واستبدلها عندما تكتمل.</p></div><div style="font-size:30px">🎁</div></div>
+    <div class="loyaltyForm">
+      <input id="loyaltyPhone" class="field" inputmode="tel" placeholder="رقم هاتفك">
+      <button class="loyaltyBtn" id="loyaltyBtn" data-i18n="showPoints">عرض النقاط</button>
+    </div>
+    <div class="loyaltyStatus" id="loyaltyStatus"></div>
+    <div class="progress"><i id="loyaltyProgress"></i></div>
+  </section>
+
+  <div class="ownerPanel" id="ownerPanel"><b>لوحة المالك</b><div id="ownerStats" style="margin-top:7px;line-height:1.8"></div></div>
 </main>
 
-<footer><div class="wrap">الحديقة التركية — فرع سمائل • تصميم Wail Elzain</div></footer>
+<footer><div class="wrap">الحديقة التركية — فرع سمائل • Designed by Wail Elzain</div></footer>
 
-<button class="floatCart" id="floatCart" hidden><span>عرض السلة</span><span id="floatTotal">0.000 ر.ع</span></button>
+<button class="floatCart" id="floatCart" hidden><span data-i18n="viewCart">عرض السلة</span><span id="floatTotal">0.000 ر.ع</span></button>
+
 <div class="overlay" id="overlay"></div>
 <aside class="sheet" id="sheet">
-<div class="sheetHead"><div><strong>طلبك</strong><div style="font-size:12px;color:var(--muted)">راجع الطلب ثم أرسله عبر واتساب</div></div><button class="close" id="close">إغلاق ✕</button></div>
-<div class="sheetBody">
-<div id="cartItems"></div>
+  <div class="sheetHead">
+    <div><strong data-i18n="yourJourney">رحلة طلبك</strong><div style="font-size:12px;color:var(--muted)" id="journeyHint"></div></div>
+    <button class="close" id="close" data-i18n="close">إغلاق ✕</button>
+  </div>
 
-<div class="step"><div class="stepTitle">1. نوع الطلب</div><div class="segments"><button class="seg" data-order="delivery">🚗 توصيل</button><button class="seg" data-order="pickup">🏪 استلام</button></div>
-<div class="location" id="locationBox">
-<div class="locBtns"><button id="locate">📍 تحديد موقعي</button><a id="routeFromHere" target="_blank">🧭 الاتجاهات للمطعم</a></div>
-<input id="locationLink" class="field" placeholder="أو الصق الإحداثيات مثل 23.000,57.000">
-<div id="locStatus" class="status">حدد موقعك لحساب المسافة والرسوم.</div>
-<div id="feeBox" class="feeBox">لم يتم الحساب بعد.</div>
-<div id="over10Box" class="over10"><b>المسافة أكثر من 10 كم</b><p style="margin:6px 0">يجب التأكد من أبو سحر قبل تثبيت التوصيل وقيمة الرسوم.</p><a class="miniBtn" id="confirmCourierLink" target="_blank">تواصل للتأكيد</a><label><input type="checkbox" id="courierConfirmed"> تم التأكد من إمكانية التوصيل مع أبو سحر</label></div>
-</div></div>
+  <div class="journey">
+    <div class="journeyTrack">
+      <div class="journeyStep active" data-jstep="1"><i>1</i><span data-i18n="j1">الطلب</span></div>
+      <div class="journeyStep" data-jstep="2"><i>2</i><span data-i18n="j2">الموقع</span></div>
+      <div class="journeyStep" data-jstep="3"><i>3</i><span data-i18n="j3">الدفع</span></div>
+      <div class="journeyStep" data-jstep="4"><i>4</i><span data-i18n="j4">التأكيد</span></div>
+    </div>
+  </div>
 
-<div class="step"><div class="stepTitle">2. طريقة الدفع</div><div class="segments"><button class="seg" data-pay="cash">💵 كاش</button><button class="seg" data-pay="transfer">🏦 تحويل</button><button class="seg" data-pay="card">💳 فيزا / بطاقة</button></div>
-<div id="bankBox" class="bank">التحويل باسم <b>سيف المحروقي</b> — <b>96205536</b></div>
-<div id="receiptBox" class="receipt"><input type="file" id="receipt" class="field" accept="image/*"></div>
-<div id="cardBox" class="cardNote">الدفع بالفيزا/البطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.</div></div>
+  <div class="sheetBody">
+    <section class="pane active" data-pane="1">
+      <div class="pageCard">
+        <div class="pageTitle" data-i18n="reviewOrder">راجع اختياراتك</div>
+        <div class="pageHint" data-i18n="reviewHint">هنا كل ما اخترته. عدّل الكمية أو أضف ملاحظة قبل الانتقال.</div>
+        <div id="cartItems"></div>
+      </div>
+    </section>
 
-<div class="step"><div class="stepTitle">3. بيانات العميل</div><div class="fields"><input id="name" class="field" placeholder="الاسم"><input id="phone" class="field" inputmode="tel" placeholder="رقم الهاتف (إلزامي)"><textarea id="generalNote" class="field" rows="2" placeholder="ملاحظة عامة"></textarea></div>
-<div id="replaceBox" class="replace"><b>إذا لم تتوفر شاورما اللحم:</b><label><input type="radio" name="rep" value="استبدالها بشاورما دجاج"> شاورما دجاج</label><label><input type="radio" name="rep" value="استبدالها بجامبو شاورما"> جامبو شاورما</label><label><input type="radio" name="rep" value="الاتصال بي قبل الاستبدال" checked> الاتصال بي قبل الاستبدال</label></div></div>
-</div>
-<div class="sheetFoot"><div class="total"><span>قيمة الطلب</span><span id="subtotal">0.000 ر.ع</span></div><div class="total"><span>رسوم التوصيل</span><span id="deliveryFee">—</span></div><div class="total grand"><span>الإجمالي</span><span id="grand">0.000 ر.ع</span></div><button class="send" id="send">إرسال الطلب عبر واتساب</button><button class="clear" id="clear">تفريغ السلة</button></div>
+    <section class="pane" data-pane="2">
+      <div class="pageCard">
+        <div class="pageTitle" data-i18n="deliveryStep">كيف تريد استلام طلبك؟</div>
+        <div class="pageHint" data-i18n="deliveryHint">اختر التوصيل أو الاستلام. عند التوصيل سنحسب المسافة والرسوم بنفس القاعدة دائمًا.</div>
+        <div class="segments">
+          <button class="seg" data-order="delivery" data-i18n="delivery">🚗 توصيل</button>
+          <button class="seg" data-order="pickup" data-i18n="pickup">🏪 استلام</button>
+        </div>
+
+        <div class="locationBox" id="locationBox">
+          <div class="locBtns">
+            <button id="locate" data-i18n="locate">📍 تحديد موقعي</button>
+            <a id="routeFromHere" target="_blank" data-i18n="route">🧭 الاتجاهات للمطعم</a>
+          </div>
+          <input id="locationLink" class="field" placeholder="23.000000,57.000000">
+          <div id="locStatus" class="status"></div>
+          <div id="feeCard" class="feeCard"></div>
+
+          <div id="farBox" class="farBox">
+            <b data-i18n="farTitle">المسافة أكثر من 10 كم</b>
+            <p data-i18n="farText">يجب التأكد من أبو سحر أولًا لمعرفة إمكانية التوصيل والرسوم.</p>
+            <a class="copyBtn" id="confirmCourierLink" target="_blank" data-i18n="confirmCourier">تواصل للتأكيد</a>
+            <label><input type="checkbox" id="courierConfirmed"> <span data-i18n="confirmed">تم التأكد من التوصيل مع أبو سحر</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pane" data-pane="3">
+      <div class="pageCard">
+        <div class="pageTitle" data-i18n="paymentStep">الدفع والمكافآت</div>
+        <div class="pageHint" data-i18n="paymentHint">اختر طريقة الدفع، ثم أدخل رقمك حتى نحسب نقاطك ومكافأتك.</div>
+        <div class="segments">
+          <button class="seg" data-pay="cash" data-i18n="cash">💵 كاش</button>
+          <button class="seg" data-pay="transfer" data-i18n="bank">🏦 تحويل</button>
+          <button class="seg" data-pay="card" data-i18n="card">💳 فيزا / بطاقة</button>
+        </div>
+
+        <div id="bankBox" class="bankBox">
+          <b data-i18n="bankTo">التحويل باسم سيف المحروقي</b><br>
+          <span id="transferNumber">96205536</span>
+          <button class="copyBtn" id="copyTransfer" data-i18n="copy">نسخ الرقم</button>
+        </div>
+        <div id="receiptBox" class="receiptBox"><input type="file" id="receipt" class="field" accept="image/*"></div>
+        <div id="cardBox" class="cardBox" data-i18n="cardNote">الدفع بالبطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.</div>
+
+        <div class="fields" style="margin-top:10px">
+          <input id="name" class="field" placeholder="الاسم">
+          <input id="phone" class="field" inputmode="tel" placeholder="رقم الهاتف">
+          <textarea id="generalNote" class="field" rows="2" placeholder="ملاحظة عامة"></textarea>
+        </div>
+
+        <div id="replaceBox" class="replaceBox">
+          <b data-i18n="replaceTitle">إذا لم تتوفر شاورما اللحم:</b>
+          <label><input type="radio" name="rep" value="استبدالها بشاورما دجاج"> <span data-i18n="repChicken">استبدالها بشاورما دجاج</span></label>
+          <label><input type="radio" name="rep" value="الاتصال بي قبل الاستبدال" checked> <span data-i18n="repCall">الاتصال بي قبل الاستبدال</span></label>
+          <label><input type="radio" name="rep" value="بديل من اختيار العميل"> <span data-i18n="repOwn">أختار البديل بنفسي</span></label>
+          <input id="replaceAlt" class="field replaceAlt" placeholder="اكتب البديل الذي تريده">
+        </div>
+
+        <div class="loyaltyRedeem hidden" id="redeemBox">
+          <label><input type="checkbox" id="redeemReward"> <span data-i18n="redeem">استبدال 100 نقطة بخصم 1.000 ر.ع على هذا الطلب</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="pane" data-pane="4">
+      <div class="pageCard">
+        <div class="pageTitle" data-i18n="finalReview">كل شيء جاهز ✨</div>
+        <div class="pageHint" data-i18n="finalHint">راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.</div>
+        <div class="review" id="reviewBox"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="totalBar">
+    <div class="total"><span data-i18n="subtotal">قيمة الطلب</span><span id="subtotal">0.000 ر.ع</span></div>
+    <div class="total"><span data-i18n="deliveryFee">رسوم التوصيل</span><span id="deliveryFee">—</span></div>
+    <div class="total" id="discountRow" style="display:none"><span data-i18n="rewardDiscount">خصم النقاط</span><span id="rewardDiscount">-1.000 ر.ع</span></div>
+    <div class="total grand"><span data-i18n="grand">الإجمالي</span><span id="grand">0.000 ر.ع</span></div>
+  </div>
+
+  <div class="navFoot">
+    <button class="backBtn" id="backStep" data-i18n="back">رجوع</button>
+    <button class="nextBtn" id="nextStep" data-i18n="next">التالي</button>
+    <button class="sendBtn hidden" id="send" data-i18n="send">إرسال الطلب عبر واتساب</button>
+  </div>
 </aside>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const WA='96895474488';
+const OWNER_KEY='WZ-0696D25B';
 const RESTAURANT={lat:23.3056875,lon:57.9494375};
 const RESTAURANT_PLUS='8W4X+7QV, Samail, Oman';
-const OWNER_KEY='WZ-0696D25B';
 const RESTAURANT_MAP=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(RESTAURANT_PLUS)}`;
 const RESTAURANT_DIR=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(RESTAURANT_PLUS)}`;
 
-const CATEGORY_MSG={
+let lang=localStorage.getItem('tg_lang')||'ar';
+const T={
+ar:{
+brand:'مطعم الحديقة التركية',branch:'فرع سمائل',call:'اتصال',cart:'السلة',heroTitle:'من أول اختيار… حتى يصل طلبك، نهتم بالتفاصيل.',heroText:'رحلة طلب أبسط، أجمل، وأكثر وضوحًا: اختر، حدّد موقعك، راجع التفاصيل، ثم أرسل طلبك بثقة.',startOrder:'ابدأ الطلب',whatsapp:'واتساب المطعم',hours:'ساعات العمل',hoursValue:'3 مساءً – 2 صباحًا',orders:'الطلبات',transfer:'التحويل',transferName:'سيف المحروقي',deliveryPolicy:'توصيل واضح بدون مفاجآت:',restaurantLocation:'📍 موقع المطعم',directions:'🧭 الاتجاهات للمطعم',courierTitle:'🚗 أبو سحر جاهز لرحلة طلبك',courierText:'حدّد موقعك، وسنعرض المسافة والرسوم بوضوح. أكثر من 10 كم يحتاج تأكيدًا قبل اعتماد التوصيل.',loyaltyTitle:'⭐ برنامج الولاء',loyaltyIntro:'طلباتك الكبيرة تعود لك بمكافآت. اجمع نقاطك واستبدلها عندما تكتمل.',showPoints:'عرض النقاط',viewCart:'عرض السلة',yourJourney:'رحلة طلبك',close:'إغلاق ✕',j1:'الطلب',j2:'الموقع',j3:'الدفع',j4:'التأكيد',reviewOrder:'راجع اختياراتك',reviewHint:'هنا كل ما اخترته. عدّل الكمية أو أضف ملاحظة قبل الانتقال.',deliveryStep:'كيف تريد استلام طلبك؟',deliveryHint:'اختر التوصيل أو الاستلام. عند التوصيل سنحسب المسافة والرسوم بنفس القاعدة دائمًا.',delivery:'🚗 توصيل',pickup:'🏪 استلام',locate:'📍 تحديد موقعي',route:'🧭 الاتجاهات للمطعم',farTitle:'المسافة أكثر من 10 كم',farText:'يجب التأكد من أبو سحر أولًا لمعرفة إمكانية التوصيل والرسوم.',confirmCourier:'تواصل للتأكيد',confirmed:'تم التأكد من التوصيل مع أبو سحر',paymentStep:'الدفع والمكافآت',paymentHint:'اختر طريقة الدفع، ثم أدخل رقمك حتى نحسب نقاطك ومكافأتك.',cash:'💵 كاش',bank:'🏦 تحويل',card:'💳 فيزا / بطاقة',bankTo:'التحويل باسم سيف المحروقي',copy:'نسخ الرقم',cardNote:'الدفع بالبطاقة عند الاستلام أو في المطعم حسب توفر جهاز الدفع.',replaceTitle:'إذا لم تتوفر شاورما اللحم:',repChicken:'استبدالها بشاورما دجاج',repCall:'الاتصال بي قبل الاستبدال',repOwn:'أختار البديل بنفسي',redeem:'استبدال 100 نقطة بخصم 1.000 ر.ع على هذا الطلب',finalReview:'كل شيء جاهز ✨',finalHint:'راجع الملخص الأخير. نفس الرسوم التي تراها هنا ستذهب في رسالة واتساب.',subtotal:'قيمة الطلب',deliveryFee:'رسوم التوصيل',rewardDiscount:'خصم النقاط',grand:'الإجمالي',back:'رجوع',next:'التالي',send:'إرسال الطلب عبر واتساب'},
+en:{
+brand:'Turkish Garden Restaurant',branch:'Samail Branch',call:'Call',cart:'Cart',heroTitle:'From your first choice to delivery, every detail matters.',heroText:'A smoother ordering journey: choose, share your location, review everything, then send your order with confidence.',startOrder:'Start order',whatsapp:'Restaurant WhatsApp',hours:'Opening hours',hoursValue:'3 PM – 2 AM',orders:'Orders',transfer:'Bank transfer',transferName:'Saif Al Mahrouqi',deliveryPolicy:'Clear delivery pricing:',restaurantLocation:'📍 Restaurant location',directions:'🧭 Directions',courierTitle:'🚗 Abu Sahar is ready for your delivery',courierText:'Share your location and we will show distance and delivery charge clearly. Over 10 km requires confirmation first.',loyaltyTitle:'⭐ Loyalty rewards',loyaltyIntro:'Larger orders bring rewards. Collect points and redeem them when ready.',showPoints:'Show points',viewCart:'View cart',yourJourney:'Your order journey',close:'Close ✕',j1:'Order',j2:'Location',j3:'Payment',j4:'Confirm',reviewOrder:'Review your choices',reviewHint:'Adjust quantities or add notes before continuing.',deliveryStep:'How would you like to receive it?',deliveryHint:'Choose delivery or pickup. Delivery distance and charge follow one consistent rule.',delivery:'🚗 Delivery',pickup:'🏪 Pickup',locate:'📍 Use my location',route:'🧭 Directions',farTitle:'Distance is over 10 km',farText:'Please confirm delivery availability and charge with Abu Sahar first.',confirmCourier:'Confirm delivery',confirmed:'Delivery confirmed with Abu Sahar',paymentStep:'Payment & rewards',paymentHint:'Choose payment method, then enter your phone number to calculate rewards.',cash:'💵 Cash',bank:'🏦 Transfer',card:'💳 Visa / Card',bankTo:'Transfer to Saif Al Mahrouqi',copy:'Copy number',cardNote:'Card payment is available on delivery or at the restaurant when the terminal is available.',replaceTitle:'If beef shawarma is unavailable:',repChicken:'Replace with chicken shawarma',repCall:'Call me before replacing',repOwn:'I will choose another item',redeem:'Redeem 100 points for a 1.000 OMR discount on this order',finalReview:'Everything is ready ✨',finalHint:'Review the final summary. The same delivery charge shown here will be included in WhatsApp.',subtotal:'Subtotal',deliveryFee:'Delivery fee',rewardDiscount:'Points discount',grand:'Total',back:'Back',next:'Next',send:'Send order via WhatsApp'}
+};
+
+const CAT={
+ar:{
 'البيتزا':['🍕 البيتزا من أيادي الشيف الرائع رياض التونسي','كل بيتزا تُجهّز بعناية لتصل ساخنة وبنكهة تستحق الرجوع لها.'],
 'المشاوي':['🔥 والأفضل دائمًا أبو السيد الباشا','مشاوي بنكهة أصيلة ولمسة تعرف طريقها إلى الذوق.'],
 'الشاورما':['🌯 لمسات الشيف رياض التونسي','شاورما طازجة ومشبعة تُحضّر لك وقت الطلب.'],
-'الصواريخ':['🚀 صاروخك جاهز بسرعة','اختيار سريع ومشبع بنكهة الحديقة التركية.'],
-'الكلوبات':['🥪 كلوب على مزاجك','طازج، مرتب، ومناسب لوجبة سريعة ومشبعة.'],
+'الصواريخ':['🚀 سريع، مشبع، وعلى مزاجك','اختيارك السريع عندما تريد وجبة ممتعة بدون انتظار.'],
+'الكلوبات':['🥪 كلوب الحديقة… خفيف في الشكل، كبير في الطعم','طازج ومرتب ومناسب لوجبة سريعة.'],
 'المشروبات':['🥤 كمل وجبتك بمشروبك المفضل','اختيارات باردة ترافق طلبك.']
-};
+},
+en:{
+'البيتزا':['🍕 Pizza by Chef Riad Al-Tunisi','Prepared with care and served with the flavor worth coming back for.'],
+'المشاوي':['🔥 Grills by Abu Al-Sayed Al-Basha','Authentic grilling with a confident signature.'],
+'الشاورما':['🌯 Chef Riad’s shawarma touch','Fresh and filling, prepared when you order.'],
+'الصواريخ':['🚀 Fast, filling, and satisfying','A quick choice when you want a fun meal without the wait.'],
+'الكلوبات':['🥪 Turkish Garden clubs','Light in look, big on flavor.'],
+'المشروبات':['🥤 Complete your meal','Cold drinks to go with your order.']
+}};
 
 const MENU=[
-['البيتزا','بيتزا مارجريتا',1.500,'جبن وصلصة طماطم'],
-['البيتزا','بيتزا دجاج',1.800,'دجاج وجبن'],
-['البيتزا','بيتزا لحم',2.000,'لحم وجبن'],
-['الشاورما','شاورما دجاج',0.500,''],
-['الشاورما','شاورما لحم',0.700,''],
-['الشاورما','جامبو شاورما دجاج',1.000,''],
-['الشاورما','جامبو شاورما لحم',1.200,''],
-['الصواريخ','صاروخ شاورما دجاج',0.800,''],
-['الصواريخ','صاروخ شاورما لحم',0.800,''],
-['الصواريخ','صاروخ تكة دجاج',0.800,''],
-['الصواريخ','صاروخ كباب دجاج',0.800,''],
-['الصواريخ','صاروخ كباب لحم',0.800,''],
-['المشاوي','تكة دجاج',1.500,''],
-['المشاوي','تكة لحم',1.800,''],
-['المشاوي','كباب دجاج',1.500,''],
-['المشاوي','كباب لحم',1.800,''],
-['المشاوي','كباب ربيان',2.000,''],
-['المشاوي','كريسبي',1.500,''],
-['الكلوبات','كلوب شاورما دجاج',1.500,''],
-['الكلوبات','كلوب شاورما لحم',1.800,''],
-['الكلوبات','كلوب روست بيف',1.800,''],
-['الكلوبات','كلوب ربيان',2.000,''],
-['المشروبات','كينزا كولا',0.300,''],
-['المشروبات','كينزا ليمون',0.300,''],
-['المشروبات','كينزا توت',0.300,''],
-['المشروبات','كينزا برتقال',0.300,''],
-['المشروبات','كينزا حمضيات',0.300,''],
-['المشروبات','كينزا كولا دايت',0.300,''],
-['المشروبات','كينزا ليمون دايت',0.300,''],
-['المشروبات','سنتوب',0.200,'']
-].map((x,i)=>({id:i,cat:x[0],name:x[1],price:x[2],detail:x[3]}));
+['البيتزا','بيتزا مارجريتا','Margherita Pizza',1.500],
+['البيتزا','بيتزا دجاج','Chicken Pizza',1.800],
+['البيتزا','بيتزا لحم','Meat Pizza',2.000],
+['الشاورما','شاورما دجاج','Chicken Shawarma',0.500],
+['الشاورما','شاورما لحم','Beef Shawarma',0.700],
+['الصواريخ','صاروخ شاورما دجاج','Chicken Shawarma Rocket',0.800],
+['الصواريخ','صاروخ شاورما لحم','Beef Shawarma Rocket',0.800],
+['الصواريخ','صاروخ تكة دجاج','Chicken Tikka Rocket',0.800],
+['الصواريخ','صاروخ كباب دجاج','Chicken Kebab Rocket',0.800],
+['الصواريخ','صاروخ كباب لحم','Beef Kebab Rocket',0.800],
+['المشاوي','تكة دجاج','Chicken Tikka',1.500],
+['المشاوي','تكة لحم','Beef Tikka',1.800],
+['المشاوي','كباب دجاج','Chicken Kebab',1.500],
+['المشاوي','كباب لحم','Beef Kebab',1.800],
+['المشاوي','كباب ربيان','Shrimp Kebab',2.000],
+['المشاوي','كريسبي','Crispy',1.500],
+['الكلوبات','كلوب شاورما دجاج','Chicken Shawarma Club',1.500],
+['الكلوبات','كلوب شاورما لحم','Beef Shawarma Club',1.800],
+['الكلوبات','كلوب روست بيف','Roast Beef Club',1.800],
+['الكلوبات','كلوب ربيان','Shrimp Club',2.000],
+['المشروبات','كينزا كولا','Kinza Cola',0.300],
+['المشروبات','كينزا ليمون','Kinza Lemon',0.300],
+['المشروبات','كينزا توت','Kinza Berry',0.300],
+['المشروبات','كينزا برتقال','Kinza Orange',0.300],
+['المشروبات','كينزا حمضيات','Kinza Citrus',0.300],
+['المشروبات','كينزا كولا دايت','Kinza Cola Diet',0.300],
+['المشروبات','كينزا ليمون دايت','Kinza Lemon Diet',0.300],
+['المشروبات','سنتوب','Suntop',0.200]
+].map((x,i)=>({id:i,cat:x[0],ar:x[1],en:x[2],price:x[3]}));
 
-let cart=JSON.parse(localStorage.getItem('tg_cart_v4')||'{}'),cat='الشاورما',order='',pay='',coords=null,km=null,mins=null,fee=null;
-const $=id=>document.getElementById(id),fmt=n=>Number(n).toFixed(3)+' ر.ع';
+let cart=JSON.parse(localStorage.getItem('tg_cart_v5')||'{}');
+let cat='الشاورما',order='',pay='',coords=null,km=null,mins=null,step=1;
+const $=id=>document.getElementById(id),fmt=n=>Number(n).toFixed(3)+' '+(lang==='ar'?'ر.ع':'OMR');
+
+function tr(k){return T[lang][k]||k}
 function toast(m){$('toast').textContent=m;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)}
-function save(){localStorage.setItem('tg_cart_v4',JSON.stringify(cart))}
-function greetings(){const a=['مرحبًا، نورتنا 🌹','تفضل عشاء اليوم من اختيارك 🍽️','أهلاً بك في الحديقة التركية ❤️','طلبك اليوم يستحق نكهة مختلفة 😋','اختَر براحتك… والباقي علينا ✨'];$('hello').textContent=a[Math.floor(Math.random()*a.length)]}
-function cats(){const cs=[...new Set(MENU.map(x=>x.cat))];$('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${c}">${c}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;$('search').value='';cats();renderMenu()});renderCatMessage()}
-function renderCatMessage(){const m=CATEGORY_MSG[cat]||['اختيارات الحديقة التركية','اختر ما يناسبك وأضفه للسلة.'];$('catMessage').innerHTML=`<b>${m[0]}</b><span>${m[1]}</span>`}
-function renderMenu(){const q=$('search').value.trim();const list=MENU.filter(x=>q?x.name.includes(q):x.cat===cat);$('menuGrid').innerHTML=list.map(x=>{const c=cart[x.id];return `<article class="item"><h3>${x.name}</h3>${x.detail?`<small>${x.detail}</small>`:''}<div class="itemBottom"><span class="price">${fmt(x.price)}</span>${c?`<div class="qty"><button data-minus="${x.id}">−</button><b>${c.qty}</b><button data-plus="${x.id}">+</button></div>`:`<button class="add" data-add="${x.id}">+ أضف</button>`}</div></article>`}).join('');document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>qty(+b.dataset.add,1));document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>qty(+b.dataset.plus,1));document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>qty(+b.dataset.minus,-1))}
-function qty(id,d){const i=MENU.find(x=>x.id===id);const q=(cart[id]?.qty||0)+d;if(q<=0)delete cart[id];else cart[id]={qty:q,note:cart[id]?.note||''};save();renderMenu();renderCart()}
+function saveCart(){localStorage.setItem('tg_cart_v5',JSON.stringify(cart))}
+function applyLang(){
+ document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';$('langBtn').textContent=lang==='ar'?'EN':'AR';
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[lang][k])el.textContent=T[lang][k]});
+ $('policyText').textContent=lang==='ar'
+ ?' أقل من 7.5 كم = 0.500 ر.ع. من 7.5 حتى 10 كم = 1.000 ر.ع. إذا تجاوز الطلب 6 ر.ع وكانت المسافة أقل من 7 كم فالتوصيل مجاني. أكثر من 10 كم يحتاج تأكيد أبو سحر.'
+ :' Under 7.5 km = 0.500 OMR. From 7.5 to 10 km = 1.000 OMR. Orders over 6 OMR within 7 km get free delivery. Over 10 km requires confirmation.';
+ $('search').placeholder=lang==='ar'?'ابحث عن صنف':'Search menu';
+ $('name').placeholder=lang==='ar'?'الاسم':'Name';
+ $('phone').placeholder=lang==='ar'?'رقم الهاتف':'Phone number';
+ $('generalNote').placeholder=lang==='ar'?'ملاحظة عامة':'General note';
+ $('loyaltyPhone').placeholder=lang==='ar'?'رقم هاتفك':'Your phone number';
+ $('replaceAlt').placeholder=lang==='ar'?'اكتب البديل الذي تريده':'Type your preferred replacement';
+ welcome();cats();renderMenu();renderCart();renderReview();showLoyalty($('loyaltyPhone').value);
+}
+function welcome(){
+ const ar=['يا هلا ومرحبا 🌿 نورت الحديقة التركية','أهلاً بك ❤️ خذ وقتك في الاختيار، ونحن نهتم بالباقي','سعداء بزيارتك ✨ نتمنى أن تكون هذه بداية وجبة جميلة','مرحبًا بك في الحديقة التركية 🌹 طلبك اليوم على راحتك'];
+ const en=['Welcome to Turkish Garden 🌿','We are happy to have you ❤️ Choose at your own pace','Welcome ✨ Your meal journey starts here','Glad you are here 🌹'];
+ $('welcome').textContent=(lang==='ar'?ar:en)[Math.floor(Math.random()*4)];
+}
+function cats(){
+ const cs=[...new Set(MENU.map(x=>x.cat))];
+ const labels={ar:{'البيتزا':'البيتزا','المشاوي':'المشاوي','الشاورما':'الشاورما','الصواريخ':'الصواريخ','الكلوبات':'الكلوبات','المشروبات':'المشروبات'},en:{'البيتزا':'Pizza','المشاوي':'Grills','الشاورما':'Shawarma','الصواريخ':'Rockets','الكلوبات':'Clubs','المشروبات':'Drinks'}};
+ $('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${c}">${labels[lang][c]}</button>`).join('');
+ document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;$('search').value='';cats();renderMenu()});
+ const m=CAT[lang][cat];$('chefStrip').innerHTML=`<b>${m[0]}</b><span>${m[1]}</span>`;
+}
+function renderMenu(){
+ const q=$('search').value.trim().toLowerCase();
+ const list=MENU.filter(x=>q?((x.ar+' '+x.en).toLowerCase().includes(q)):x.cat===cat);
+ $('menuGrid').innerHTML=list.map(x=>{
+  const c=cart[x.id],name=lang==='ar'?x.ar:x.en;
+  return `<article class="item"><h3>${name}</h3><div class="itemBottom"><span class="price">${fmt(x.price)}</span>${c?`<div class="qtyLite"><button data-minus="${x.id}">−</button><b>${c.qty}</b><button data-plus="${x.id}">+</button></div>`:`<button class="add" data-add="${x.id}">${lang==='ar'?'+ أضف':'+ Add'}</button>`}</div></article>`
+ }).join('');
+ document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>changeQty(+b.dataset.add,1));
+ document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>changeQty(+b.dataset.plus,1));
+ document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>changeQty(+b.dataset.minus,-1));
+}
+function changeQty(id,d){const q=(cart[id]?.qty||0)+d;if(q<=0)delete cart[id];else cart[id]={qty:q,note:cart[id]?.note||''};saveCart();renderMenu();renderCart();renderReview()}
 function stats(){let count=0,sum=0;Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id);if(i){count+=c.qty;sum+=c.qty*i.price}});return{count,sum}}
-function calcFee(){const s=stats().sum;if(order!=='delivery'){fee=0;return}if(km==null){fee=null;return}if(s>6&&km<7){fee=0;return}if(km<7.5){fee=.5;return}if(km<=10){fee=1;return}fee=null}
-function feeText(){if(order==='pickup')return '0.000 ر.ع';if(km==null)return '—';if(fee===0)return 'مجاني';if(fee===.5||fee===1)return fmt(fee);return 'بعد تأكيد أبو سحر'}
-function renderCart(){const {count,sum}=stats();calcFee();$('headCount').textContent=count;$('floatCart').hidden=!count;$('floatTotal').textContent=fmt(sum);$('subtotal').textContent=fmt(sum);$('deliveryFee').textContent=feeText();$('grand').textContent=fmt(sum+(fee||0));$('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{const i=MENU.find(x=>x.id==id);return `<div class="cartLine"><div class="row"><b>${i.name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="ملاحظة للصنف">${c.note||''}</textarea></div>`}).join(''):'<div class="status">السلة فارغة</div>';document.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{cart[t.dataset.note].note=t.value;save()});$('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>MENU.find(x=>x.id==id)?.name.includes('شاورما لحم')))}
-function openCart(){$('overlay').classList.add('open');$('sheet').classList.add('open');renderCart()}function closeCart(){$('overlay').classList.remove('open');$('sheet').classList.remove('open')}
-function hav(a,b){const R=6371,r=x=>x*Math.PI/180,dlat=r(b.lat-a.lat),dlon=r(b.lon-a.lon),v=Math.sin(dlat/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dlon/2)**2;return 2*R*Math.asin(Math.sqrt(v))}
+function deliveryQuote(){
+ const s=stats().sum;
+ if(order!=='delivery')return {type:'pickup',fee:0,text:lang==='ar'?'بدون رسوم توصيل':'No delivery fee'};
+ if(km==null)return {type:'unknown',fee:null,text:lang==='ar'?'حدد موقعك أولاً':'Share your location first'};
+ if(km>10)return {type:'far',fee:null,text:lang==='ar'?'يحتاج تأكيد أبو سحر':'Needs Abu Sahar confirmation'};
+ if(s>6 && km<7)return {type:'free',fee:0,text:lang==='ar'?'🎉 مبروك! التوصيل مجاني':'🎉 Free delivery'};
+ if(km<7.5)return {type:'paid',fee:.5,text:lang==='ar'?'رسوم التوصيل 0.500 ر.ع':'Delivery 0.500 OMR'};
+ return {type:'paid',fee:1,text:lang==='ar'?'رسوم التوصيل 1.000 ر.ع':'Delivery 1.000 OMR'};
+}
+function loyaltyKey(ph){return 'tg_loyalty_v5_'+String(ph||'').replace(/\D/g,'')}
+function getLoyalty(ph){try{return JSON.parse(localStorage.getItem(loyaltyKey(ph))||'{"points":0,"orders":0,"spend":[],"bonusLevel":0,"recent":[]}')}catch(e){return{points:0,orders:0,spend:[],bonusLevel:0,recent:[]}}}
+function saveLoyalty(ph,d){localStorage.setItem(loyaltyKey(ph),JSON.stringify(d))}
+function loyaltySummary(ph){
+ ph=String(ph||'').replace(/\D/g,'');if(ph.length<8)return null;
+ const d=getLoyalty(ph),cut=Date.now()-60*24*60*60*1000;d.spend=(d.spend||[]).filter(x=>x.t>=cut);d.recent=(d.recent||[]).filter(x=>x.t>=Date.now()-12*60*60*1000);
+ const spend60=d.spend.reduce((a,x)=>a+x.v,0);saveLoyalty(ph,d);return {...d,spend60};
+}
+function showLoyalty(ph){
+ const d=loyaltySummary(ph);
+ if(!d){$('loyaltyStatus').textContent=lang==='ar'?'كل طلب فوق 7 ر.ع = 10 نقاط. وكل 20 ر.ع مشتريات خلال 60 يومًا تضيف مكافأة إضافية. عند 100 نقطة يمكنك استبدالها بخصم 1 ر.ع.':'Orders over 7 OMR earn 10 points. Every 20 OMR spent within 60 days adds a bonus. At 100 points you can redeem 1 OMR.';$('loyaltyProgress').style.width='0%';return}
+ $('loyaltyStatus').textContent=lang==='ar'
+ ?`رصيدك ${d.points} نقطة • ${d.orders} طلبات مؤهلة • مشتريات آخر 60 يوم: ${d.spend60.toFixed(3)} ر.ع${d.points>=100?' • لديك مكافأة جاهزة 🎁':''}`
+ :`${d.points} points • ${d.orders} qualifying orders • 60-day spend: ${d.spend60.toFixed(3)} OMR${d.points>=100?' • Reward ready 🎁':''}`;
+ $('loyaltyProgress').style.width=Math.min(100,d.points)+'%';
+}
+function registerLoyalty(ph,sum,signature){
+ ph=String(ph||'').replace(/\D/g,'');if(ph.length<8)return null;
+ const d=getLoyalty(ph),now=Date.now(),cut=now-60*24*60*60*1000;d.spend=(d.spend||[]).filter(x=>x.t>=cut);d.recent=(d.recent||[]).filter(x=>x.t>=now-12*60*60*1000);
+ if(d.recent.some(x=>x.s===signature))return {gained:0,points:d.points,duplicate:true};
+ d.recent.push({s:signature,t:now});d.spend.push({t:now,v:sum});let gained=0;
+ if(sum>7){d.points+=10;d.orders+=1;gained+=10}
+ const spend60=d.spend.reduce((a,x)=>a+x.v,0),level=Math.floor(spend60/20);
+ if(level>(d.bonusLevel||0)){const bonus=(level-(d.bonusLevel||0))*20;d.points+=bonus;gained+=bonus;d.bonusLevel=level}
+ saveLoyalty(ph,d);return {gained,points:d.points,duplicate:false};
+}
+function redeemIfSelected(ph){
+ const d=loyaltySummary(ph);if(!$('redeemReward').checked||!d||d.points<100)return 0;
+ d.points-=100;saveLoyalty(ph,d);return 1;
+}
+function currentDiscount(){
+ const ph=$('phone').value.replace(/\D/g,''),d=loyaltySummary(ph);
+ return $('redeemReward').checked&&d&&d.points>=100?1:0;
+}
+function renderCart(){
+ const {count,sum}=stats(),q=deliveryQuote(),discount=currentDiscount();
+ $('headCount').textContent=count;$('floatCart').hidden=!count;$('floatTotal').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));$('subtotal').textContent=fmt(sum);
+ $('deliveryFee').textContent=q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee));
+ $('discountRow').style.display=discount?'flex':'none';$('grand').textContent=fmt(Math.max(0,sum+(q.fee||0)-discount));
+ $('cartItems').innerHTML=count?Object.entries(cart).map(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.ar:i.en;return `<div class="cartLine"><div class="row"><b>${name} × ${c.qty}</b><span>${fmt(i.price*c.qty)}</span></div><textarea class="note" data-note="${id}" placeholder="${lang==='ar'?'ملاحظة للصنف':'Item note'}">${c.note||''}</textarea></div>`}).join(''):`<div class="status">${lang==='ar'?'السلة فارغة':'Cart is empty'}</div>`;
+ document.querySelectorAll('[data-note]').forEach(t=>t.oninput=()=>{cart[t.dataset.note].note=t.value;saveCart()});
+ $('replaceBox').classList.toggle('show',Object.keys(cart).some(id=>MENU.find(x=>x.id==id)?.ar.includes('شاورما لحم')));
+ const d=loyaltySummary($('phone').value);$('redeemBox').classList.toggle('hidden',!(d&&d.points>=100));
+ renderFeeCard();renderReview();
+}
+function renderFeeCard(){
+ const q=deliveryQuote();$('feeCard').className='feeCard'+(q.type==='free'?' free':q.type==='far'?' warn':'');$('feeCard').textContent=q.text;
+ $('farBox').classList.toggle('show',q.type==='far');
+}
 function parseCoords(v){const m=String(v||'').match(/(-?\d{1,2}(?:\.\d+)?)\s*[,،]\s*(-?\d{1,3}(?:\.\d+)?)/);if(!m)return null;const lat=Number(m[1]),lon=Number(m[2]);return Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180?{lat,lon}:null}
-function updateLocation(c){coords=c;km=hav(RESTAURANT,c);mins=Math.max(5,Math.round(km/40*60));$('locationLink').value=`${c.lat.toFixed(6)},${c.lon.toFixed(6)}`;$('locStatus').textContent=`المسافة التقريبية: ${km.toFixed(1)} كم — الزمن المتوقع: ${mins} دقيقة`;calcFee();const {sum}=stats();let msg='';if(fee===0){msg='🎉 مبروك! التوصيل مجاني';if(sum>7)msg+=' وحصلت على 10 نقاط لهذا الطلب المؤهل.'}else if(fee===.5)msg='رسوم التوصيل: 0.500 ر.ع';else if(fee===1)msg='رسوم التوصيل: 1.000 ر.ع';else msg='أكثر من 10 كم: يجب تأكيد التوصيل والرسوم مع أبو سحر.';$('feeBox').textContent=msg;$('feeBox').classList.toggle('warn',km>10);$('over10Box').classList.toggle('show',km>10);renderCart()}
-function locate(){if(!window.isSecureContext)return toast('افتح الموقع عبر HTTPS');if(!navigator.geolocation)return toast('المتصفح لا يدعم GPS');$('locStatus').textContent='جارٍ تحديد موقعك...';navigator.geolocation.getCurrentPosition(p=>updateLocation({lat:p.coords.latitude,lon:p.coords.longitude}),e=>{$('locStatus').textContent=e.code===1?'اسمح للموقع باستخدام GPS من إعدادات المتصفح.':'تعذر تحديد الموقع. فعّل GPS وحاول مرة أخرى.';toast('تعذر تحديد الموقع')},{enableHighAccuracy:true,timeout:15000,maximumAge:30000})}
+function hav(a,b){const R=6371,r=x=>x*Math.PI/180,dlat=r(b.lat-a.lat),dlon=r(b.lon-a.lon),v=Math.sin(dlat/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dlon/2)**2;return 2*R*Math.asin(Math.sqrt(v))}
+function setLocation(c){coords=c;km=hav(RESTAURANT,c);mins=Math.max(5,Math.round(km/40*60));$('locationLink').value=`${c.lat.toFixed(6)},${c.lon.toFixed(6)}`;$('locStatus').textContent=(lang==='ar'?`المسافة التقريبية ${km.toFixed(1)} كم • الوقت المتوقع ${mins} دقيقة`:`Approx. ${km.toFixed(1)} km • about ${mins} min`);renderCart()}
+function locate(){if(!window.isSecureContext)return toast(lang==='ar'?'افتح الموقع عبر HTTPS':'Open via HTTPS');if(!navigator.geolocation)return toast(lang==='ar'?'المتصفح لا يدعم GPS':'GPS unavailable');$('locStatus').textContent=lang==='ar'?'جارٍ تحديد موقعك...':'Finding your location...';navigator.geolocation.getCurrentPosition(p=>setLocation({lat:p.coords.latitude,lon:p.coords.longitude}),e=>{$('locStatus').textContent=e.code===1?(lang==='ar'?'اسمح للموقع باستخدام GPS من إعدادات المتصفح.':'Allow location access in browser settings.'):(lang==='ar'?'تعذر تحديد الموقع. فعّل GPS وحاول مرة أخرى.':'Could not get location. Enable GPS and retry.');toast(lang==='ar'?'تعذر تحديد الموقع':'Location failed')},{enableHighAccuracy:true,timeout:15000,maximumAge:30000})}
+function openCart(){if(!stats().count)return toast(lang==='ar'?'أضف صنفًا أولاً':'Add an item first');$('overlay').classList.add('open');$('sheet').classList.add('open');gotoStep(1)}
+function closeCart(){$('overlay').classList.remove('open');$('sheet').classList.remove('open')}
+function gotoStep(n){
+ step=n;document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',+p.dataset.pane===n));
+ document.querySelectorAll('.journeyStep').forEach(s=>{const k=+s.dataset.jstep;s.classList.toggle('active',k===n);s.classList.toggle('done',k<n)});
+ $('backStep').style.visibility=n===1?'hidden':'visible';$('nextStep').classList.toggle('hidden',n===4);$('send').classList.toggle('hidden',n!==4);
+ $('journeyHint').textContent=lang==='ar'?['','اختياراتك أولاً','نصل لموقعك بوضوح','الدفع والمكافآت','مراجعة أخيرة ثم واتساب'][n]:['','Your choices first','Location and delivery','Payment and rewards','Final check then WhatsApp'][n];
+ renderReview();
+}
+function canNext(){
+ if(step===1)return stats().count>0;
+ if(step===2){if(!order){toast(lang==='ar'?'اختر توصيل أو استلام':'Choose delivery or pickup');return false}if(order==='delivery'&&!coords){toast(lang==='ar'?'حدد موقعك أولاً':'Share your location first');return false}if(order==='delivery'&&deliveryQuote().type==='far'&&!$('courierConfirmed').checked){toast(lang==='ar'?'أكد التوصيل مع أبو سحر أولاً':'Confirm delivery with Abu Sahar first');return false}return true}
+ if(step===3){if(!pay){toast(lang==='ar'?'اختر طريقة الدفع':'Choose payment method');return false}if($('phone').value.replace(/\D/g,'').length<8){toast(lang==='ar'?'أدخل رقم الهاتف':'Enter phone number');return false}return true}
+ return true;
+}
+function renderReview(){
+ if(!$('reviewBox'))return;const {sum}=stats(),q=deliveryQuote(),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
+ const orderTxt=order?(order==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')):'—';
+ const payTxt=pay?(pay==='cash'?tr('cash'):pay==='transfer'?tr('bank'):tr('card')):'—';
+ $('reviewBox').innerHTML=`<div class="reviewBox"><b>${tr('subtotal')}:</b> ${fmt(sum)}<br><b>${tr('deliveryFee')}:</b> ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}${discount?`<br><b>${tr('rewardDiscount')}:</b> -${fmt(discount)}`:''}<br><b>${tr('grand')}:</b> ${fmt(total)}</div><div class="reviewBox"><b>${lang==='ar'?'نوع الطلب':'Order type'}:</b> ${orderTxt}<br><b>${lang==='ar'?'طريقة الدفع':'Payment'}:</b> ${payTxt}${km!=null?`<br><b>${lang==='ar'?'المسافة':'Distance'}:</b> ${km.toFixed(1)} km`:''}</div>`;
+}
+function copyText(txt){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(txt);const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();return Promise.resolve()}
+function sendOrder(){
+ const {count,sum}=stats(),q=deliveryQuote();if(!count)return;
+ if(!canNext())return;const ph=$('phone').value.replace(/\D/g,''),discount=currentDiscount(),total=Math.max(0,sum+(q.fee||0)-discount);
+ const lines=[lang==='ar'?'🍽️ *طلب جديد — الحديقة التركية | فرع سمائل*':'🍽️ *New Order — Turkish Garden | Samail*',''];
+ Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id),name=lang==='ar'?i.ar:i.en;lines.push(`• ${name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});
+ lines.push('',`${tr('subtotal')}: ${fmt(sum)}`,`${tr('deliveryFee')}: ${q.fee==null?q.text:(q.fee===0?(lang==='ar'?'مجاني':'Free'):fmt(q.fee))}`);
+ if(discount)lines.push(`${tr('rewardDiscount')}: -${fmt(discount)}`);
+ lines.push(`${tr('grand')}: ${fmt(total)}`,'',`${lang==='ar'?'نوع الطلب':'Order type'}: ${order==='delivery'?(lang==='ar'?'توصيل':'Delivery'):(lang==='ar'?'استلام':'Pickup')}`,`${lang==='ar'?'طريقة الدفع':'Payment'}: ${pay==='cash'?(lang==='ar'?'كاش':'Cash'):pay==='transfer'?(lang==='ar'?'تحويل':'Transfer'):(lang==='ar'?'فيزا / بطاقة':'Visa / Card')}`,`${lang==='ar'?'الاسم':'Name'}: ${$('name').value||'-'}`,`${lang==='ar'?'الهاتف':'Phone'}: ${$('phone').value}`);
+ if(order==='delivery'){lines.push(`${lang==='ar'?'المسافة':'Distance'}: ${km.toFixed(1)} km`,`${lang==='ar'?'الوقت المتوقع':'ETA'}: ${mins} min`,`📍 https://maps.google.com/?q=${coords.lat},${coords.lon}`);if(q.type==='far')lines.push(lang==='ar'?'✅ تم التأكد من التوصيل مع أبو سحر':'✅ Delivery confirmed with Abu Sahar')}
+ let rep=document.querySelector('input[name="rep"]:checked')?.value;if($('replaceBox').classList.contains('show')){if(rep==='بديل من اختيار العميل'&&$('replaceAlt').value.trim())rep+=': '+$('replaceAlt').value.trim();lines.push(`${lang==='ar'?'بديل شاورما اللحم':'Beef shawarma replacement'}: ${rep}`)}
+ if($('generalNote').value.trim())lines.push(`${lang==='ar'?'ملاحظة':'Note'}: ${$('generalNote').value.trim()}`);
+ if(pay==='transfer')lines.push(lang==='ar'?'يرجى إرسال صورة إيصال التحويل في واتساب.':'Please send the transfer receipt image in WhatsApp.');
+ const signature=Object.entries(cart).map(([id,c])=>id+'x'+c.qty).join('-')+'-'+sum.toFixed(3)+'-'+new Date().toISOString().slice(0,13);
+ const loy=registerLoyalty(ph,sum,signature);if(loy&&loy.gained>0)lines.push(`${lang==='ar'?'⭐ نقاط هذا الطلب':'⭐ Points earned'}: +${loy.gained}`);
+ if(discount){redeemIfSelected(ph);lines.push(lang==='ar'?'🎁 تم استخدام 100 نقطة لخصم 1.000 ر.ع':'🎁 100 points redeemed for 1.000 OMR discount')}
+ localStorage.setItem('tg_owner_orders',String(Number(localStorage.getItem('tg_owner_orders')||0)+1));
+ localStorage.setItem('tg_owner_sales',String(Number(localStorage.getItem('tg_owner_sales')||0)+total));
+ window.open(`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank');showLoyalty(ph);
+}
 
-function loyaltyKey(phone){return 'tg_loyalty_'+String(phone).replace(/\D/g,'')}
-function getLoyalty(phone){try{return JSON.parse(localStorage.getItem(loyaltyKey(phone))||'{"points":0,"orders":0,"spend":[],"lastRewardLevel":0}')}catch(e){return{points:0,orders:0,spend:[],lastRewardLevel:0}}}
-function saveLoyalty(phone,d){localStorage.setItem(loyaltyKey(phone),JSON.stringify(d))}
-function loyaltySummary(phone){const d=getLoyalty(phone),now=Date.now(),cut=now-60*24*60*60*1000;d.spend=(d.spend||[]).filter(x=>x.t>=cut);const spend60=d.spend.reduce((a,x)=>a+x.v,0);saveLoyalty(phone,d);return{...d,spend60}}
-function showLoyalty(phone){phone=String(phone||'').replace(/\D/g,'');if(phone.length<8){$('loyaltyStatus').textContent='أدخل رقم هاتف صحيح.';$('loyaltyProgress').style.width='0%';return}const d=loyaltySummary(phone),pct=Math.min(100,d.points);let reward=d.points>=100?'🎁 لديك مكافأة جاهزة للاستبدال (100 نقطة = خصم 1 ر.ع).':'تحتاج '+(100-d.points)+' نقطة للمكافأة.';$('loyaltyStatus').textContent=`رصيدك: ${d.points} نقطة • الطلبات المؤهلة: ${d.orders}/10 • مشتريات آخر 60 يوم: ${d.spend60.toFixed(3)} ر.ع • ${reward}`;$('loyaltyProgress').style.width=pct+'%'}
-function registerLoyalty(phone,sum){phone=String(phone||'').replace(/\D/g,'');if(phone.length<8)return null;const d=getLoyalty(phone),now=Date.now(),cut=now-60*24*60*60*1000;d.spend=(d.spend||[]).filter(x=>x.t>=cut);d.spend.push({t:now,v:sum});let gained=0;if(sum>7){d.points+=10;d.orders+=1;gained+=10}const spend60=d.spend.reduce((a,x)=>a+x.v,0);const level=Math.floor(spend60/20);if(level>(d.lastRewardLevel||0)){const bonus=(level-(d.lastRewardLevel||0))*20;d.points+=bonus;gained+=bonus;d.lastRewardLevel=level}saveLoyalty(phone,d);return{gained,points:d.points,orders:d.orders,spend60}}
-
-$('locate').onclick=locate;
-$('locationLink').addEventListener('change',()=>{const c=parseCoords($('locationLink').value);if(c)updateLocation(c);else if($('locationLink').value.trim())$('locStatus').textContent='الصق الإحداثيات بالشكل: 23.000000,57.000000'});
+$('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';localStorage.setItem('tg_lang',lang);applyLang()};
+$('search').oninput=renderMenu;$('openCart').onclick=openCart;$('floatCart').onclick=openCart;$('close').onclick=closeCart;$('overlay').onclick=closeCart;
+$('locate').onclick=locate;$('locationLink').addEventListener('change',()=>{const c=parseCoords($('locationLink').value);if(c)setLocation(c)});
 document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{order=b.dataset.order;document.querySelectorAll('[data-order]').forEach(x=>x.classList.toggle('active',x===b));$('locationBox').classList.toggle('show',order==='delivery');renderCart()});
 document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{pay=b.dataset.pay;document.querySelectorAll('[data-pay]').forEach(x=>x.classList.toggle('active',x===b));$('bankBox').classList.toggle('show',pay==='transfer');$('receiptBox').classList.toggle('show',pay==='transfer');$('cardBox').classList.toggle('show',pay==='card')});
-$('loyaltyBtn').onclick=()=>showLoyalty($('loyaltyPhone').value);
-$('loyaltyPhone').addEventListener('keyup',e=>{if(e.key==='Enter')showLoyalty(e.target.value)});
+$('copyTransfer').onclick=()=>copyText('96205536').then(()=>toast(lang==='ar'?'تم نسخ رقم التحويل':'Transfer number copied'));
+$('loyaltyBtn').onclick=()=>showLoyalty($('loyaltyPhone').value);$('loyaltyPhone').addEventListener('keyup',e=>{if(e.key==='Enter')showLoyalty(e.target.value)});
+$('phone').addEventListener('input',()=>{showLoyalty($('phone').value);renderCart()});$('redeemReward').addEventListener('change',renderCart);
+$('backStep').onclick=()=>gotoStep(Math.max(1,step-1));$('nextStep').onclick=()=>{if(canNext())gotoStep(Math.min(4,step+1))};$('send').onclick=sendOrder;
 
-$('send').onclick=()=>{const {count,sum}=stats();if(!count)return toast('السلة فارغة');if(!order)return toast('اختر نوع الطلب');if(!pay)return toast('اختر طريقة الدفع');const ph=$('phone').value.replace(/\D/g,'');if(ph.length<8)return toast('أدخل رقم الهاتف');if(order==='delivery'&&!coords)return toast('حدد موقع العميل');if(order==='delivery'&&km>10&&!$('courierConfirmed').checked)return toast('أكد التوصيل مع أبو سحر أولاً');
-let lines=['🍽️ *طلب جديد — الحديقة التركية فرع سمائل*',''];Object.entries(cart).forEach(([id,c])=>{const i=MENU.find(x=>x.id==id);lines.push(`• ${i.name} × ${c.qty} — ${fmt(i.price*c.qty)}${c.note?` (${c.note})`:''}`)});lines.push('',`قيمة الطلب: ${fmt(sum)}`);if(order==='delivery'){lines.push(`رسوم التوصيل: ${feeText()}`,`الإجمالي الحالي: ${fmt(sum+(fee||0))}`,`المسافة: ${km.toFixed(1)} كم`,`الزمن المتوقع: ${mins} دقيقة`,`موقع العميل: https://maps.google.com/?q=${coords.lat},${coords.lon}`);if(km>10)lines.push('✅ تم التأكد من التوصيل مع أبو سحر قبل إرسال الطلب.')}lines.push('',`نوع الطلب: ${order==='delivery'?'توصيل':'استلام'}`,`طريقة الدفع: ${pay==='cash'?'كاش':pay==='transfer'?'تحويل':'فيزا / بطاقة'}`,`الاسم: ${$('name').value||'غير مذكور'}`,`الهاتف: ${$('phone').value}`);
-let rep=document.querySelector('input[name="rep"]:checked')?.value;if($('replaceBox').classList.contains('show'))lines.push(`بديل شاورما اللحم: ${rep}`);if($('generalNote').value.trim())lines.push(`ملاحظة: ${$('generalNote').value.trim()}`);
-const loy=registerLoyalty(ph,sum);if(loy&&loy.gained>0)lines.push(`⭐ نقاط هذا الطلب: +${loy.gained} • الرصيد التقديري على هذا الجهاز: ${loy.points}`);if(pay==='transfer')lines.push('يرجى إرسال صورة إيصال التحويل في واتساب.');
-localStorage.setItem('tg_owner_orders',String(Number(localStorage.getItem('tg_owner_orders')||0)+1));localStorage.setItem('tg_owner_sales',String(Number(localStorage.getItem('tg_owner_sales')||0)+sum));
-window.open(`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank');showLoyalty(ph)};
-
-$('openCart').onclick=openCart;$('floatCart').onclick=openCart;$('close').onclick=closeCart;$('overlay').onclick=closeCart;$('search').oninput=renderMenu;$('clear').onclick=()=>{if(confirm('تفريغ السلة؟')){cart={};save();renderMenu();renderCart()}};
 $('restaurantMap').href=RESTAURANT_MAP;$('restaurantDirections').href=RESTAURANT_DIR;$('routeFromHere').href=RESTAURANT_DIR;
-$('confirmCourierLink').href=`https://wa.me/${WA}?text=${encodeURIComponent('مرحباً، أريد التأكد من إمكانية التوصيل مع أبو سحر لمسافة أكثر من 10 كم ومعرفة رسوم التوصيل.')}`;
+$('confirmCourierLink').href=`https://wa.me/${WA}?text=${encodeURIComponent('مرحباً، أريد التأكد من إمكانية التوصيل لمسافة أكثر من 10 كم ومعرفة رسوم التوصيل مع أبو سحر.')}`;
 
-async function ownerCounter(){if(new URLSearchParams(location.search).get('owner')!==OWNER_KEY)return;const panel=$('ownerPanel');panel.classList.add('show');let visits=Number(localStorage.getItem('tg_owner_visits')||0)+1;localStorage.setItem('tg_owner_visits',String(visits));let global='غير متاح';try{const r=await fetch('https://api.counterapi.dev/v1/turkish-garden-samail-v4/visits/up',{cache:'no-store'});const d=await r.json();if(Number.isFinite(Number(d.count)))global=Number(d.count).toLocaleString('ar')}catch(e){}const orders=Number(localStorage.getItem('tg_owner_orders')||0),sales=Number(localStorage.getItem('tg_owner_sales')||0);$('ownerStats').innerHTML=`زوار الموقع المسجلون: <b>${global}</b><br>زيارات لوحة المالك على هذا الجهاز: <b>${visits}</b><br>طلبات أُرسلت من هذا الجهاز: <b>${orders}</b><br>قيمة الطلبات المسجلة على هذا الجهاز: <b>${sales.toFixed(3)} ر.ع</b>`}
+async function ownerPanel(){
+ if(new URLSearchParams(location.search).get('owner')!==OWNER_KEY)return;
+ $('ownerPanel').classList.add('show');let global='غير متاح';
+ try{const r=await fetch('https://api.counterapi.dev/v1/turkish-garden-samail-v5/visits/up',{cache:'no-store'});const d=await r.json();if(Number.isFinite(Number(d.count)))global=Number(d.count).toLocaleString('ar')}catch(e){}
+ const orders=Number(localStorage.getItem('tg_owner_orders')||0),sales=Number(localStorage.getItem('tg_owner_sales')||0);
+ $('ownerStats').innerHTML=`زوار الموقع: <b>${global}</b><br>طلبات أرسلت من هذا الجهاز: <b>${orders}</b><br>قيمة الطلبات المسجلة على هذا الجهاز: <b>${sales.toFixed(3)} ر.ع</b>`;
+}
+
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
-greetings();cats();renderMenu();renderCart();ownerCounter();
+setTimeout(()=>$('intro').classList.add('leaving'),1800);setTimeout(()=>$('intro').classList.add('done'),3000);
+applyLang();showLoyalty('');renderCart();ownerPanel();gotoStep(1);
 </script>
-</body></html>
+</body>
+</html>
