@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2d2249">
+<meta name="description" content="الحديقة التركية - فرع سمائل | المنيو والطلب عبر واتساب">
+<title>الحديقة التركية - فرع سمائل</title>
+<style>
+:root{--navy:#2d2249;--navy2:#4a356d;--teal:#b978e6;--teal2:#e5c3ff;--sand:#f0c98e;--paper:#fffdfb;--bg:#f7f1fb;--ink:#272033;--muted:#796f82;--line:#e5dced;--green:#278b65;--danger:#a54835;--shadow:0 14px 42px rgba(45,34,73,.11)}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:linear-gradient(180deg,#f7f1fb,#fffdfb 34%,#f4edf8);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:94px} body.lock{overflow:hidden}
+button,input,textarea{font:inherit} button{cursor:pointer} a{color:inherit;text-decoration:none} .wrap{width:min(1120px,94%);margin:auto} [hidden]{display:none!important}
+/* intro */
+.intro{position:fixed;inset:0;z-index:999;display:grid;place-items:center;background:radial-gradient(circle at 50% 36%,#513b76,#2d2249 48%,#1c1630);color:white;overflow:hidden;transition:.65s}
+.intro:before{content:"";position:absolute;width:min(76vw,520px);aspect-ratio:1;border:1px solid rgba(240,201,142,.34);border-radius:42% 58% 51% 49%/52% 45% 55% 48%;animation:spin 9s linear infinite}
+.intro:after{content:"";position:absolute;inset:-25%;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 1px,transparent 1px 14px)}
+.introCard{position:relative;z-index:2;text-align:center;padding:30px;animation:rise .7s ease both}
+.monogram{width:90px;height:90px;margin:auto;border-radius:28px 10px 28px 10px;border:1px solid rgba(229,195,255,.76);display:grid;place-items:center;font:700 27px Georgia,serif;letter-spacing:.08em;color:var(--teal2);box-shadow:0 0 0 8px rgba(185,120,230,.07)}
+.introKicker{margin-top:23px;color:var(--sand);font-size:10px;letter-spacing:.42em;text-transform:uppercase} .intro h1{margin:7px 0 6px;font:500 clamp(34px,7vw,60px) Georgia,'Times New Roman',serif;letter-spacing:.03em} .intro p{margin:0;color:#e8cdf9;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.intro.out{opacity:0;pointer-events:none;filter:blur(2px)} @keyframes spin{to{transform:rotate(360deg)}} @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* header */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,253,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)} .nav{height:64px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900} .brandMark{width:39px;height:39px;border-radius:12px;background:linear-gradient(145deg,var(--navy2),var(--navy));color:var(--teal2);display:grid;place-items:center;font-weight:900} .brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.navActions{display:flex;gap:7px} .navBtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;font-weight:900} .cartBtn{border:0;background:var(--navy);color:white;transform-origin:center} .cartBtn b{background:var(--teal);color:#2d2249;border-radius:99px;padding:2px 7px;margin-inline-start:4px;display:inline-block} .cartBtn.cartJump{animation:cartJump .38s ease} .cartBtn.cartMilestone{animation:cartMilestone .68s ease} .cartBtn.cartJump b,.cartBtn.cartMilestone b{animation:countPop .38s ease} @keyframes cartJump{0%,100%{transform:none}45%{transform:translateY(-5px) scale(1.045)}} @keyframes cartMilestone{0%,100%{transform:none}25%{transform:translateY(-6px) scale(1.06)}50%{transform:translateY(0) scale(1.02)}75%{transform:translateY(-3px) scale(1.04)}} @keyframes countPop{0%,100%{transform:none}50%{transform:scale(1.35)}}
+/* hero */
+.hero{padding:18px 0 10px} .heroCard{border-radius:30px;background:linear-gradient(135deg,#2a1f45,#4b356e 62%,#744c86);color:white;padding:clamp(26px,6vw,58px);position:relative;overflow:hidden;box-shadow:0 26px 68px rgba(45,34,73,.25)} .heroCard:after{content:"";position:absolute;width:330px;height:330px;border:68px solid rgba(229,195,255,.09);border-radius:50%;left:-145px;bottom:-190px}
+.heroContent{position:relative;z-index:2;max-width:770px} .branchBadge{display:inline-flex;gap:7px;align-items:center;border:1px solid rgba(229,195,255,.28);background:rgba(185,120,230,.14);color:#ecd5fb;padding:8px 12px;border-radius:99px;font-size:12px;font-weight:900}
+.hero h1{font-size:clamp(36px,7vw,68px);line-height:1.08;margin:15px 0 11px} .hero h1 span{color:var(--teal2)} .hero p{margin:0;color:#eee8f3;line-height:1.9;max-width:680px} .heroBtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px} .primary,.ghost{display:inline-flex;align-items:center;justify-content:center;border-radius:14px;padding:13px 17px;font-weight:900} .primary{background:var(--teal2);color:#2d2249} .ghost{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:white}
+.infoStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px} .infoCard{background:white;border:1px solid var(--line);border-radius:17px;padding:13px 14px;box-shadow:0 8px 24px rgba(45,34,73,.05)} .infoCard b{display:block;color:var(--navy2);font-size:12px;margin-bottom:5px} .infoCard span,.infoCard a{font-weight:900} .copyMini{border:0;background:#f3e9fb;color:#604277;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:900;margin-inline-start:5px}
+.notice{margin:12px 0 0;background:#fff8ed;border:1px solid #ead3aa;border-radius:17px;padding:13px 15px;line-height:1.75;font-size:13px} .notice b{color:#76551f}
+/* menu */
+.menu{padding:18px 0 28px} .sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px} .sectionHead h2{margin:0;font-size:clamp(27px,5vw,39px)} .sectionHead p{margin:5px 0 0;color:var(--muted);font-size:13px} .countBadge{background:#f3e9fb;color:#604277;border:1px solid #dcc5eb;border-radius:99px;padding:7px 10px;font-size:12px;font-weight:900}
+.tools{position:sticky;top:64px;z-index:45;background:linear-gradient(#fffdfb 82%,rgba(255,253,251,0));padding:8px 0 13px} .searchWrap{position:relative} .search{width:100%;border:1px solid var(--line);background:white;border-radius:15px;padding:13px 43px 13px 13px;outline:none;box-shadow:0 7px 22px rgba(45,34,73,.045)} .search:focus{border-color:#b98be0;box-shadow:0 0 0 3px rgba(185,120,230,.10)} .searchIcon{position:absolute;right:15px;top:50%;transform:translateY(-50%);opacity:.55} .chips{display:flex;gap:7px;overflow:auto;padding:9px 1px 1px;scrollbar-width:none} .chip{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:99px;padding:9px 13px;font-weight:900;color:#5e5368} .chip.active{background:var(--navy);border-color:var(--navy);color:white}
+.menuList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px} .dish{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(45,34,73,.05);transition:.16s} .dish:hover{box-shadow:0 14px 34px rgba(45,34,73,.08)} .dishMain{padding:14px;display:grid;grid-template-columns:44px 1fr auto;gap:11px;align-items:center;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent} .dishMain:active{background:#faf5fc} .dishMain.quickFlash{animation:dishFlash .24s ease} @keyframes dishFlash{0%,100%{background:transparent}50%{background:#f1e4f8}} .dishIcon{width:44px;height:44px;border-radius:14px;background:#f3e8f8;display:grid;place-items:center;font-size:21px} .dishName{font-weight:900;line-height:1.45} .dishMeta{font-size:11px;color:var(--muted);margin-top:4px} .dishSide{text-align:left;min-width:102px} .dishPrice{display:block;font-weight:900;color:#75438e;margin-bottom:7px;white-space:nowrap} .addBtn{border:0;background:var(--navy);color:white;border-radius:10px;padding:8px 10px;font-weight:900;font-size:12px} .askBtn{background:#f1edf3;color:#7b8788;cursor:not-allowed}.askPriceBtn{background:#f2eaf6;color:#664f73;border:1px solid #dfd0e7}
+.choicePanel{display:none;border-top:1px solid var(--line);background:#fbf7fc;padding:11px 13px 13px} .dish.expanded .choicePanel{display:block} .choiceTop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px} .choiceTop b{font-size:12px;color:#65566d} .hideChoices{border:0;background:transparent;color:#817686;font-weight:900;font-size:12px} .choiceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px} .choice{border:1px solid #dfd0e7;background:white;border-radius:11px;padding:10px;display:flex;justify-content:space-between;gap:7px;align-items:center;text-align:right;transition:.14s} .choice:active,.addBtn:active{transform:scale(.97)} .choice span{font-weight:900;font-size:12px} .choiceSide{display:flex!important;align-items:center;gap:6px;flex:0 0 auto} .choice b{color:#75438e;font-size:12px;white-space:nowrap} .choiceQty,.inlineQty{font-style:normal;background:var(--teal);color:#2d2249;border-radius:999px;min-width:25px;height:25px;padding:0 7px;display:inline-grid;place-items:center;font-size:11px;font-weight:900} .inlineQty{margin-inline-start:4px;background:var(--teal2)} .dishHasQty{color:#75438e;font-weight:900}
+.empty{grid-column:1/-1;text-align:center;padding:34px;border:1px dashed #ded3e5;background:white;border-radius:18px;color:var(--muted)}
+/* cart */
+.floatCart{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:70;width:min(600px,94%);border:0;border-radius:18px;padding:13px 15px;background:linear-gradient(135deg,#2d2249,#62457d);color:white;box-shadow:0 17px 44px rgba(45,34,73,.30);display:flex;justify-content:space-between;align-items:center;font-weight:900} .floatCart strong{color:#ecd5fb}
+.cartOverlay{position:fixed;inset:0;background:rgba(22,15,34,.62);backdrop-filter:blur(3px);z-index:90;display:none} .cartOverlay.open{display:block} .sheet{position:fixed;right:0;top:0;bottom:0;width:min(540px,100%);z-index:91;background:var(--paper);transform:translateX(105%);transition:.22s;display:flex;flex-direction:column;box-shadow:-22px 0 55px rgba(0,0,0,.18)} .sheet.open{transform:none} .sheetHead{padding:14px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between} .sheetHead strong{font-size:20px} .closeCart{border:1px solid var(--line);background:white;border-radius:10px;padding:8px 10px;font-weight:900;color:#665a6d}
+.sheetBody{padding:13px;overflow:auto;flex:1} .cartLine{background:white;border:1px solid var(--line);border-radius:14px;padding:11px;margin-bottom:8px} .cartTop{display:flex;justify-content:space-between;gap:10px} .cartTop h4{margin:0 0 4px;font-size:14px} .cartTop small{color:var(--muted)} .cartQty{display:flex;align-items:center;gap:6px;margin-top:9px} .cartQty button{width:31px;height:31px;border:1px solid var(--line);background:white;border-radius:9px;font-weight:900} .cartQty .remove{width:auto;padding:0 10px;margin-inline-start:auto;color:var(--danger);background:#fff4f0}
+.checkout{border-top:1px solid var(--line);padding:12px 13px;background:white} .total{display:flex;justify-content:space-between;align-items:center;font-weight:900;margin-bottom:9px} .total strong{font-size:20px;color:#75438e} .fields{display:grid;gap:8px} .field{width:100%;border:1px solid var(--line);background:white;border-radius:11px;padding:10px;outline:none} .segments{display:grid;grid-template-columns:1fr 1fr;gap:7px} .seg{border:1px solid var(--line);background:#fbf7fc;border-radius:11px;padding:10px;font-weight:900} .seg.active{border-color:#b98be0;background:#f2e7fa;color:#6e3e86} .deliveryBox,.transferBox{display:none;border:1px solid #dfd1e7;background:#fbf7fc;border-radius:11px;padding:10px} .deliveryBox.show,.transferBox.show{display:block} .deliveryPhoneLabel{display:block;font-size:12px;font-weight:900;color:#5c4668;margin-bottom:7px}.deliveryPhoneLabel strong{color:#a84e38}.deliveryPhone{margin-bottom:8px}.locBtn{border:0;background:var(--green);color:white;border-radius:9px;padding:9px 10px;font-weight:900} .locStatus{margin-top:7px;font-size:11px;line-height:1.6;color:#756879} .send{display:block;width:100%;border:0;border-radius:12px;padding:12px;background:var(--green);color:white;font-weight:900;margin-top:9px;text-align:center;text-decoration:none} .hint{font-size:10.5px;line-height:1.6;color:var(--muted);margin-top:6px}
+.deliveryPolicy{margin-top:8px;padding:9px 10px;border-radius:10px;background:#fff8ed;border:1px solid #ead3aa;font-size:10.5px;line-height:1.7;color:#65512e}.deliveryPolicy b{color:#5a3b74}.routeResult{margin-top:8px;border:1px solid var(--line);background:white;border-radius:11px;padding:9px}.routeResult>div{display:flex;justify-content:space-between;gap:10px;padding:5px 0}.routeResult>div+div{border-top:1px dashed var(--line)}.routeResult span{font-size:11px;color:var(--muted)}.routeResult strong{font-size:12px;color:#6f4188}.routeResult small{display:block;margin-top:6px;line-height:1.6;color:#6f6474}.field.invalid{border-color:#c05b45!important;box-shadow:0 0 0 3px rgba(192,91,69,.10)!important}
+.toast{position:fixed;left:50%;bottom:88px;transform:translate(-50%,14px);opacity:0;pointer-events:none;z-index:150;background:#2d2249;color:white;padding:10px 14px;border-radius:99px;transition:.18s;max-width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:24px 0 12px}
+@media(max-width:760px){.infoStrip{grid-template-columns:1fr 1fr}.infoCard:last-child{grid-column:1/-1}.menuList{grid-template-columns:1fr}}
+@media(max-width:620px){.callText{font-size:11px;padding:9px 9px;white-space:nowrap}.heroCard{border-radius:23px;padding:25px 19px}.hero p{font-size:13px}.dishMain{grid-template-columns:41px 1fr auto;padding:12px;gap:9px}.dishIcon{width:41px;height:41px}.dishName{font-size:14px}.dishSide{min-width:90px}.choiceGrid{grid-template-columns:1fr}.sheet{top:auto;bottom:0;height:min(92vh,760px);border-radius:22px 22px 0 0;transform:translateY(105%)}.sheet.open{transform:none}}
+</style>
+</head>
+<body>
+<div class="intro" id="intro"><div class="introCard"><div class="monogram">WZ</div><div class="introKicker">Designed by</div><h1>Wael Al Zain</h1><p>Digital Experience</p></div></div>
+
+<header class="topbar"><div class="wrap nav">
+  <div class="brand"><div class="brandMark">H│H</div><div>الحديقة التركية<small>فرع سمائل</small></div></div>
+  <div class="navActions"><a class="navBtn callText" href="tel:+96895474488">☎ <span dir="ltr">9547 4488</span></a><button class="navBtn cartBtn" id="openCart">السلة <b id="headCount">0</b></button></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="heroCard"><div class="heroContent">
+    <span class="branchBadge">📍 فرع سمائل • <span dir="ltr">9547 4488</span></span>
+    <h1>اطلب بسهولة،<br><span>والتفاصيل واضحة.</span></h1>
+    <p>اختر القسم والصنف، حدّد النوع أو الحجم عند الحاجة، ثم راجع طلبك وأرسله مباشرة عبر واتساب فرع سمائل.</p>
+    <div class="heroBtns"><a class="primary" href="#menu">عرض القائمة</a><a class="ghost" href="https://wa.me/96895474488" target="_blank" rel="noopener">واتساب الفرع</a><a class="ghost" href="https://www.google.com/maps/search/?api=1&amp;query=23.3057375%2C57.949421875" target="_blank" rel="noopener">موقع فرع سمائل</a></div>
+  </div></div>
+
+  <div class="infoStrip">
+    <div class="infoCard"><b>الفرع</b><span>سمائل</span></div>
+    <div class="infoCard"><b>اتصال وواتساب</b><a dir="ltr" href="tel:+96895474488">9547 4488</a></div>
+    <div class="infoCard"><b>رقم التحويل</b><span dir="ltr">96205536</span><button class="copyMini" id="copyBank">نسخ</button></div>
+  </div>
+  <div class="notice">⚠️ <b>تنبيه:</b> الطلب من <b>الحديقة التركية — فرع سمائل</b>. عند التوصيل تُحسب المسافة عبر <b>مسار قيادة فعلي على الطرق</b> من الفرع إلى موقع العميل، ولا يُستخدم حساب المسافة الجوية.</div>
+</div></section>
+
+<main class="wrap menu" id="menu">
+  <div class="sectionHead"><div><h2>القائمة</h2><p>اختر قسمًا أو ابحث عن الصنف المطلوب.</p></div><span class="countBadge" id="menuCount"></span></div>
+  <div class="tools"><div class="searchWrap"><span class="searchIcon">⌕</span><input class="search" id="search" placeholder="ابحث عن صنف..." autocomplete="off"></div><div class="chips" id="chips"></div></div>
+  <div class="menuList" id="menuList"></div>
+</main>
+
+<footer><div class="wrap">الحديقة التركية — فرع سمائل • الطلب والاستفسار 9547 4488 • Designed by Wael Al Zain</div></footer>
+
+<button class="floatCart" id="floatCart" hidden><span>عرض الطلب • <span id="floatCount">0</span></span><strong id="floatTotal">0.000 ر.ع</strong></button>
+<div class="cartOverlay" id="cartOverlay"></div>
+<aside class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheetHead"><strong>طلب فرع سمائل</strong><button class="closeCart" id="closeCart">إغلاق ✕</button></div>
+  <div class="sheetBody" id="cartBody"></div>
+  <div class="checkout">
+    <div class="total"><span>قيمة الأصناف</span><strong id="grandTotal">0.000 ر.ع</strong></div>
+    <div class="fields">
+      <div class="segments"><button class="seg active" data-type="pickup">🏪 استلام من الفرع</button><button class="seg" data-type="delivery">🚗 توصيل</button></div>
+      <div class="deliveryBox" id="deliveryBox">
+        <label class="deliveryPhoneLabel" for="deliveryPhone">📞 رقم الهاتف للتوصيل <strong>* إلزامي</strong></label>
+        <input class="field deliveryPhone" id="deliveryPhone" inputmode="tel" autocomplete="tel" required aria-required="true" placeholder="أدخل رقم الهاتف للتوصيل">
+        <button class="locBtn" id="locateBtn">📍 تحديد موقعي وحساب المسافة</button>
+        <div class="deliveryPolicy">
+          <b>سياسة التوصيل:</b> مجاني إذا تجاوزت قيمة الأصناف 3.000 ر.ع وكانت مسافة الطريق حتى 5 كم. وإذا تجاوزت قيمة الطلب 10.000 ر.ع يصبح التوصيل مجانيًا عندما تكون مسافة الطريق أقل من 10 كم. لغير ذلك: أكثر من 5 وحتى 6 كم = 0.500 ر.ع، وأكثر من 6 وحتى 7 كم = 0.600 ر.ع، وأكثر من 7 وحتى 10 كم = 1.000 ر.ع. وإذا تجاوز الطلب 20.000 ر.ع وكانت المسافة 10 كم تمامًا فتكون الرسوم 0.500 ر.ع.
+        </div>
+        <div class="locStatus" id="locStatus">اضغط لتحديد موقعك؛ المسافة ستُحسب عبر شبكة الطرق وليست بخط مستقيم.</div>
+        <div class="routeResult" id="routeResult" hidden>
+          <div><span>مسافة الطريق</span><strong id="routeDistance">—</strong></div>
+          <div><span>رسوم التوصيل</span><strong id="deliveryFeeText">—</strong></div>
+          <div><span>الإجمالي مع التوصيل</span><strong id="deliveryGrand">—</strong></div>
+          <small id="deliveryRule"></small>
+        </div>
+      </div>
+      <div class="segments"><button class="seg active" data-pay="cash">💵 كاش</button><button class="seg" data-pay="transfer">🏦 تحويل</button></div>
+      <div class="transferBox" id="transferBox"><b>رقم التحويل:</b> <span dir="ltr">96205536</span> <button class="copyMini" id="copyBankCart">نسخ</button></div>
+      <input class="field" id="customerName" placeholder="الاسم (اختياري)">
+      <div id="pickupPhoneWrap"><input class="field" id="customerPhone" inputmode="tel" autocomplete="tel" placeholder="رقم الهاتف (اختياري للاستلام)"></div>
+      <textarea class="field" id="orderNote" rows="2" placeholder="ملاحظة عامة على الطلب (اختياري)"></textarea>
+    </div>
+    <a class="send" id="sendOrder" href="https://wa.me/96895474488" rel="noopener">إرسال الطلب عبر واتساب</a>
+    <div class="hint">الإجمالي المعروض لقيمة الأصناف المسعّرة فقط. عند التوصيل تُضاف الرسوم تلقائيًا إذا انطبقت قاعدة واضحة، وتظهر المسافة المحسوبة عبر الطريق قبل إرسال الطلب.</div>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA='96895474488',BANK='96205536';
+const BRANCH_PLUS_CODE='8W4X+7QV, Samail';
+const BRANCH_COORDS=Object.freeze({lat:23.3057375,lon:57.949421875});
+const COUNTER_NS='turkish-garden-samail-wz-l5k383u4';
+const COUNTER_BASE='https://api.counterapi.dev/v1/';
+const CAT_ICON={'الشاورما':'🌯','بوكسات الشاورما':'📦','صحون الشاورما':'🍽️','البيتزا':'🍕','الكريسبي':'🍗','الصواريخ':'🚀','الفطائر':'🥙','البرجر':'🍔','الفرايز':'🍟','المشاوي':'🔥','العصائر والمشروبات':'🥤','المقبلات':'🥗'};
+const MENU=[
+ {cat:'الشاورما',name:'سندويتش شاورما',options:[['دجاج',.400],['لحم',.500],['مكس',.400]]},
+ {cat:'الشاورما',name:'صاروخ شاورما',options:[['دجاج',.800],['لحم',1.200],['مكس',1.000]]},
+ {cat:'الشاورما',name:'صاروخ خاص',options:[['دجاج',1.000],['لحم',1.200],['مكس',1.200]]},
+ {cat:'الشاورما',name:'برجر شاورما',options:[['دجاج',.600],['لحم',.800],['مكس',.700]]},
+ {cat:'الشاورما',name:'جامبو شاورما',options:[['دجاج',.700],['لحم',.900],['مكس',.800]]},
+ {cat:'الشاورما',name:'الاسكندر',options:[['دجاج',1.200],['لحم',1.700],['مكس',1.500]]},
+ {cat:'بوكسات الشاورما',name:'بوكس الشاورما قطع',options:[['صغير - دجاج',1.300],['صغير - لحم',1.800],['صغير - مكس',2.500],['متوسط - دجاج',3.000],['متوسط - لحم',4.500],['متوسط - مكس',4.000],['كبير - دجاج',4.000],['كبير - لحم',5.500],['كبير - مكس',5.000],['عائلي - دجاج',5.000],['عائلي - لحم',6.500],['عائلي - مكس',6.000],['عائلي XL - دجاج',6.000],['عائلي XL - لحم',7.500],['عائلي XL - مكس',7.000]]},
+ {cat:'صحون الشاورما',name:'صحون الشاورما',options:[['صغير - دجاج',1.500],['صغير - لحم',2.000],['صغير - مكس',2.000],['متوسط - دجاج',2.000],['متوسط - لحم',2.500],['متوسط - مكس',2.500],['كبير - دجاج',3.000],['كبير - لحم',3.500],['كبير - مكس',3.500],['عائلي - دجاج',4.000],['عائلي - لحم',5.000],['عائلي - مكس',5.000],['عائلي XL - دجاج',5.000],['عائلي XL - لحم',6.000],['عائلي XL - مكس',6.000]]},
+ {cat:'البيتزا',name:'بيتزا شاورما',options:[['صغير',1.500],['وسط',2.700],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا مكس',options:[['صغير',1.500],['وسط',2.500],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا ببروني',options:[['صغير',1.500],['وسط',2.700],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا نقانق',options:[['صغير',1.500],['وسط',2.500],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا لحم',options:[['صغير',1.500],['وسط',2.500],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا خضار',options:[['صغير',1.500],['وسط',2.500],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا دجاج',options:[['صغير',1.500],['وسط',2.500],['كبير',3.500]]},
+ {cat:'البيتزا',name:'بيتزا روبيان',options:[['صغير',1.800],['وسط',2.800],['كبير',3.800]]},
+ {cat:'البيتزا',name:'بيتزا تكه',options:[['صغير',1.500],['وسط',2.700],['كبير',3.500]]},
+ {cat:'الكريسبي',name:'بكس كرسبي',price:1.700},{cat:'الكريسبي',name:'جامبو كريسبي',price:1.400},{cat:'الكريسبي',name:'صاروخ كرسبي',price:1.000},{cat:'الكريسبي',name:'برجر كرسبي',price:1.000},{cat:'الكريسبي',name:'ملغوم جرسبي جبن',price:1.200},
+ {cat:'الصواريخ',name:'تكة لحم',price:.900},{cat:'الصواريخ',name:'تكة دجاج',price:.800},{cat:'الصواريخ',name:'كباب لحم',price:.800},{cat:'الصواريخ',name:'كباب دجاج',price:.800},
+ {cat:'الفطائر',name:'لبنة (زعتر-عسل-زيتون)',price:1.000},{cat:'الفطائر',name:'جبن مع بيض',price:1.000},{cat:'الفطائر',name:'جبن كرافت عسل',price:1.000},{cat:'الفطائر',name:'جبن نقانق',price:1.000},{cat:'الفطائر',name:'جبن لحم',price:1.000},{cat:'الفطائر',name:'جبن دجاج',price:1.000},{cat:'الفطائر',name:'عزيزة لحم',price:1.000},{cat:'الفطائر',name:'عزيزة دجاج',price:1.000},
+ {cat:'البرجر',name:'برجر لحم طازج',price:1.000},{cat:'البرجر',name:'برجر دجاج طازج',price:1.000},{cat:'البرجر',name:'برجر الحديقة لحم',price:1.200},{cat:'البرجر',name:'برجر الحديقة دجاج',price:1.200},
+ {cat:'الفرايز',name:'فرايز شورما دجاج',price:1.500},{cat:'الفرايز',name:'فرايز شورما لحم',price:1.500},{cat:'الفرايز',name:'فرايز تكه دجاج',price:1.500},{cat:'الفرايز',name:'فرايز تكه لحم',price:1.500},{cat:'الفرايز',name:'فرايز كريسبي',price:1.500},
+ {cat:'المشاوي',name:'صحن مشاوي',price:3.500},{cat:'المشاوي',name:'صحن مشاوي صغير',price:2.000},{cat:'المشاوي',name:'صحن مشاوي متوسط',price:6.500},{cat:'المشاوي',name:'صحن مشاوي كبير',price:10.000},{cat:'المشاوي',name:'صحن مشاوي عائلي',price:13.000},{cat:'المشاوي',name:'صحن مشكل الحديقة متوسط',price:4.000},{cat:'المشاوي',name:'صحن مشكل الحديقة كبير',price:6.500},{cat:'المشاوي',name:'صحن مشكل الحديقة عائلي',price:12.000},{cat:'المشاوي',name:'دجاج كامل على الفحم',price:3.000},{cat:'المشاوي',name:'نص دجاج على الفحم',price:1.500},
+ {cat:'العصائر والمشروبات',name:'كركديه',price:.700},{cat:'العصائر والمشروبات',name:'عصير الحديقة الخاص',price:1.000},{cat:'العصائر والمشروبات',name:'البرتقال',price:1.000},{cat:'العصائر والمشروبات',name:'المانجو',price:1.000},{cat:'العصائر والمشروبات',name:'افكادو',price:1.000},{cat:'العصائر والمشروبات',name:'الاناناس',price:.800},{cat:'العصائر والمشروبات',name:'ليمون',price:.600},{cat:'العصائر والمشروبات',name:'نعناع',price:.800},{cat:'العصائر والمشروبات',name:'بطيخ سلاش',price:1.000},{cat:'العصائر والمشروبات',name:'كوكتيل',price:.600},{cat:'العصائر والمشروبات',name:'موز',price:.500},{cat:'العصائر والمشروبات',name:'فيمتو',price:.700},{cat:'العصائر والمشروبات',name:'موهيتو',price:1.000},{cat:'العصائر والمشروبات',name:'روب رمان',price:1.000},{cat:'العصائر والمشروبات',name:'روب مانجو',price:1.000},{cat:'العصائر والمشروبات',name:'روب فراولة',price:1.000},{cat:'العصائر والمشروبات',name:'لبن',price:.400},{cat:'العصائر والمشروبات',name:'بالثوم',price:.200},{cat:'العصائر والمشروبات',name:'عصير',price:.100},{cat:'العصائر والمشروبات',name:'ماء',price:null,note:'السعر غير ظاهر مقابل هذا الصنف في صفحة المشروبات بالملف المرسل.'},
+ {cat:'المقبلات',name:'المتبل',options:[['الصغير',.500],['الكبير',1.000]]},{cat:'المقبلات',name:'الحمص',options:[['الصغير',.500],['الكبير',1.000]]},{cat:'المقبلات',name:'صحن توميه',options:[['الصغير',.800],['الكبير',1.500]]},{cat:'المقبلات',name:'تشيبس مقلي',options:[['الصغير',.500],['الكبير',1.000]]},{cat:'المقبلات',name:'فتوش',options:[['الصغير',.800],['الكبير',1.500]]},{cat:'المقبلات',name:'سلطة يونانيه',options:[['الصغير',.800],['الكبير',1.500]]},{cat:'المقبلات',name:'سلطة زيتون',options:[['الصغير',.800],['الكبير',1.500]]},
+ {cat:'العصائر والمشروبات',name:'كينزا',price:.300}
+];
+MENU.forEach((x,i)=>x.id=i);
+const $=id=>document.getElementById(id),fmt=n=>Number(n).toFixed(3)+' ر.ع';
+let cat='الكل',expanded=null,cart=JSON.parse(localStorage.getItem('tg_samail_cart_v3')||'{}'),orderType='pickup',payment='cash',coords=null,branchCoords=null,routeKm=null,deliveryFee=null,deliveryRule='';
+
+function safe(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(m){$('toast').textContent=m;$('toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').classList.remove('show'),1700)}
+function save(){localStorage.setItem('tg_samail_cart_v3',JSON.stringify(cart))}
+function counterUp(name){fetch(`${COUNTER_BASE}${COUNTER_NS}/${name}/up`,{mode:'no-cors',cache:'no-store'}).catch(()=>{})}
+function trackVisit(){counterUp('pageviews');if(!sessionStorage.getItem('tg_samail_session')){sessionStorage.setItem('tg_samail_session','1');counterUp('sessions')}}
+function categoryList(){return ['الكل',...new Set(MENU.map(x=>x.cat))]}
+function renderCats(){$('chips').innerHTML=categoryList().map(c=>`<button class="chip ${c===cat?'active':''}" data-cat="${safe(c)}">${c==='الكل'?'كل الأقسام':(CAT_ICON[c]||'•')+' '+safe(c)}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;expanded=null;$('search').value='';renderCats();renderMenu()})}
+function priceLabel(x){if(x.price!=null)return fmt(x.price);if(x.options?.length)return 'من '+fmt(Math.min(...x.options.map(o=>o[1])));return 'السعر عند الفرع'}
+function lineKey(id,opt){return id+'::'+opt}
+function lineQty(id,opt=''){return cart[lineKey(id,opt)]?.qty||0}
+function dishQty(id){return Object.values(cart).reduce((n,c)=>n+(c.id===id?c.qty:0),0)}
+function cardHTML(x){const has=x.options?.length,q=dishQty(x.id);return `<article class="dish ${expanded===x.id?'expanded':''}" data-dish="${x.id}"><div class="dishMain" data-main-action="${x.id}"><div class="dishIcon">${CAT_ICON[x.cat]||'🍴'}</div><div><div class="dishName">${safe(x.name)}</div><div class="dishMeta">${has?'اضغط الصنف لعرض الخيارات، ثم اضغط الخيار عدة مرات للكمية':'اضغط على الصنف أو زر الإضافة عدة مرات للكمية'}${q?` <span class="dishHasQty">• في السلة ${q}</span>`:''}</div></div><div class="dishSide"><span class="dishPrice">${priceLabel(x)}</span><button class="addBtn" data-action="${x.id}">${has?(expanded===x.id?'مفتوح ✓':'اختيار'):`أضف +${q?` <span class="inlineQty">×${q}</span>`:''}`}</button></div></div>${has?`<div class="choicePanel"><div class="choiceTop"><b>اضغط نفس الخيار أكثر من مرة — العدد يظهر فورًا بجانبه</b><button class="hideChoices" data-hide="${x.id}">إغلاق ✕</button></div><div class="choiceGrid">${x.options.map((o,i)=>{const oq=lineQty(x.id,o[0]);return `<button class="choice" data-choice="${x.id}" data-op="${i}"><span>${safe(o[0])}</span><span class="choiceSide"><b>${fmt(o[1])}</b>${oq?`<em class="choiceQty">×${oq}</em>`:''}</span></button>`}).join('')}</div></div>`:''}</article>`}
+function renderMenu(){const q=$('search').value.trim().toLowerCase();const list=MENU.filter(x=>q?(`${x.name} ${x.cat}`.toLowerCase().includes(q)):(cat==='الكل'||x.cat===cat));$('menuCount').textContent=list.length+' صنف';$('menuList').innerHTML=list.length?list.map(cardHTML).join(''):'<div class="empty">لا توجد نتائج مطابقة.</div>';bindMenu()}
+function performDishAction(id){const x=MENU[id];if(!x)return;if(x.options?.length){if(expanded===id)return;expanded=id;renderMenu();setTimeout(()=>document.querySelector(`[data-dish="${id}"]`)?.scrollIntoView({behavior:'smooth',block:'nearest'}),30)}else addLine(id,'',x.price)}
+function bindMenu(){document.querySelectorAll('[data-main-action]').forEach(row=>row.onclick=e=>{if(e.target.closest('button'))return;performDishAction(Number(row.dataset.mainAction))});document.querySelectorAll('[data-action]').forEach(b=>b.onclick=e=>{e.stopPropagation();performDishAction(Number(b.dataset.action))});document.querySelectorAll('[data-hide]').forEach(b=>b.onclick=e=>{e.stopPropagation();expanded=null;renderMenu()});document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=e=>{e.stopPropagation();const x=MENU[Number(b.dataset.choice)],o=x.options[Number(b.dataset.op)];addLine(x.id,o[0],o[1])})}
+function pulseCart(qty){const btn=$('openCart');if(!btn)return;btn.classList.remove('cartJump','cartMilestone');void btn.offsetWidth;btn.classList.add(qty>0&&qty%4===0?'cartMilestone':'cartJump');setTimeout(()=>btn.classList.remove('cartJump','cartMilestone'),720)}
+function updateDishUI(id,opt=''){const dish=document.querySelector(`[data-dish="${id}"]`);if(!dish)return;const x=MENU[id],total=dishQty(id),meta=dish.querySelector('.dishMeta');let totalBadge=dish.querySelector('.dishHasQty');if(total){if(!totalBadge){totalBadge=document.createElement('span');totalBadge.className='dishHasQty';meta?.append(' ',totalBadge)}totalBadge.textContent='• في السلة '+total}else totalBadge?.remove();if(x.options?.length&&opt){const oi=x.options.findIndex(o=>o[0]===opt),choice=dish.querySelector(`[data-choice="${id}"][data-op="${oi}"]`);if(choice){let badge=choice.querySelector('.choiceQty');const q=lineQty(id,opt);if(q){if(!badge){badge=document.createElement('em');badge.className='choiceQty';choice.querySelector('.choiceSide')?.appendChild(badge)}badge.textContent='×'+q}else badge?.remove()}}else if(!x.options?.length){const btn=dish.querySelector('.addBtn');if(btn)btn.innerHTML=`أضف +${total?` <span class="inlineQty">×${total}</span>`:''}`}}
+function addLine(id,opt,price){const k=lineKey(id,opt);if(!cart[k])cart[k]={id,opt,price,qty:0};cart[k].qty++;const qty=cart[k].qty;save();renderCart();updateDishUI(id,opt);pulseCart(qty);toast(qty%4===0?`العدد الآن ${qty} — السلة بالأعلى`:`تمت الإضافة — العدد ${qty}`)}
+function changeQty(k,d){if(!cart[k])return;cart[k].qty+=d;if(cart[k].qty<=0)delete cart[k];save();renderCart()}
+function removeLine(k){delete cart[k];save();renderCart()}
+function stats(){let count=0,sum=0,unknown=0;Object.values(cart).forEach(c=>{count+=c.qty;if(c.price==null)unknown+=c.qty;else sum+=c.qty*c.price});return{count,sum,unknown}}
+function renderCart(){const s=stats();$('headCount').textContent=s.count;$('floatCount').textContent=s.count+' صنف';$('floatTotal').textContent=fmt(s.sum);$('grandTotal').textContent=fmt(s.sum);$('floatCart').hidden=!s.count;if(orderType==='delivery'&&routeKm!=null)refreshDeliveryPricing();const lines=Object.entries(cart);$('cartBody').innerHTML=lines.length?lines.map(([k,c])=>{const x=MENU[c.id];return `<div class="cartLine"><div class="cartTop"><div><h4>${safe(x.name)}${c.opt?' - '+safe(c.opt):''}</h4><small>${c.price==null?'السعر عند الفرع':fmt(c.price)+' للوحدة'}</small></div><b>${c.price==null?'يُؤكد من الفرع':fmt(c.price*c.qty)}</b></div><div class="cartQty"><button data-dec="${encodeURIComponent(k)}">−</button><b>${c.qty}</b><button data-inc="${encodeURIComponent(k)}">+</button><button class="remove" data-remove="${encodeURIComponent(k)}">حذف</button></div></div>`}).join(''):'<div class="empty">السلة فارغة. اختر أصنافك من القائمة.</div>';document.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>changeQty(decodeURIComponent(b.dataset.dec),-1));document.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>changeQty(decodeURIComponent(b.dataset.inc),1));document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>removeLine(decodeURIComponent(b.dataset.remove)))}
+function openCart(){$('cartOverlay').classList.add('open');$('sheet').classList.add('open');$('sheet').setAttribute('aria-hidden','false');document.body.classList.add('lock')}
+function closeCart(){$('cartOverlay').classList.remove('open');$('sheet').classList.remove('open');$('sheet').setAttribute('aria-hidden','true');document.body.classList.remove('lock')}
+function setOrderType(t){
+ orderType=t;
+ document.querySelectorAll('[data-type]').forEach(b=>b.classList.toggle('active',b.dataset.type===t));
+ const delivery=t==='delivery';
+ $('deliveryBox').classList.toggle('show',delivery);
+ $('pickupPhoneWrap').style.display=delivery?'none':'block';
+ $('deliveryPhone').required=delivery;
+ $('deliveryPhone').setAttribute('aria-required',delivery?'true':'false');
+ if(!delivery){$('deliveryPhone').classList.remove('invalid');routeKm=null;deliveryFee=null;deliveryRule='';$('routeResult').hidden=true}
+}
+function setPayment(p){payment=p;document.querySelectorAll('[data-pay]').forEach(b=>b.classList.toggle('active',b.dataset.pay===p));$('transferBox').classList.toggle('show',p==='transfer')}
+function copyBank(){const done=()=>toast('تم نسخ رقم التحويل');if(navigator.clipboard?.writeText)navigator.clipboard.writeText(BANK).then(done).catch(()=>prompt('رقم التحويل',BANK));else prompt('رقم التحويل',BANK)}
+function fetchWithTimeout(url,ms=15000){const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),ms);return fetch(url,{cache:'no-store',signal:ctrl.signal}).finally(()=>clearTimeout(t))}
+async function resolveBranchCoords(){
+ // نقطة فرع سمائل ثابتة حسب Plus Code الذي أكده المالك.
+ // لا نبحث عن اسم المطعم ولا نستخدم أي نقطة محفوظة قديمة.
+ try{localStorage.removeItem('tg_samail_branch_coords')}catch(_){ }
+ branchCoords={lat:BRANCH_COORDS.lat,lon:BRANCH_COORDS.lon};
+ return branchCoords
+}
+async function roadDistanceKm(from,to){
+ const urls=[
+  `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=false&alternatives=false&steps=false`,
+  `https://routing.openstreetmap.de/routed-car/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=false&alternatives=false&steps=false`
+ ];
+ let lastError;
+ for(const u of urls){
+  try{const r=await fetchWithTimeout(u,18000);if(!r.ok)throw new Error('route-http');const data=await r.json();if(data.code==='Ok'&&data.routes?.[0]&&Number.isFinite(data.routes[0].distance))return data.routes[0].distance/1000}catch(err){lastError=err}
+ }
+ throw lastError||new Error('route-none')
+}
+function deliveryPolicy(sum,km){
+ if(sum>10&&km<10)return{fee:0,label:'توصيل مجاني: قيمة الطلب تجاوزت 10.000 ر.ع ومسافة الطريق أقل من 10 كم.'};
+ if(km<=5){
+  if(sum>3)return{fee:0,label:'توصيل مجاني: قيمة الأصناف تجاوزت 3.000 ر.ع والمسافة لا تتعدى 5 كم.'};
+  return{fee:null,label:'المسافة ضمن 5 كم لكن قيمة الأصناف 3.000 ر.ع أو أقل؛ قيمة التوصيل تُؤكد من الفرع.'}
+ }
+ if(km<=10){
+  if(sum>20&&km>=10)return{fee:.500,label:'الطلب تجاوز 20.000 ر.ع والمسافة 10 كم؛ رسوم التوصيل 0.500 ر.ع.'};
+  const billedKm=Math.ceil(km-1e-9);
+  if(billedKm<=6)return{fee:.500,label:'مسافة الطريق أكثر من 5 وحتى 6 كم: رسوم التوصيل 0.500 ر.ع.'};
+  if(billedKm<=7)return{fee:.600,label:'مسافة الطريق أكثر من 6 وحتى 7 كم: رسوم التوصيل 0.600 ر.ع.'};
+  return{fee:1.000,label:'مسافة الطريق أكثر من 7 وحتى 10 كم: رسوم التوصيل 1.000 ر.ع.'}
+ }
+ return{fee:null,label:'المسافة عبر الطريق تتجاوز 10 كم؛ قيمة التوصيل تُؤكد من فرع سمائل قبل التنفيذ.'}
+}
+function refreshDeliveryPricing(){
+ if(routeKm==null){$('routeResult').hidden=true;return}
+ const s=stats(),rule=deliveryPolicy(s.sum,routeKm);deliveryFee=rule.fee;deliveryRule=rule.label;
+ $('routeResult').hidden=false;$('routeDistance').textContent=routeKm.toFixed(2)+' كم';$('deliveryFeeText').textContent=deliveryFee==null?'تُؤكد من الفرع':deliveryFee===0?'مجاني':fmt(deliveryFee);$('deliveryGrand').textContent=deliveryFee==null?'بعد تأكيد الرسوم':fmt(s.sum+deliveryFee);$('deliveryRule').textContent=deliveryRule
+}
+function geoErrorMessage(err){
+ if(!err)return'تعذر تحديد موقعك. أعد المحاولة.';
+ if(err.code===1)return'إذن الموقع مرفوض. من إعدادات المتصفح اسمح للموقع باستخدام موقعك ثم اضغط «تحديد موقعي» مرة أخرى.';
+ if(err.code===2)return'تعذر الوصول إلى موقع الهاتف حاليًا. شغّل خدمة الموقع GPS والإنترنت ثم أعد المحاولة.';
+ if(err.code===3)return'استغرق تحديد الموقع وقتًا طويلًا. انتقل لمكان مفتوح قليلًا ثم أعد المحاولة.';
+ return'تعذر تحديد موقعك. أعد المحاولة.'
+}
+function getPosition(options){return new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,options))}
+async function locate(){
+ if(!window.isSecureContext){$('locStatus').textContent='تحديد الموقع يحتاج فتح الموقع عبر HTTPS.';return}
+ if(!navigator.geolocation){$('locStatus').textContent='المتصفح لا يدعم تحديد الموقع.';return}
+ routeKm=null;deliveryFee=null;deliveryRule='';$('routeResult').hidden=true;coords=null;
+ $('locStatus').textContent='جارٍ تحديد موقعك... قد يطلب المتصفح السماح بالموقع.';
+ let pos;
+ try{
+  try{pos=await getPosition({enableHighAccuracy:false,timeout:15000,maximumAge:120000})}
+  catch(firstErr){pos=await getPosition({enableHighAccuracy:true,timeout:30000,maximumAge:0})}
+ }catch(err){$('locStatus').textContent=geoErrorMessage(err);return}
+ coords={lat:pos.coords.latitude,lon:pos.coords.longitude};
+ $('locStatus').textContent='✅ تم تحديد موقعك. جارٍ حساب مسافة القيادة الفعلية على الطرق...';
+ try{
+  const origin=await resolveBranchCoords();routeKm=await roadDistanceKm(origin,coords);refreshDeliveryPricing();$('locStatus').textContent='✅ تم تحديد موقعك وحساب مسافة القيادة الفعلية على الطرق.'
+ }catch(err){
+  routeKm=null;deliveryFee=null;$('routeResult').hidden=true;
+  $('locStatus').textContent='✅ تم تحديد موقعك وإرفاقه للطلب. تعذر حساب مسافة الطريق تلقائيًا الآن، لذلك لن نستخدم أي مسافة تقريبية وسيؤكد الفرع رسوم التوصيل من موقعك.'
+ }
+}
+function prepareOrderLink(e){
+ const s=stats(),link=e.currentTarget;
+ if(!s.count){e.preventDefault();return toast('أضف أصنافًا أولًا')}
+ const name=$('customerName').value.trim();
+ const phone=orderType==='delivery'?$('deliveryPhone').value.trim():$('customerPhone').value.trim();
+ const note=$('orderNote').value.trim();
+ if(orderType==='delivery'&&!phone){e.preventDefault();$('deliveryPhone').classList.add('invalid');$('deliveryPhone').focus();return toast('رقم الهاتف إلزامي للتوصيل')}
+ $('deliveryPhone').classList.remove('invalid');
+ if(orderType==='delivery'&&!coords){e.preventDefault();return toast('حدد موقعك للتوصيل')}
+  const lines=['⚠️ *الحديقة التركية — فرع سمائل*','📞 *9547 4488*','','🧾 *طلب جديد*',''];
+ Object.values(cart).forEach(c=>{const x=MENU[c.id];lines.push(`• ${x.name}${c.opt?' - '+c.opt:''}${c.qty>1?' — العدد '+c.qty:''}`)});
+ lines.push('',`💰 *${s.unknown?'قيمة الأصناف المسعّرة':'قيمة الأصناف'}: ${fmt(s.sum)}*`);
+ if(s.unknown)lines.push(`ℹ️ يوجد ${s.unknown} صنف/وحدة سعرها يُؤكد من الفرع.`);
+ lines.push(`🏪 طريقة الطلب: ${orderType==='pickup'?'استلام من الفرع':'توصيل'}`,`💳 الدفع: ${payment==='cash'?'كاش':'تحويل'}`);
+ if(payment==='transfer')lines.push(`🏦 رقم التحويل: ${BANK}`);
+ if(orderType==='delivery'){
+  if(routeKm!=null){
+   const rule=deliveryPolicy(s.sum,routeKm);deliveryFee=rule.fee;deliveryRule=rule.label;
+   lines.push(`🛣️ مسافة الطريق: ${routeKm.toFixed(2)} كم`);
+   lines.push(`🚗 رسوم التوصيل: ${deliveryFee==null?'تُؤكد من الفرع':deliveryFee===0?'مجاني':fmt(deliveryFee)}`);
+   if(deliveryFee!=null)lines.push(`💵 الإجمالي مع التوصيل: ${fmt(s.sum+deliveryFee)}`);
+   lines.push(`ℹ️ ${deliveryRule}`);
+  }else{
+   lines.push('🛣️ مسافة الطريق: تعذر حسابها تلقائيًا — لا توجد مسافة تقريبية');
+   lines.push('🚗 رسوم التوصيل: تُؤكد من الفرع بعد فتح موقع العميل');
+  }
+  lines.push(`📍 موقع العميل: https://maps.google.com/?q=${coords.lat},${coords.lon}`)
+ }
+ if(name)lines.push(`👤 الاسم: ${name}`);
+ if(phone)lines.push(`📞 رقم العميل: ${phone}`);
+ if(note)lines.push(`📝 ملاحظة: ${note}`);
+ lines.push('','📌 الطلب موجه إلى فرع سمائل.');
+ counterUp('orders');counterUp(orderType==='delivery'?'delivery-orders':'pickup-orders');
+ link.href=`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`;
+ toast('جارٍ فتح واتساب...')
+}
+
+$('search').addEventListener('input',()=>{expanded=null;renderMenu()});$('openCart').onclick=openCart;$('floatCart').onclick=openCart;$('closeCart').onclick=closeCart;$('cartOverlay').onclick=closeCart;$('locateBtn').onclick=locate;$('sendOrder').addEventListener('click',prepareOrderLink);$('copyBank').onclick=copyBank;$('copyBankCart').onclick=copyBank;$('deliveryPhone').addEventListener('input',()=>$('deliveryPhone').classList.remove('invalid'));document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>setOrderType(b.dataset.type));document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>setPayment(b.dataset.pay));document.addEventListener('keydown',e=>{if(e.key==='Escape'){expanded=null;renderMenu();closeCart()}});
+renderCats();renderMenu();renderCart();setOrderType('pickup');setPayment('cash');trackVisit();
+setTimeout(()=>$('intro').classList.add('out'),2100);setTimeout(()=>$('intro')?.remove(),2800);
+</script>
+</body>
+</html>
