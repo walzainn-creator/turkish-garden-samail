@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الحديقة التركية - سمائل</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.12), transparent 35%),
+        linear-gradient(135deg, #173b2d, #245743 55%, #10291f);
+      color: #fff;
+      user-select: none;
+    }
+    .card {
+      width: min(620px, 100%);
+      text-align: center;
+      padding: 48px 28px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      background: rgba(255,255,255,.09);
+      box-shadow: 0 20px 60px rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+    }
+    .icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 700;
+    }
+    .message {
+      margin: 0 auto;
+      max-width: 520px;
+      line-height: 2;
+      font-size: clamp(17px, 4vw, 21px);
+    }
+    .notice {
+      margin-top: 28px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.15);
+      font-size: 15px;
+      opacity: .9;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: .75;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card" aria-label="الخدمة متوقفة مؤقتًا">
+    <div class="icon">🌷</div>
+
+    <h1>نعتذر منكم</h1>
+
+    <p class="message">
+      هذا الرابط غير فعال حاليًا، وتم إيقاف الخدمة مؤقتًا.
+      <br>
+      نعتذر عن أي إزعاج، ونشكركم على تفهّمكم وصبركم.
+    </p>
+
+    <div class="notice">
+      سيتم تفعيل الرابط من جديد قريبًا بإذن الله.
+    </div>
+
+    <div class="footer">
+      الحديقة التركية – فرع سمائل
+    </div>
+  </main>
+
+  <script>
+    // منع استخدام الصفحة كواجهة للموقع القديم أو التفاعل معها.
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && ['u','s','c','x','a'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
