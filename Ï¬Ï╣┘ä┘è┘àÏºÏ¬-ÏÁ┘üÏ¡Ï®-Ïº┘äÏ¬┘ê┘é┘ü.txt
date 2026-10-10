@@ -1,0 +1,18 @@
+تعليمات رفع صفحة التوقف المؤقت
+
+1) افتح مستودع GitHub:
+   walzainn-creator/turkish-garden-samail
+
+2) ارفع ملف index.html إلى جذر المستودع.
+
+3) إذا كان هناك ملف index.html موجود، اختر Replace existing file.
+
+4) اضغط Commit changes.
+
+5) اترك الملف index.htm كما هو؛ زر «زيارة الموقع والقائمة» في صفحة التوقف يفتح هذا الملف مباشرة.
+
+6) بعد النشر افتح الرابط:
+   https://walzainn-creator.github.io/turkish-garden-samail/
+
+رقم واتساب المستخدم في الزر:
++968 9547 4488
